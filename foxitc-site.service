@@ -1,0 +1,16 @@
+[Unit]
+Description=Fox ITC Website
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/foxitc-site/backend
+Environment="ODOO_API_KEY=993ae991f853b2a7a2ce734a6ec9d07346b4c9c0"
+Environment="CLARITY_PROJECT_ID="
+ExecStart=/opt/foxitc-site/venv/bin/uvicorn main:app --host 127.0.0.1 --port 8055
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
