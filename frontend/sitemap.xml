@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://www.foxitc.co.uk/</loc><priority>1.0</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://www.foxitc.co.uk/about</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.foxitc.co.uk/contact</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.foxitc.co.uk/pricing</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.foxitc.co.uk/resources</loc><priority>0.7</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://www.foxitc.co.uk/client-portal</loc><priority>0.6</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.foxitc.co.uk/services/managed-it</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.foxitc.co.uk/services/cyber-security</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.foxitc.co.uk/services/cyber-essentials</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.foxitc.co.uk/services/microsoft-365</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.foxitc.co.uk/services/connectivity</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.foxitc.co.uk/services/mobile</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.foxitc.co.uk/services/wifi</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.foxitc.co.uk/services/pat-testing</loc><priority>0.9</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.foxitc.co.uk/services/ai</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.foxitc.co.uk/ai-readiness</loc><priority>0.7</priority><changefreq>monthly</changefreq></url>
+</urlset>
