@@ -1,0 +1,85 @@
+name: Deploy to production
+
+# Deploys the site to the VPS (/opt/foxitc-site) whenever changes land on main.
+# Can also be run manually from the Actions tab.
+#
+# Required repository secrets (Settings -> Secrets and variables -> Actions):
+#   DEPLOY_SSH_KEY  - private SSH key whose public half is in the server's authorized_keys
+#   DEPLOY_HOST     - server hostname/IP (e.g. 217.182.170.69)
+#   DEPLOY_USER     - SSH user (e.g. root)
+#   DEPLOY_PORT     - SSH port (optional; defaults to 22)
+#
+# Note: this does NOT overwrite /etc/systemd/system/foxitc-site.service, so any
+# server-side env config (CLARITY_PROJECT_ID, ODOO_API_KEY) is preserved. If the
+# service definition changes, update it on the server manually.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Never run two deploys at once; let an in-progress deploy finish.
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p "${DEPLOY_PORT:-22}" -H "$DEPLOY_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+
+      - name: Sync files to server
+        run: |
+          rsync -az --delete \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='venv' \
+            --exclude='*.zip' \
+            -e "ssh -i ~/.ssh/deploy_key -p ${DEPLOY_PORT:-22}" \
+            ./ "${DEPLOY_USER}@${DEPLOY_HOST}:/opt/foxitc-site/"
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+
+      - name: Install dependencies and restart service
+        run: |
+          ssh -i ~/.ssh/deploy_key -p "${DEPLOY_PORT:-22}" \
+            "${DEPLOY_USER}@${DEPLOY_HOST}" 'bash -s' <<'EOF'
+          set -euo pipefail
+          cd /opt/foxitc-site
+          # Create the virtualenv on first deploy; reuse it afterwards.
+          if [ ! -d venv ]; then
+            python3 -m venv venv
+          fi
+          ./venv/bin/pip install --upgrade pip --quiet
+          ./venv/bin/pip install -r backend/requirements.txt --quiet
+          systemctl restart foxitc-site
+          sleep 2
+          systemctl is-active foxitc-site
+          EOF
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
+
+      - name: Health check
+        run: |
+          ssh -i ~/.ssh/deploy_key -p "${DEPLOY_PORT:-22}" \
+            "${DEPLOY_USER}@${DEPLOY_HOST}" \
+            'curl -fsS http://127.0.0.1:8055/api/health'
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
