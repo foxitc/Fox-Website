@@ -16,8 +16,8 @@
     {
       "id": "foundation",
       "section": "Managed IT Plans",
-      "name": "Foundation",
-      "tagline": "IT support, done properly.",
+      "name": "Secure",
+      "tagline": "For businesses that need reliable IT support and peace of mind.",
       "description": "Reliable helpdesk, proactive monitoring and patch management. The essentials, done right — with a team you can actually talk to.",
       "currency": "GBP",
       "unit": "per user",
@@ -41,9 +41,9 @@
     {
       "id": "professional",
       "section": "Managed IT Plans",
-      "name": "Professional",
-      "tagline": "Support and security. One price. No gaps.",
-      "description": "Everything in Foundation, plus the full security stack most businesses genuinely need — EDR, email protection, dark web monitoring, cloud backup and more. This is where the real value is.",
+      "name": "Protect",
+      "tagline": "For growing businesses that want proactive IT and cyber security.",
+      "description": "Everything in Secure, plus the full security stack most businesses genuinely need — EDR, email protection, dark web monitoring, cloud backup and more. This is where the real value is.",
       "currency": "GBP",
       "unit": "per user",
       "billingFrequency": "per month",
@@ -56,7 +56,7 @@
       "badge": "Most popular",
       "highlight": true,
       "included": [
-        "Everything in Foundation",
+        "Everything in Secure",
         "Endpoint Detection & Response (EDR)",
         "Email security & anti-spam",
         "DNS filtering",
@@ -71,9 +71,9 @@
     {
       "id": "complete",
       "section": "Managed IT Plans",
-      "name": "Complete",
-      "tagline": "Your full IT department.",
-      "description": "Everything in Professional, plus 24/7 cover, advanced threat protection and a dedicated account manager who genuinely knows your business.",
+      "name": "Defend",
+      "tagline": "For organisations that need complete technology management and strategic guidance.",
+      "description": "Everything in Protect, plus 24/7 cover, advanced threat protection and a dedicated account manager who genuinely knows your business.",
       "currency": "GBP",
       "unit": "per user",
       "billingFrequency": "per month",
@@ -86,7 +86,7 @@
       "badge": null,
       "highlight": false,
       "included": [
-        "Everything in Professional",
+        "Everything in Protect",
         "24/7/365 helpdesk cover",
         "Managed Detection & Response (SOC)",
         "Simulated phishing campaigns",
@@ -161,7 +161,7 @@
       "name": "Out-of-hours emergency cover",
       "priceLabel": "From £15/user/mo",
       "price": { "from": true, "amount": 15, "currency": "GBP", "unit": "per user", "frequency": "per month" },
-      "note": "Uplift for Foundation & Professional — 24/7 emergency response"
+      "note": "Uplift for Secure & Protect — 24/7 emergency response"
     },
     {
       "id": "on-site-support",
@@ -206,7 +206,7 @@
   "faqs": [
     {
       "q": "Are these prices per user or per month?",
-      "a": "Per user, per month, excluding VAT. So a 10-person business on Professional would be 10 × £50 = £500/month (or £450/month on the annual plan). We'll give you a tailored quote once we understand your setup."
+      "a": "Per user, per month, excluding VAT. So a 10-person business on Protect would be 10 × £50 = £500/month (or £450/month on the annual plan). We'll give you a tailored quote once we understand your setup."
     },
     {
       "q": "Is there a minimum number of users?",
@@ -221,8 +221,8 @@
       "a": "Microsoft 365 licences are available as an add-on at competitive prices. We'll quote them separately so you can see exactly what you're paying for. Many clients prefer us to manage their licencing as part of a single monthly invoice."
     },
     {
-      "q": "What happens if I need support outside business hours on Foundation or Professional?",
-      "a": "Foundation and Professional include business-hours helpdesk. Out-of-hours emergency support is available as a chargeable add-on, or you can upgrade to Complete for full 24/7 cover. We'll always let you know your options honestly."
+      "q": "What happens if I need support outside business hours on Secure or Protect?",
+      "a": "Secure and Protect include business-hours helpdesk. Out-of-hours emergency support is available as a chargeable add-on, or you can upgrade to Defend for full 24/7 cover. We'll always let you know your options honestly."
     },
     {
       "q": "Can I upgrade between plans?",
