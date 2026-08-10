@@ -36,8 +36,33 @@ OG_IMAGE = f"{BASE_URL}/opengraph.jpg"
 SAME_AS = ["https://www.linkedin.com/company/fox-itc"]
 ORG_DESCRIPTION = (
     "Fox ITC provides straight-talking managed IT support, cyber security, "
-    "Microsoft 365 and connectivity for businesses across the UK."
+    "Microsoft 365 and connectivity for businesses in Leicester, Leicestershire "
+    "and across the UK."
 )
+
+# Registered office (legal NAP address).
+REGISTERED_ADDRESS = {
+    "@type": "PostalAddress",
+    "addressLocality": "Castle Donington",
+    "addressRegion": "Leicestershire",
+    "postalCode": "DE74 2UZ",
+    "addressCountry": "GB",
+}
+# Priority service area centred on Leicester (LE9). Radius ~40km covers
+# Leicester, Leicestershire and the registered office to the north.
+PRIMARY_GEO = {"@type": "GeoCoordinates", "latitude": 52.6293, "longitude": -1.2467}
+SERVICE_RADIUS_M = 40000
+# Ordered by priority — Leicester first.
+AREA_SERVED = [
+    {"@type": "City", "name": "Leicester"},
+    {"@type": "AdministrativeArea", "name": "Leicestershire"},
+    {"@type": "City", "name": "Loughborough"},
+    {"@type": "City", "name": "Hinckley"},
+    {"@type": "City", "name": "Coalville"},
+    {"@type": "City", "name": "Castle Donington"},
+    {"@type": "AdministrativeArea", "name": "East Midlands"},
+    {"@type": "Country", "name": "United Kingdom"},
+]
 KNOWS_ABOUT = [
     "Managed IT Support", "Cyber Security", "Cyber Essentials",
     "Microsoft 365", "Business Connectivity", "Business Mobile",
@@ -147,14 +172,20 @@ def _org_node() -> dict:
         "telephone": PHONE_E164,
         "email": EMAIL,
         "priceRange": "££",
-        "address": {"@type": "PostalAddress", "addressCountry": "GB"},
-        "areaServed": {"@type": "Country", "name": "United Kingdom"},
+        "address": REGISTERED_ADDRESS,
+        "geo": PRIMARY_GEO,
+        "areaServed": AREA_SERVED,
+        "serviceArea": {
+            "@type": "GeoCircle",
+            "geoMidpoint": PRIMARY_GEO,
+            "geoRadius": SERVICE_RADIUS_M,
+        },
         "contactPoint": {
             "@type": "ContactPoint",
             "telephone": PHONE_E164,
             "email": EMAIL,
             "contactType": "customer service",
-            "areaServed": "GB",
+            "areaServed": AREA_SERVED,
             "availableLanguage": "English",
         },
         "sameAs": SAME_AS,
@@ -205,7 +236,7 @@ def _service_node(canonical: str, service: str) -> dict:
         "serviceType": service,
         "url": canonical,
         "provider": {"@id": f"{BASE_URL}/#organization"},
-        "areaServed": {"@type": "Country", "name": "United Kingdom"},
+        "areaServed": AREA_SERVED,
     }
 
 
