@@ -3,13 +3,15 @@ Fox ITC Website Backend
 """
 from fastapi import FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import xmlrpc.client
 import os
 from pathlib import Path
 from datetime import datetime
+
+import seo
 
 app = FastAPI(title="Fox ITC Website")
 
@@ -130,36 +132,47 @@ if FRONTEND_DIR.exists():
 
     app.mount("/assets", StaticFiles(directory=str(FRONTEND_DIR / "assets")), name="assets")
 
+    def _image_media_type(p: Path) -> str:
+        # Some .png files hold optimised JPEG bytes; serve the true type by sniffing magic bytes.
+        try:
+            with open(p, "rb") as fh:
+                head = fh.read(3)
+            if head[:3] == b"\xff\xd8\xff":
+                return "image/jpeg"
+        except OSError:
+            pass
+        return "image/png"
+
     # Serve static files (images, fonts, etc)
     @app.get("/{filename}.png")
     async def serve_png(filename: str):
         from urllib.parse import unquote
         p = FRONTEND_DIR / f"{unquote(filename)}.png"
-        if p.exists(): return FileResponse(p)
-        return FileResponse(FRONTEND_DIR / "index.html")
+        if p.exists(): return FileResponse(p, media_type=_image_media_type(p))
+        return HTMLResponse(seo.render_index("/"))
 
     @app.get("/{filename}.jpg")
     async def serve_jpg(filename: str):
         p = FRONTEND_DIR / f"{filename}.jpg"
         if p.exists(): return FileResponse(p)
-        return FileResponse(FRONTEND_DIR / "index.html")
+        return HTMLResponse(seo.render_index("/"))
 
     @app.get("/{filename}.svg")
     async def serve_svg(filename: str):
         p = FRONTEND_DIR / f"{filename}.svg"
         if p.exists(): return FileResponse(p, media_type="image/svg+xml")
-        return FileResponse(FRONTEND_DIR / "index.html")
+        return HTMLResponse(seo.render_index("/"))
 
     @app.get("/{filename}.ico")
     async def serve_ico(filename: str):
         p = FRONTEND_DIR / f"{filename}.ico"
         if p.exists(): return FileResponse(p)
-        return FileResponse(FRONTEND_DIR / "index.html")
+        return HTMLResponse(seo.render_index("/"))
 
     @app.get("/{full_path:path}")
     async def serve_frontend(full_path: str):
-        return FileResponse(FRONTEND_DIR / "index.html")
+        return HTMLResponse(seo.render_index("/" + full_path))
 
     @app.get("/")
     async def root():
-        return FileResponse(FRONTEND_DIR / "index.html")
+        return HTMLResponse(seo.render_index("/"))

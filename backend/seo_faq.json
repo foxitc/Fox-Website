@@ -1,0 +1,96 @@
+{
+  "/pricing": [
+    {
+      "q": "Are these prices per user or per month?",
+      "a": "Per user, per month, excluding VAT. So a 10-person business on Protect would be 10 × £50 = £500/month (or £450/month on the annual plan). We'll give you a tailored quote once we understand your setup."
+    },
+    {
+      "q": "Is there a minimum number of users?",
+      "a": "We work with businesses from 5 users upwards. There's no upper limit — and the more users, the more we can discuss volume pricing."
+    },
+    {
+      "q": "What's the contract length?",
+      "a": "We offer 12-month contracts as standard. No 3-year lock-ins — we earn your business every year. Monthly rolling options are available for the right circumstances — just ask."
+    },
+    {
+      "q": "Does the price include Microsoft 365 licences?",
+      "a": "Microsoft 365 licences are available as an add-on at competitive prices. We'll quote them separately so you can see exactly what you're paying for. Many clients prefer us to manage their licencing as part of a single monthly invoice."
+    },
+    {
+      "q": "What happens if I need support outside business hours on Secure or Protect?",
+      "a": "Secure and Protect include business-hours helpdesk. Out-of-hours emergency support is available as a chargeable add-on, or you can upgrade to Defend for full 24/7 cover. We'll always let you know your options honestly."
+    },
+    {
+      "q": "Can I upgrade between plans?",
+      "a": "Absolutely. As your business grows, your IT needs change. Moving between plans is straightforward — just talk to your account manager and we'll handle the rest."
+    },
+    {
+      "q": "What if I'm not sure which plan I need?",
+      "a": "Honestly? Most businesses aren't sure, and that's fine. Get in touch and we'll have a proper conversation about your setup, your risks, and what makes sense. No hard sell — just straight advice."
+    }
+  ],
+  "/services/cyber-essentials": [
+    {
+      "q": "How long does the whole process take?",
+      "a": "For a typical SMB, from initial conversation to certificate in hand usually takes 2–6 weeks, depending on what remediation is needed. Many clients are already close to compliant and we can move faster. Cyber Essentials Plus takes slightly longer due to the independent verification step."
+    },
+    {
+      "q": "How much does Cyber Essentials certification cost?",
+      "a": "The IASME certification fee starts at around £300–£500 depending on your organisation size. There's also the cost of our assessment and any remediation work — we'll give you a fixed-price quote after the initial scoping call. Cyber Essentials Plus has additional costs due to the independent assessment."
+    },
+    {
+      "q": "Do I need to recertify every year?",
+      "a": "Yes. Cyber Essentials certification is valid for 12 months. Annual renewal is recommended by the NCSC because the threat landscape changes, and it ensures your controls stay up to date. We make the renewal process straightforward."
+    },
+    {
+      "q": "Does Cyber Essentials cover cloud services like Microsoft 365?",
+      "a": "Yes — cloud services used by your organisation are included in scope, including Microsoft 365, Google Workspace, and other SaaS tools. We'll help you ensure your cloud configuration meets the standard, including MFA and access controls."
+    },
+    {
+      "q": "We're a small business with only a few computers. Is it still relevant?",
+      "a": "Absolutely. Cyber Essentials is designed for organisations of all sizes — including sole traders and micro businesses. The controls scale to your environment. A small business with five laptops and a Microsoft 365 subscription is entirely achievable."
+    },
+    {
+      "q": "What's the difference between Cyber Essentials and ISO 27001?",
+      "a": "Cyber Essentials is a government-backed baseline certification focused on five specific technical controls. ISO 27001 is a far more comprehensive international standard covering your entire information security management system — it's significantly more involved and expensive to achieve. Most SMBs start with Cyber Essentials."
+    }
+  ],
+  "/services/pat-testing": [
+    {
+      "q": "Is PAT testing a legal requirement?",
+      "a": "Not in the sense that there is a specific law requiring PAT tests at fixed intervals. However, the Electricity at Work Regulations 1989 and the Health and Safety at Work Act 1974 both require employers to ensure electrical equipment is maintained in a safe condition. PAT testing is the accepted method of demonstrating compliance. If there is an incident involving electrical equipment and you cannot show documented evidence of maintenance, you are exposed — legally and with your insurer."
+    },
+    {
+      "q": "How often does PAT testing need to be done?",
+      "a": "It depends on the type of equipment and the environment. Office IT equipment may only need testing every 2 years. Commercial kitchen appliances should be tested every 6 months. Power tools on construction sites need quarterly testing. Our engineer will advise on the correct intervals for each category at your site, based on IET Code of Practice 5th Edition guidance."
+    },
+    {
+      "q": "What appliances need PAT testing?",
+      "a": "Any portable electrical appliance — broadly anything that plugs into a socket. This includes computers, monitors, printers, kettles, microwaves, fridges, fans, heaters, extension leads, power tools, commercial kitchen equipment, and AV equipment. Fixed wiring (sockets, switches, consumer units) is not covered by PAT testing — that requires a separate EICR."
+    },
+    {
+      "q": "Who carries out the testing?",
+      "a": "Fox ITC engineers hold City & Guilds 2377 qualification and use calibrated Seaward PrimeTest 250+ testing equipment. Every certificate includes the engineer's name and qualification, plus the tester device serial number and calibration date — exactly what insurers and auditors want to see."
+    },
+    {
+      "q": "What happens during a PAT test?",
+      "a": "Each appliance gets a visual inspection first — checking for damage, frayed cables, cracked plugs, signs of overheating. Then we run the electrical tests: earth continuity, insulation resistance, and where applicable, earth leakage and RCD trip time. Standard appliances take 3–5 minutes each. Failed items are labelled DO NOT USE immediately and documented in the certificate."
+    },
+    {
+      "q": "Do I need to turn everything off?",
+      "a": "Most items can be tested with minimal disruption — computers, monitors, and general office equipment can stay running. Kitchen equipment may need to be briefly switched off. We confirm logistics in advance so you can plan around the visit."
+    },
+    {
+      "q": "What is FoxPAT as a Service?",
+      "a": "FoxPAT as a Service is a monthly subscription that covers all your PAT testing needs. For a fixed monthly fee, Fox ITC schedules your testing visits, carries out full testing, applies labels, issues certificates, and manages your compliance calendar — indefinitely. You do not need to remember to book. We handle it."
+    },
+    {
+      "q": "Can I add PAT testing to my existing Fox ITC IT contract?",
+      "a": "Yes — this is the most common setup. We add FoxPAT as a line on your existing monthly invoice. One invoice, one direct debit, everything covered. Existing IT clients also receive a 10% discount on all PAT testing."
+    },
+    {
+      "q": "What is the difference between PAT testing and an EICR?",
+      "a": "PAT testing covers portable appliances — anything that plugs in. An EICR (Electrical Installation Condition Report) covers fixed wiring — the sockets, switches, distribution boards, and cables within the fabric of the building. They are separate requirements and one does not replace the other. Fox ITC currently offers PAT testing. For EICR requirements, we can refer you to a qualified electrician."
+    }
+  ]
+}
