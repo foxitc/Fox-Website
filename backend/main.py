@@ -169,6 +169,32 @@ if FRONTEND_DIR.exists():
         if p.exists(): return FileResponse(p)
         return HTMLResponse(seo.render_index("/"))
 
+    # Newsletters — standalone Fox-branded page reading the Fox 360 feed.
+    def _render_newsletters(vertical: str = ""):
+        import html as _html
+        doc = (FRONTEND_DIR / "newsletters.html").read_text(encoding="utf-8")
+        if vertical:
+            v = _html.escape(vertical, quote=True)
+            doc = doc.replace(
+                '<div id="fox-newsletters" data-base="https://360.foxitc.co.uk"></div>',
+                '<div id="fox-newsletters" data-base="https://360.foxitc.co.uk" data-vertical="%s"></div>' % v,
+            )
+            doc = doc.replace(
+                'href="https://www.foxitc.co.uk/newsletters" />',
+                'href="https://www.foxitc.co.uk/newsletters/%s" />' % v,
+            )
+        return HTMLResponse(doc)
+
+    @app.get("/newsletters")
+    async def newsletters():
+        return _render_newsletters()
+
+    @app.get("/newsletters/{vertical}")
+    async def newsletters_vertical(vertical: str):
+        import re as _re
+        v = vertical if _re.fullmatch(r"[a-z0-9-]{1,64}", vertical or "") else ""
+        return _render_newsletters(v)
+
     @app.get("/{full_path:path}")
     async def serve_frontend(full_path: str):
         return HTMLResponse(seo.render_index("/" + full_path))
