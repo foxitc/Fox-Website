@@ -153,6 +153,27 @@ DEFAULT = {
     "description": ORG_DESCRIPTION,
 }
 
+# Pages temporarily hidden from the site (menu links hidden site-wide + the
+# page itself redirected + removed from search). Fully reversible: remove the
+# path from this list (and re-add its <url> to sitemap.xml) to bring it back.
+# The page code itself is untouched — nothing is deleted.
+HIDDEN_PATHS = ["/services/pat-testing"]
+
+
+def _hidden_pages_block() -> str:
+    """CSS to hide nav/footer links to hidden pages, plus a redirect guard."""
+    if not HIDDEN_PATHS:
+        return ""
+    css_sel = ",".join('a[href*="%s"]' % p for p in HIDDEN_PATHS)
+    js_list = json.dumps([p.rstrip("/") for p in HIDDEN_PATHS])
+    style = '<style id="fox-hidden-pages">%s{display:none !important;}</style>' % css_sel
+    script = (
+        "<script>(function(){var h=" + js_list + ";"
+        'var p=location.pathname.replace(/\\/+$/,"")||"/";'
+        'if(h.indexOf(p)>-1){location.replace("/");}})();</script>'
+    )
+    return style + "\n    " + script
+
 # --- FAQ data (verbatim from the live site) -------------------------------
 try:
     _FAQ = json.loads((Path(__file__).parent / "seo_faq.json").read_text(encoding="utf-8"))
@@ -292,6 +313,8 @@ def render_index(path: str) -> str:
     title = meta.get("title", DEFAULT["title"])
     desc = meta.get("description", DEFAULT["description"])
     robots = meta.get("robots", "index, follow")
+    if path in HIDDEN_PATHS:
+        robots = "noindex, nofollow"
     canonical = f"{BASE_URL}/" if path == "/" else f"{BASE_URL}{path}"
 
     doc = INDEX_HTML.read_text(encoding="utf-8")
@@ -321,5 +344,8 @@ def render_index(path: str) -> str:
     <meta name="twitter:image" content="{OG_IMAGE}" />
     <script type="application/ld+json">{jsonld}</script>
 """
+    hidden = _hidden_pages_block()
+    if hidden:
+        block += "    " + hidden + "\n"
     doc = doc.replace("</head>", block + "  </head>", 1)
     return doc
