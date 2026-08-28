@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Newsletters | Fox ITC</title>
+    <meta name="description" content="Industry newsletters and IT insight from Fox ITC — practical guidance on managed IT, cyber security, Microsoft 365 and more for UK businesses." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://www.foxitc.co.uk/newsletters" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Fox ITC" />
+    <meta property="og:title" content="Newsletters | Fox ITC" />
+    <meta property="og:description" content="Industry newsletters and IT insight from Fox ITC for UK businesses." />
+    <meta property="og:url" content="https://www.foxitc.co.uk/newsletters" />
+    <meta property="og:image" content="https://www.foxitc.co.uk/opengraph.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon-fox.png" />
+    <meta name="theme-color" content="#0f172a" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PTJSGNL8J4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-PTJSGNL8J4');
+    </script>
+    <script defer src="https://360.foxitc.co.uk/api/analytics/script" data-key="fox_6c02bece2cd4b7d8"></script>
+
+    <style>
+      :root{
+        --navy:#0f172a; --navy-2:#1b2240; --orange:#f97316; --ink:#0f172a;
+        --muted:#5b6472; --border:#e6e8ee; --bg:#f7f8fa; --card:#fff;
+      }
+      *{box-sizing:border-box;}
+      html,body{margin:0;}
+      body{font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+        color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;}
+      a{color:inherit;}
+
+      /* Header */
+      .fxhead{position:sticky;top:0;z-index:100;background:rgba(15,23,42,.98);color:#fff;
+        border-bottom:1px solid rgba(255,255,255,.08);}
+      .fxhead__in{max-width:1120px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;
+        justify-content:space-between;gap:16px;}
+      .fxhead__logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:800;font-size:18px;letter-spacing:-.01em;}
+      .fxhead__logo img{height:34px;width:auto;display:block;}
+      .fxnav{display:flex;align-items:center;gap:22px;}
+      .fxnav a{color:#cbd2e0;text-decoration:none;font-size:14.5px;font-weight:500;}
+      .fxnav a:hover{color:#fff;}
+      .fxcta{background:var(--orange);color:#fff !important;padding:9px 16px;border-radius:9px;
+        font-weight:700;font-size:14px;text-decoration:none;white-space:nowrap;}
+      @media (max-width:760px){ .fxnav a:not(.fxcta){display:none;} }
+
+      /* Hero */
+      .fxhero{background:linear-gradient(135deg,#0f172a,#1b2240);color:#fff;}
+      .fxhero__in{max-width:1120px;margin:0 auto;padding:56px 20px 40px;}
+      .fxhero__eyebrow{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.14em;
+        text-transform:uppercase;color:var(--orange);margin-bottom:14px;}
+      .fxhero h1{font-size:clamp(30px,5vw,46px);line-height:1.08;letter-spacing:-.02em;margin:0 0 12px;font-weight:800;}
+      .fxhero p{font-size:18px;color:#c3cad8;margin:0;max-width:60ch;}
+
+      /* Newsletters widget (from Fox 360 drop-in), orange aligned to Fox ITC brand */
+      .fxnl{--fx-orange:#f97316;--fx-ink:#0f172a;--fx-muted:#5b6472;--fx-border:#e6e8ee;--fx-card:#fff;
+        color:var(--fx-ink);max-width:1120px;margin:0 auto;padding:34px 20px 64px;}
+      .fxnl *{box-sizing:border-box;}
+      .fxnl__chips{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 24px;}
+      .fxnl__chip{border:1px solid var(--fx-border);background:var(--fx-card);color:var(--fx-ink);border-radius:999px;
+        padding:8px 15px;font-size:13.5px;font-weight:600;cursor:pointer;transition:all .15s;font-family:inherit;}
+      .fxnl__chip:hover{border-color:var(--fx-orange);}
+      .fxnl__chip[aria-selected="true"]{background:var(--fx-orange);border-color:var(--fx-orange);color:#fff;}
+      .fxnl__grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;}
+      .fxnl__card{display:flex;flex-direction:column;background:var(--fx-card);border:1px solid var(--fx-border);
+        border-radius:16px;overflow:hidden;text-decoration:none;color:inherit;transition:transform .15s,box-shadow .15s;}
+      .fxnl__card:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(20,26,46,.10);}
+      .fxnl__hero{aspect-ratio:16/9;background:linear-gradient(135deg,#1b2240,#2a3566);background-size:cover;background-position:center;}
+      .fxnl__body{padding:16px 18px 20px;display:flex;flex-direction:column;flex:1;}
+      .fxnl__tag{align-self:flex-start;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--fx-orange);margin-bottom:8px;}
+      .fxnl__title{font-size:18px;font-weight:800;line-height:1.25;letter-spacing:-.01em;margin:0 0 8px;}
+      .fxnl__excerpt{font-size:14px;line-height:1.55;color:var(--fx-muted);margin:0 0 14px;flex:1;}
+      .fxnl__foot{display:flex;align-items:center;justify-content:space-between;font-size:12.5px;color:var(--fx-muted);}
+      .fxnl__read{color:var(--fx-orange);font-weight:700;}
+      .fxnl__state{padding:60px 10px;text-align:center;color:var(--fx-muted);font-size:15px;}
+
+      /* Footer */
+      .fxfoot{background:#0f172a;color:#aeb7c7;}
+      .fxfoot__in{max-width:1120px;margin:0 auto;padding:36px 20px;display:flex;flex-wrap:wrap;gap:18px;
+        justify-content:space-between;align-items:center;font-size:14px;}
+      .fxfoot a{color:#e5e9f0;text-decoration:none;}
+      .fxfoot a:hover{text-decoration:underline;}
+      .fxfoot__meta{font-size:12.5px;color:#7c88a0;}
+    </style>
+  </head>
+  <body>
+    <header class="fxhead">
+      <div class="fxhead__in">
+        <a class="fxhead__logo" href="/"><img src="/fox_logo.png" alt="Fox ITC" /></a>
+        <nav class="fxnav">
+          <a href="/services/managed-it">Managed IT</a>
+          <a href="/services/cyber-security">Cyber Security</a>
+          <a href="/pricing">Pricing</a>
+          <a href="/resources">Resources</a>
+          <a href="/contact" class="fxcta">Get in touch</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="fxhero">
+      <div class="fxhero__in">
+        <span class="fxhero__eyebrow">Fox ITC</span>
+        <h1>Newsletters &amp; industry insight</h1>
+        <p>Practical IT and cyber-security guidance for UK businesses — straight-talking updates by industry, published by the Fox ITC team.</p>
+      </div>
+    </section>
+
+    <main>
+      <!-- Fox 360 newsletters feed. data-vertical (optional) turns this into a single-industry page. -->
+      <div id="fox-newsletters" data-base="https://360.foxitc.co.uk"></div>
+    </main>
+
+    <footer class="fxfoot">
+      <div class="fxfoot__in">
+        <div>
+          <a href="/">Fox ITC</a> · Managed IT &amp; Cyber Security<br />
+          <span class="fxfoot__meta">Castle Donington, Leicestershire · Serving Leicester &amp; the UK</span>
+        </div>
+        <div>
+          <a href="tel:03300581877">03300 581 877</a> ·
+          <a href="mailto:hello@foxitc.co.uk">hello@foxitc.co.uk</a> ·
+          <a href="https://www.linkedin.com/company/fox-itc" rel="noopener" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+    (function () {
+      var mount = document.getElementById("fox-newsletters");
+      if (!mount) return;
+      var BASE = (mount.getAttribute("data-base") || "https://360.foxitc.co.uk").replace(/\/$/, "");
+      var FIXED = mount.getAttribute("data-vertical") || "";
+
+      mount.className = "fxnl";
+      var esc = function (s) { var d = document.createElement("div"); d.textContent = s == null ? "" : s; return d.innerHTML; };
+      var fmt = function (iso) { try { return new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }); } catch (e) { return ""; } };
+
+      function card(n) {
+        var hero = n.hero_image_url ? ' style="background-image:url(\'' + esc(n.hero_image_url) + '\')"' : "";
+        return '<a class="fxnl__card" href="' + esc(n.page_url) + '">' +
+                 '<div class="fxnl__hero"' + hero + '></div>' +
+                 '<div class="fxnl__body">' +
+                   (n.vertical ? '<span class="fxnl__tag">' + esc(n.vertical) + '</span>' : '') +
+                   '<h3 class="fxnl__title">' + esc(n.title) + '</h3>' +
+                   '<p class="fxnl__excerpt">' + esc(n.excerpt || "") + '</p>' +
+                   '<div class="fxnl__foot"><span>' + esc(fmt(n.published_at)) + '</span>' +
+                     '<span class="fxnl__read">Read &rarr;</span></div>' +
+                 '</div></a>';
+      }
+
+      function renderGrid(list) {
+        if (!list || !list.length) return '<div class="fxnl__state">No newsletters published yet — check back soon.</div>';
+        return '<div class="fxnl__grid">' + list.map(card).join("") + '</div>';
+      }
+
+      function loadFeed(vertical) {
+        var gridEl = mount.querySelector("#fxnl-grid");
+        if (gridEl) gridEl.innerHTML = '<div class="fxnl__state">Loading&hellip;</div>';
+        var q = vertical ? "?vertical=" + encodeURIComponent(vertical) : "";
+        fetch(BASE + "/api/newsletters/feed" + q)
+          .then(function (r) { return r.json(); })
+          .then(function (d) { if (gridEl) gridEl.innerHTML = renderGrid(d.newsletters || []); })
+          .catch(function () { if (gridEl) gridEl.innerHTML = '<div class="fxnl__state">Couldn\'t load newsletters right now.</div>'; });
+      }
+
+      if (FIXED) {
+        mount.innerHTML = '<div id="fxnl-grid"></div>';
+        loadFeed(FIXED);
+        return;
+      }
+
+      mount.innerHTML = '<div class="fxnl__chips" id="fxnl-chips"></div><div id="fxnl-grid"></div>';
+      loadFeed("");
+      fetch(BASE + "/api/newsletters/feed/verticals")
+        .then(function (r) { return r.json(); })
+        .then(function (d) {
+          var vs = (d && d.verticals) || [];
+          if (!vs.length) return;
+          var chipsEl = mount.querySelector("#fxnl-chips");
+          var chips = [{ slug: "", name: "All" }].concat(vs);
+          chipsEl.innerHTML = chips.map(function (v, i) {
+            return '<button class="fxnl__chip" role="tab" aria-selected="' + (i === 0) + '" data-v="' + esc(v.slug) + '">' +
+                   esc(v.name) + (v.count ? ' (' + v.count + ')' : '') + '</button>';
+          }).join("");
+          chipsEl.addEventListener("click", function (e) {
+            var b = e.target.closest(".fxnl__chip"); if (!b) return;
+            chipsEl.querySelectorAll(".fxnl__chip").forEach(function (c) { c.setAttribute("aria-selected", c === b); });
+            loadFeed(b.getAttribute("data-v"));
+          });
+        })
+        .catch(function () {});
+    })();
+    </script>
+
+    <!-- Fox 360 — Todd support chat widget -->
+    <div id="fox-chat"></div>
+    <script>
+    (function () {
+      var URL = "https://360.foxitc.co.uk/ask";
+      var open = false, wrap = document.getElementById("fox-chat");
+      var panel = document.createElement("iframe");
+      panel.src = URL;
+      panel.title = "Chat to Todd";
+      panel.style.cssText = "position:fixed;bottom:96px;right:24px;width:380px;max-width:calc(100vw - 32px);" +
+        "height:560px;max-height:calc(100vh - 130px);border:0;border-radius:16px;" +
+        "box-shadow:0 16px 50px rgba(0,0,0,.28);z-index:2147483000;display:none;background:#fff;";
+      var btn = document.createElement("button");
+      btn.setAttribute("aria-label", "Chat to us");
+      btn.innerHTML = "💬";
+      btn.style.cssText = "position:fixed;bottom:24px;right:24px;width:60px;height:60px;border:0;border-radius:50%;" +
+        "background:#FB471B;color:#fff;font-size:26px;cursor:pointer;z-index:2147483001;" +
+        "box-shadow:0 6px 20px rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;";
+      btn.onclick = function () {
+        open = !open;
+        panel.style.display = open ? "block" : "none";
+        btn.innerHTML = open ? "✕" : "💬";
+      };
+      wrap.appendChild(panel);
+      wrap.appendChild(btn);
+    })();
+    </script>
+  </body>
+</html>
