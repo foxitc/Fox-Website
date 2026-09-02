@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Industry IT Support | Fox ITC</title>
+    <meta name="description" content="Managed IT support and cyber security tailored to your industry, from Fox ITC — practical, straight-talking help for UK businesses." />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Fox ITC" />
+    <meta property="og:title" content="Industry IT Support | Fox ITC" />
+    <meta property="og:description" content="Managed IT support and cyber security tailored to your industry." />
+    <meta property="og:image" content="https://www.foxitc.co.uk/opengraph.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon-fox.png" />
+    <meta name="theme-color" content="#0f172a" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PTJSGNL8J4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-PTJSGNL8J4');
+    </script>
+    <script defer src="https://360.foxitc.co.uk/api/analytics/script" data-key="fox_6c02bece2cd4b7d8"></script>
+
+    <style>
+      :root{
+        --navy:#0f172a; --navy-2:#1b2240; --orange:#f97316; --ink:#0f172a;
+        --muted:#5b6472; --border:#e6e8ee; --bg:#f7f8fa; --card:#fff;
+      }
+      *{box-sizing:border-box;}
+      html,body{margin:0;}
+      body{font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+        color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;}
+      a{color:inherit;}
+
+      /* Header */
+      .fxhead{position:sticky;top:0;z-index:100;background:rgba(15,23,42,.98);color:#fff;
+        border-bottom:1px solid rgba(255,255,255,.08);}
+      .fxhead__in{max-width:1120px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;
+        justify-content:space-between;gap:16px;}
+      .fxhead__logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;font-weight:800;font-size:18px;letter-spacing:-.01em;}
+      .fxhead__logo img{height:34px;width:auto;display:block;}
+      .fxnav{display:flex;align-items:center;gap:22px;}
+      .fxnav a{color:#cbd2e0;text-decoration:none;font-size:14.5px;font-weight:500;}
+      .fxnav a:hover{color:#fff;}
+      .fxcta{background:var(--orange);color:#fff !important;padding:9px 16px;border-radius:9px;
+        font-weight:700;font-size:14px;text-decoration:none;white-space:nowrap;}
+      @media (max-width:760px){ .fxnav a:not(.fxcta){display:none;} }
+
+      /* Hero */
+      .fxhero{background:linear-gradient(135deg,#0f172a,#1b2240);color:#fff;}
+      .fxhero__in{max-width:1120px;margin:0 auto;padding:64px 20px 52px;}
+      .fxhero__eyebrow{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.14em;
+        text-transform:uppercase;color:var(--orange);margin-bottom:14px;}
+      .fxhero h1{font-size:clamp(30px,5vw,48px);line-height:1.06;letter-spacing:-.02em;margin:0 0 14px;font-weight:800;max-width:20ch;}
+      .fxhero p{font-size:18px;color:#c3cad8;margin:0 0 26px;max-width:60ch;}
+      .fxhero__cta{display:flex;flex-wrap:wrap;gap:12px;}
+      .fxbtn{display:inline-block;background:var(--orange);color:#fff;padding:13px 22px;border-radius:11px;
+        font-weight:700;font-size:15px;text-decoration:none;transition:transform .12s,filter .12s;}
+      .fxbtn:hover{transform:translateY(-1px);filter:brightness(1.05);}
+      .fxbtn--ghost{background:transparent;border:1px solid rgba(255,255,255,.28);color:#fff;}
+
+      /* Sections */
+      .fxsec{max-width:1120px;margin:0 auto;padding:48px 20px;}
+      .fxsec__head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin:0 0 22px;flex-wrap:wrap;}
+      .fxsec__head h2{font-size:clamp(22px,3.4vw,30px);font-weight:800;letter-spacing:-.02em;margin:0;}
+      .fxsec__head a{color:var(--orange);font-weight:700;text-decoration:none;font-size:14.5px;white-space:nowrap;}
+      .fxsec__sub{color:var(--muted);margin:-12px 0 22px;font-size:15.5px;}
+
+      /* Cards (shared newsletter + blog look) */
+      .fxgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;}
+      .fxcard{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--border);
+        border-radius:16px;overflow:hidden;text-decoration:none;color:inherit;transition:transform .15s,box-shadow .15s;}
+      .fxcard:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(20,26,46,.10);}
+      .fxcard__hero{aspect-ratio:16/9;background:linear-gradient(135deg,#1b2240,#2a3566);background-size:cover;background-position:center;}
+      .fxcard__body{padding:16px 18px 20px;display:flex;flex-direction:column;flex:1;}
+      .fxcard__tag{align-self:flex-start;font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--orange);margin-bottom:8px;}
+      .fxcard__title{font-size:18px;font-weight:800;line-height:1.25;letter-spacing:-.01em;margin:0 0 8px;}
+      .fxcard__excerpt{font-size:14px;line-height:1.55;color:var(--muted);margin:0 0 14px;flex:1;}
+      .fxcard__foot{display:flex;align-items:center;justify-content:space-between;font-size:12.5px;color:var(--muted);}
+      .fxcard__read{color:var(--orange);font-weight:700;}
+      .fxstate{padding:44px 10px;text-align:center;color:var(--muted);font-size:15px;
+        border:1px dashed var(--border);border-radius:14px;background:var(--card);}
+
+      /* Services */
+      .fxsvc{background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+      .fxsvc__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;}
+      .fxsvc__card{border:1px solid var(--border);border-radius:14px;padding:22px;background:var(--bg);}
+      .fxsvc__card h3{margin:0 0 8px;font-size:17px;font-weight:800;}
+      .fxsvc__card p{margin:0;color:var(--muted);font-size:14.5px;}
+
+      /* CTA band */
+      .fxband{background:linear-gradient(135deg,#0f172a,#1b2240);color:#fff;}
+      .fxband__in{max-width:1120px;margin:0 auto;padding:52px 20px;text-align:center;}
+      .fxband h2{font-size:clamp(24px,3.6vw,34px);font-weight:800;letter-spacing:-.02em;margin:0 0 10px;}
+      .fxband p{color:#c3cad8;margin:0 0 24px;font-size:17px;}
+
+      /* Footer */
+      .fxfoot{background:#0f172a;color:#aeb7c7;}
+      .fxfoot__in{max-width:1120px;margin:0 auto;padding:36px 20px;display:flex;flex-wrap:wrap;gap:18px;
+        justify-content:space-between;align-items:center;font-size:14px;}
+      .fxfoot a{color:#e5e9f0;text-decoration:none;}
+      .fxfoot a:hover{text-decoration:underline;}
+      .fxfoot__meta{font-size:12.5px;color:#7c88a0;}
+    </style>
+  </head>
+  <body data-base="https://360.foxitc.co.uk" data-vertical="">
+    <header class="fxhead">
+      <div class="fxhead__in">
+        <a class="fxhead__logo" href="/"><img src="/fox_logo.png" alt="Fox ITC" /></a>
+        <nav class="fxnav">
+          <a href="/services/managed-it">Managed IT</a>
+          <a href="/services/cyber-security">Cyber Security</a>
+          <a href="/pricing">Pricing</a>
+          <a href="/resources">Resources</a>
+          <a href="/contact" class="fxcta">Get in touch</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="fxhero">
+      <div class="fxhero__in">
+        <span class="fxhero__eyebrow" id="fx-eyebrow">Fox ITC</span>
+        <h1 id="fx-headline">Industry IT support</h1>
+        <p id="fx-sub">Straight-talking managed IT and cyber security for UK businesses.</p>
+        <div class="fxhero__cta">
+          <a class="fxbtn" href="/contact">Get in touch</a>
+          <a class="fxbtn fxbtn--ghost" href="/pricing">See pricing</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletters for this industry (Fox 360 feed) -->
+    <section class="fxsec">
+      <div class="fxsec__head">
+        <h2 id="fx-nl-head">Latest briefings</h2>
+        <a href="/newsletters">All newsletters &rarr;</a>
+      </div>
+      <div id="fx-newsletters"></div>
+    </section>
+
+    <!-- Blog posts for this industry (Fox 360 feed) -->
+    <section class="fxsec" style="padding-top:0;">
+      <div class="fxsec__head">
+        <h2 id="fx-blog-head">From the blog</h2>
+        <a href="/blog">All posts &rarr;</a>
+      </div>
+      <div id="fx-blog"></div>
+    </section>
+
+    <!-- Services -->
+    <div class="fxsvc">
+      <div class="fxsec">
+        <div class="fxsec__head"><h2>How we help</h2></div>
+        <div class="fxsvc__grid" id="fx-services"></div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="fxband">
+      <div class="fxband__in">
+        <h2 id="fx-cta-head">Let's talk about your IT</h2>
+        <p>No jargon, no hard sell — just straight advice on what makes sense for your business.</p>
+        <a class="fxbtn" href="/contact">Book a chat</a>
+      </div>
+    </div>
+
+    <footer class="fxfoot">
+      <div class="fxfoot__in">
+        <div>
+          <a href="/">Fox ITC</a> · Managed IT &amp; Cyber Security<br />
+          <span class="fxfoot__meta">Castle Donington, Leicestershire · Serving Leicester &amp; the UK</span>
+        </div>
+        <div>
+          <a href="tel:03300581877">03300 581 877</a> ·
+          <a href="mailto:hello@foxitc.co.uk">hello@foxitc.co.uk</a> ·
+          <a href="https://www.linkedin.com/company/fox-itc" rel="noopener" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+    (function () {
+      var BASE = (document.body.getAttribute("data-base") || "https://360.foxitc.co.uk").replace(/\/$/, "");
+      var SLUG = (document.body.getAttribute("data-vertical") || "").trim();
+
+      function pretty(s){ return s.replace(/[-_]+/g," ").replace(/\b\w/g,function(c){return c.toUpperCase();}); }
+      var esc = function (s) { var d = document.createElement("div"); d.textContent = s == null ? "" : s; return d.innerHTML; };
+      var fmt = function (iso) { try { return new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }); } catch (e) { return ""; } };
+
+      // Default services (used unless a vertical overrides them)
+      var DEFAULT_SERVICES = [
+        { title: "Managed IT Support", desc: "A dedicated team looking after your technology proactively — not just when things break." },
+        { title: "Cyber Security", desc: "EDR, email protection, dark-web monitoring and more — the full stack most businesses need." },
+        { title: "Microsoft 365", desc: "Licensing, migration, backup and day-to-day management, all handled for you." },
+        { title: "Backup & Continuity", desc: "Cloud backup and disaster-recovery planning so a bad day never becomes a bad week." }
+      ];
+
+      // Bespoke copy per vertical. Any vertical not listed here still works with generic copy.
+      var CONTENT = {
+        hospitality: {
+          name: "Hospitality",
+          headline: "IT and cyber security built for hospitality",
+          sub: "From bookings and PDQs to Wi-Fi your guests actually rate — reliable, secure IT for hotels, restaurants and venues, without the downtime.",
+          services: [
+            { title: "Guest & venue Wi-Fi", desc: "Fast, secure, separated guest and back-of-house networks that just work at peak service." },
+            { title: "Always-on support", desc: "Your systems can't go down mid-service. Fast helpdesk and proactive monitoring keep you trading." },
+            { title: "Payments & compliance", desc: "Secure card systems and Cyber Essentials support to keep you compliant and protected." },
+            { title: "Microsoft 365 & email", desc: "Reliable email, shared calendars and cloud files across every site, managed for you." }
+          ]
+        },
+        recruitment: {
+          name: "Recruitment",
+          headline: "IT and cyber security built for recruitment",
+          sub: "Protect your candidate data, keep your CRM fast and your consultants productive — secure, scalable IT for busy recruitment teams.",
+          services: [
+            { title: "CRM & data protection", desc: "Keep your candidate database fast, backed up and protected against breaches and ransomware." },
+            { title: "Remote & hybrid working", desc: "Secure access from anywhere so consultants stay billing whether in-office or out." },
+            { title: "Email security", desc: "Stop phishing and impersonation attacks that target fee-earning inboxes." },
+            { title: "Microsoft 365", desc: "Teams, SharePoint and email set up and managed for a fast-moving team." }
+          ]
+        }
+      };
+
+      var cfg = CONTENT[SLUG] || {};
+      var NAME = cfg.name || (SLUG ? pretty(SLUG) : "your industry");
+
+      // Hero + headings
+      document.getElementById("fx-eyebrow").textContent = SLUG ? NAME : "Fox ITC";
+      document.getElementById("fx-headline").textContent = cfg.headline || ("IT and cyber security for " + NAME);
+      document.getElementById("fx-sub").textContent = cfg.sub || ("Straight-talking managed IT and cyber security, tailored to " + NAME + " businesses across the UK.");
+      document.getElementById("fx-nl-head").textContent = SLUG ? (NAME + " briefings") : "Latest briefings";
+      document.getElementById("fx-blog-head").textContent = SLUG ? (NAME + " from the blog") : "From the blog";
+      document.getElementById("fx-cta-head").textContent = "Let's talk about your " + (SLUG ? NAME + " " : "") + "IT";
+      document.title = (SLUG ? NAME + " IT Support" : "Industry IT Support") + " | Fox ITC";
+
+      // Services
+      var services = cfg.services || DEFAULT_SERVICES;
+      document.getElementById("fx-services").innerHTML = services.map(function (s) {
+        return '<div class="fxsvc__card"><h3>' + esc(s.title) + '</h3><p>' + esc(s.desc) + '</p></div>';
+      }).join("");
+
+      // Shared card renderer
+      function card(item) {
+        var img = item.image_url || item.hero_image_url;
+        var hero = img ? ' style="background-image:url(\'' + esc(img) + '\')"' : "";
+        var tag = item.vertical || item.topic || "";
+        return '<a class="fxcard" href="' + esc(item.page_url) + '">' +
+                 '<div class="fxcard__hero"' + hero + '></div>' +
+                 '<div class="fxcard__body">' +
+                   (tag ? '<span class="fxcard__tag">' + esc(tag) + '</span>' : '') +
+                   '<h3 class="fxcard__title">' + esc(item.title) + '</h3>' +
+                   '<p class="fxcard__excerpt">' + esc(item.excerpt || "") + '</p>' +
+                   '<div class="fxcard__foot"><span>' + esc(fmt(item.published_at)) + '</span>' +
+                     '<span class="fxcard__read">Read &rarr;</span></div>' +
+                 '</div></a>';
+      }
+
+      function render(mountId, items, emptyMsg) {
+        var el = document.getElementById(mountId);
+        if (!items || !items.length) { el.innerHTML = '<div class="fxstate">' + emptyMsg + '</div>'; return; }
+        el.innerHTML = '<div class="fxgrid">' + items.slice(0, 6).map(card).join("") + '</div>';
+      }
+
+      function loadFeed(path, listKey, mountId, emptyMsg) {
+        var el = document.getElementById(mountId);
+        el.innerHTML = '<div class="fxstate">Loading&hellip;</div>';
+        var q = SLUG ? ("?vertical=" + encodeURIComponent(SLUG) + "&limit=6") : "?limit=6";
+        fetch(BASE + path + q)
+          .then(function (r) { return r.json(); })
+          .then(function (d) { render(mountId, d[listKey] || [], emptyMsg); })
+          .catch(function () { el.innerHTML = '<div class="fxstate">Couldn\'t load this right now.</div>'; });
+      }
+
+      loadFeed("/api/newsletters/feed", "newsletters", "fx-newsletters", "No " + NAME + " briefings published yet — check back soon.");
+      loadFeed("/api/blog/feed", "posts", "fx-blog", "No " + NAME + " posts published yet — check back soon.");
+    })();
+    </script>
+
+    <!-- Fox 360 — Todd support chat widget -->
+    <div id="fox-chat"></div>
+    <script>
+    (function () {
+      var URL = "https://360.foxitc.co.uk/ask";
+      var open = false, wrap = document.getElementById("fox-chat");
+      var panel = document.createElement("iframe");
+      panel.src = URL;
+      panel.title = "Chat to Todd";
+      panel.style.cssText = "position:fixed;bottom:96px;right:24px;width:380px;max-width:calc(100vw - 32px);" +
+        "height:560px;max-height:calc(100vh - 130px);border:0;border-radius:16px;" +
+        "box-shadow:0 16px 50px rgba(0,0,0,.28);z-index:2147483000;display:none;background:#fff;";
+      var btn = document.createElement("button");
+      btn.setAttribute("aria-label", "Chat to us");
+      btn.innerHTML = "💬";
+      btn.style.cssText = "position:fixed;bottom:24px;right:24px;width:60px;height:60px;border:0;border-radius:50%;" +
+        "background:#FB471B;color:#fff;font-size:26px;cursor:pointer;z-index:2147483001;" +
+        "box-shadow:0 6px 20px rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;";
+      btn.onclick = function () {
+        open = !open;
+        panel.style.display = open ? "block" : "none";
+        btn.innerHTML = open ? "✕" : "💬";
+      };
+      wrap.appendChild(panel);
+      wrap.appendChild(btn);
+    })();
+    </script>
+  </body>
+</html>
