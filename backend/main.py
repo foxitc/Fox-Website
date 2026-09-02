@@ -3,7 +3,7 @@ Fox ITC Website Backend
 """
 from fastapi import FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse, HTMLResponse
+from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import xmlrpc.client
@@ -194,6 +194,19 @@ if FRONTEND_DIR.exists():
         import re as _re
         v = vertical if _re.fullmatch(r"[a-z0-9-]{1,64}", vertical or "") else ""
         return _render_newsletters(v)
+
+    # Blog — standalone Fox-branded page reading the Fox 360 blog feed.
+    @app.get("/blog")
+    async def blog():
+        return HTMLResponse((FRONTEND_DIR / "blog.html").read_text(encoding="utf-8"))
+
+    @app.get("/blog/{slug}")
+    async def blog_post(slug: str):
+        # Shareable /blog/{slug} URL -> the Fox 360-hosted branded post.
+        import re as _re
+        if _re.fullmatch(r"[a-z0-9-]{1,120}", slug or ""):
+            return RedirectResponse(f"https://360.foxitc.co.uk/api/blog/p/{slug}")
+        return HTMLResponse((FRONTEND_DIR / "blog.html").read_text(encoding="utf-8"))
 
     @app.get("/{full_path:path}")
     async def serve_frontend(full_path: str):
