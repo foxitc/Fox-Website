@@ -208,9 +208,14 @@ if FRONTEND_DIR.exists():
             return RedirectResponse(f"https://360.foxitc.co.uk/api/blog/p/{slug}")
         return HTMLResponse((FRONTEND_DIR / "blog.html").read_text(encoding="utf-8"))
 
-    # Industry landing pages — one per vertical, reading the Fox 360
-    # newsletters + blog feeds for that industry. New verticals work
-    # automatically; add bespoke copy in industries.html's CONTENT map.
+    # Industry pages — driven entirely by the Fox 360 verticals-manifest.
+    # /industries          -> index of every industry
+    # /industries/{slug}   -> that industry's landing page
+    # New industries appear automatically; nothing is hard-coded per vertical.
+    @app.get("/industries")
+    async def industries_index():
+        return HTMLResponse((FRONTEND_DIR / "industries.html").read_text(encoding="utf-8"))
+
     @app.get("/industries/{vertical}")
     async def industry(vertical: str):
         import re as _re, html as _html

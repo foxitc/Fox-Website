@@ -97,6 +97,15 @@
       .fxstate{padding:44px 10px;text-align:center;color:var(--muted);font-size:15px;
         border:1px dashed var(--border);border-radius:14px;background:var(--card);}
 
+      /* Industries index cards */
+      .fxidx{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px;}
+      .fxidx__card{display:flex;flex-direction:column;gap:8px;background:var(--card);border:1px solid var(--border);
+        border-radius:16px;padding:24px;text-decoration:none;color:inherit;transition:transform .15s,box-shadow .15s,border-color .15s;}
+      .fxidx__card:hover{transform:translateY(-3px);box-shadow:0 14px 34px rgba(15,26,46,.10);border-color:var(--orange);}
+      .fxidx__name{font-family:"Syne","Inter",sans-serif;font-size:21px;font-weight:800;color:var(--ink);}
+      .fxidx__meta{font-size:13.5px;color:var(--muted);}
+      .fxidx__go{margin-top:auto;color:var(--orange);font-weight:700;font-size:14.5px;}
+
       /* Services */
       .fxsvc{background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
       .fxsvc__grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;}
@@ -117,6 +126,8 @@
       .fxfoot a{color:#e5e9f0;text-decoration:none;}
       .fxfoot a:hover{text-decoration:underline;}
       .fxfoot__meta{font-size:12.5px;color:#7c88a0;}
+
+      [hidden]{display:none !important;}
     </style>
   </head>
   <body data-base="https://360.foxitc.co.uk" data-vertical="">
@@ -127,7 +138,7 @@
           <a href="/services/managed-it">Managed IT</a>
           <a href="/services/cyber-security">Cyber Security</a>
           <a href="/pricing">Pricing</a>
-          <a href="/resources">Resources</a>
+          <a href="/industries">Industries</a>
           <a href="/contact" class="fxcta">Get in touch</a>
         </nav>
       </div>
@@ -145,23 +156,29 @@
       </div>
     </section>
 
-    <!-- Newsletters for this industry (Fox 360 feed) -->
-    <section class="fxsec">
-      <div class="fxsec__head">
-        <h2 id="fx-nl-head">Latest briefings</h2>
-        <a href="/newsletters">All newsletters &rarr;</a>
-      </div>
-      <div id="fx-newsletters"></div>
+    <!-- INDEX mode: grid of every industry from the manifest -->
+    <section class="fxsec" id="fx-index-sec" hidden>
+      <div class="fxsec__head"><h2>Choose your industry</h2></div>
+      <div id="fx-index"></div>
     </section>
 
-    <!-- Blog posts for this industry (Fox 360 feed) -->
-    <section class="fxsec" style="padding-top:0;">
-      <div class="fxsec__head">
-        <h2 id="fx-blog-head">From the blog</h2>
-        <a href="/blog">All posts &rarr;</a>
-      </div>
-      <div id="fx-blog"></div>
-    </section>
+    <!-- LANDING mode: this industry's newsletters + blog -->
+    <div id="fx-landing" hidden>
+      <section class="fxsec">
+        <div class="fxsec__head">
+          <h2 id="fx-nl-head">Latest briefings</h2>
+          <a id="fx-nl-all" href="/newsletters">All newsletters &rarr;</a>
+        </div>
+        <div id="fx-newsletters"></div>
+      </section>
+      <section class="fxsec" style="padding-top:0;">
+        <div class="fxsec__head">
+          <h2 id="fx-blog-head">From the blog</h2>
+          <a id="fx-blog-all" href="/blog">All posts &rarr;</a>
+        </div>
+        <div id="fx-blog"></div>
+      </section>
+    </div>
 
     <!-- Services -->
     <div class="fxsvc">
@@ -198,64 +215,25 @@
     (function () {
       var BASE = (document.body.getAttribute("data-base") || "https://360.foxitc.co.uk").replace(/\/$/, "");
       var SLUG = (document.body.getAttribute("data-vertical") || "").trim();
+      var MANIFEST = BASE + "/api/marketing/verticals-manifest";
 
       function pretty(s){ return s.replace(/[-_]+/g," ").replace(/\b\w/g,function(c){return c.toUpperCase();}); }
       var esc = function (s) { var d = document.createElement("div"); d.textContent = s == null ? "" : s; return d.innerHTML; };
       var fmt = function (iso) { try { return new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }); } catch (e) { return ""; } };
+      function withLimit(url){ return url + (url.indexOf("?") === -1 ? "?" : "&") + "limit=6"; }
+      var $ = function (id) { return document.getElementById(id); };
 
-      // Default services (used unless a vertical overrides them)
-      var DEFAULT_SERVICES = [
+      // Generic services — same for every industry (never hard-coded per vertical)
+      var SERVICES = [
         { title: "Managed IT Support", desc: "A dedicated team looking after your technology proactively — not just when things break." },
         { title: "Cyber Security", desc: "EDR, email protection, dark-web monitoring and more — the full stack most businesses need." },
         { title: "Microsoft 365", desc: "Licensing, migration, backup and day-to-day management, all handled for you." },
         { title: "Backup & Continuity", desc: "Cloud backup and disaster-recovery planning so a bad day never becomes a bad week." }
       ];
-
-      // Bespoke copy per vertical. Any vertical not listed here still works with generic copy.
-      var CONTENT = {
-        hospitality: {
-          name: "Hospitality",
-          headline: "IT and cyber security built for hospitality",
-          sub: "From bookings and PDQs to Wi-Fi your guests actually rate — reliable, secure IT for hotels, restaurants and venues, without the downtime.",
-          services: [
-            { title: "Guest & venue Wi-Fi", desc: "Fast, secure, separated guest and back-of-house networks that just work at peak service." },
-            { title: "Always-on support", desc: "Your systems can't go down mid-service. Fast helpdesk and proactive monitoring keep you trading." },
-            { title: "Payments & compliance", desc: "Secure card systems and Cyber Essentials support to keep you compliant and protected." },
-            { title: "Microsoft 365 & email", desc: "Reliable email, shared calendars and cloud files across every site, managed for you." }
-          ]
-        },
-        recruitment: {
-          name: "Recruitment",
-          headline: "IT and cyber security built for recruitment",
-          sub: "Protect your candidate data, keep your CRM fast and your consultants productive — secure, scalable IT for busy recruitment teams.",
-          services: [
-            { title: "CRM & data protection", desc: "Keep your candidate database fast, backed up and protected against breaches and ransomware." },
-            { title: "Remote & hybrid working", desc: "Secure access from anywhere so consultants stay billing whether in-office or out." },
-            { title: "Email security", desc: "Stop phishing and impersonation attacks that target fee-earning inboxes." },
-            { title: "Microsoft 365", desc: "Teams, SharePoint and email set up and managed for a fast-moving team." }
-          ]
-        }
-      };
-
-      var cfg = CONTENT[SLUG] || {};
-      var NAME = cfg.name || (SLUG ? pretty(SLUG) : "your industry");
-
-      // Hero + headings
-      document.getElementById("fx-eyebrow").textContent = SLUG ? NAME : "Fox ITC";
-      document.getElementById("fx-headline").textContent = cfg.headline || ("IT and cyber security for " + NAME);
-      document.getElementById("fx-sub").textContent = cfg.sub || ("Straight-talking managed IT and cyber security, tailored to " + NAME + " businesses across the UK.");
-      document.getElementById("fx-nl-head").textContent = SLUG ? (NAME + " briefings") : "Latest briefings";
-      document.getElementById("fx-blog-head").textContent = SLUG ? (NAME + " from the blog") : "From the blog";
-      document.getElementById("fx-cta-head").textContent = "Let's talk about your " + (SLUG ? NAME + " " : "") + "IT";
-      document.title = (SLUG ? NAME + " IT Support" : "Industry IT Support") + " | Fox ITC";
-
-      // Services
-      var services = cfg.services || DEFAULT_SERVICES;
-      document.getElementById("fx-services").innerHTML = services.map(function (s) {
+      $("fx-services").innerHTML = SERVICES.map(function (s) {
         return '<div class="fxsvc__card"><h3>' + esc(s.title) + '</h3><p>' + esc(s.desc) + '</p></div>';
       }).join("");
 
-      // Shared card renderer
       function card(item) {
         var img = item.image_url || item.hero_image_url;
         var hero = img ? ' style="background-image:url(\'' + esc(img) + '\')"' : "";
@@ -270,25 +248,68 @@
                      '<span class="fxcard__read">Read &rarr;</span></div>' +
                  '</div></a>';
       }
-
-      function render(mountId, items, emptyMsg) {
-        var el = document.getElementById(mountId);
-        if (!items || !items.length) { el.innerHTML = '<div class="fxstate">' + emptyMsg + '</div>'; return; }
-        el.innerHTML = '<div class="fxgrid">' + items.slice(0, 6).map(card).join("") + '</div>';
+      function renderFeed(mountId, items, key, emptyMsg) {
+        var el = $(mountId), list = (items && items[key]) || [];
+        el.innerHTML = list.length ? '<div class="fxgrid">' + list.slice(0, 6).map(card).join("") + '</div>'
+                                   : '<div class="fxstate">' + emptyMsg + '</div>';
       }
-
-      function loadFeed(path, listKey, mountId, emptyMsg) {
-        var el = document.getElementById(mountId);
-        el.innerHTML = '<div class="fxstate">Loading&hellip;</div>';
-        var q = SLUG ? ("?vertical=" + encodeURIComponent(SLUG) + "&limit=6") : "?limit=6";
-        fetch(BASE + path + q)
-          .then(function (r) { return r.json(); })
-          .then(function (d) { render(mountId, d[listKey] || [], emptyMsg); })
+      function loadInto(url, mountId, key, emptyMsg) {
+        var el = $(mountId); el.innerHTML = '<div class="fxstate">Loading&hellip;</div>';
+        fetch(withLimit(url)).then(function (r) { return r.json(); })
+          .then(function (d) { renderFeed(mountId, d, key, emptyMsg); })
           .catch(function () { el.innerHTML = '<div class="fxstate">Couldn\'t load this right now.</div>'; });
       }
 
-      loadFeed("/api/newsletters/feed", "newsletters", "fx-newsletters", "No " + NAME + " briefings published yet — check back soon.");
-      loadFeed("/api/blog/feed", "posts", "fx-blog", "No " + NAME + " posts published yet — check back soon.");
+      // ---- INDEX: a grid of every industry from the manifest ----
+      function renderIndex(vs) {
+        $("fx-eyebrow").textContent = "Industries";
+        $("fx-headline").textContent = "IT support, tailored to your industry";
+        $("fx-sub").textContent = "Pick your sector for guidance, briefings and services built around how your business actually works.";
+        document.title = "Industries | Fox ITC";
+        $("fx-index-sec").hidden = false;
+        var el = $("fx-index");
+        if (!vs.length) { el.innerHTML = '<div class="fxstate">Industry pages are on their way — check back soon.</div>'; return; }
+        el.innerHTML = '<div class="fxidx">' + vs.map(function (v) {
+          var bits = [];
+          if (v.blog_count) bits.push(v.blog_count + (v.blog_count === 1 ? " article" : " articles"));
+          if (v.newsletter_count) bits.push(v.newsletter_count + (v.newsletter_count === 1 ? " briefing" : " briefings"));
+          return '<a class="fxidx__card" href="/industries/' + esc(v.slug) + '">' +
+                   '<span class="fxidx__name">' + esc(v.name) + '</span>' +
+                   '<span class="fxidx__meta">' + (bits.join(" · ") || "Managed IT &amp; cyber security") + '</span>' +
+                   '<span class="fxidx__go">Explore &rarr;</span></a>';
+        }).join("") + '</div>';
+      }
+
+      // ---- LANDING: one industry (from the manifest entry) ----
+      function renderLanding(v) {
+        var name = v.name || pretty(v.slug || SLUG);
+        $("fx-eyebrow").textContent = name;
+        $("fx-headline").textContent = v.hero_headline || ("IT and cyber security for " + name);
+        $("fx-sub").textContent = v.hero_sub || ("Straight-talking managed IT and cyber security, tailored to " + name + " businesses across the UK.");
+        $("fx-nl-head").textContent = name + " briefings";
+        $("fx-blog-head").textContent = name + " from the blog";
+        $("fx-cta-head").textContent = "Let's talk about your " + name + " IT";
+        $("fx-nl-all").setAttribute("href", "/newsletters/" + encodeURIComponent(v.slug || SLUG));
+        $("fx-blog-all").setAttribute("href", "/blog");
+        document.title = name + " IT Support | Fox ITC";
+        $("fx-landing").hidden = false;
+        var nlUrl = v.newsletter_feed_url || (BASE + "/api/newsletters/feed?vertical=" + encodeURIComponent(v.slug || SLUG));
+        var blUrl = v.blog_feed_url || (BASE + "/api/blog/feed?vertical=" + encodeURIComponent(v.slug || SLUG));
+        loadInto(nlUrl, "fx-newsletters", "newsletters", "No " + name + " briefings published yet — check back soon.");
+        loadInto(blUrl, "fx-blog", "posts", "No " + name + " posts published yet — check back soon.");
+      }
+
+      // Drive everything from the manifest
+      fetch(MANIFEST).then(function (r) { return r.json(); }).then(function (m) {
+        var vs = (m && m.verticals) || [];
+        if (!SLUG) { renderIndex(vs); return; }
+        var v = null;
+        for (var i = 0; i < vs.length; i++) { if (vs[i].slug === SLUG) { v = vs[i]; break; } }
+        renderLanding(v || { slug: SLUG, name: pretty(SLUG) });
+      }).catch(function () {
+        // Manifest unavailable — fall back gracefully
+        if (!SLUG) { renderIndex([]); } else { renderLanding({ slug: SLUG, name: pretty(SLUG) }); }
+      });
     })();
     </script>
 
