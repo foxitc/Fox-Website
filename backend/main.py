@@ -224,6 +224,11 @@ if FRONTEND_DIR.exists():
         doc = doc.replace('data-vertical=""', 'data-vertical="%s"' % _html.escape(v, quote=True))
         return HTMLResponse(doc)
 
+    # Fox AI Licence — product / marketing landing page.
+    @app.get("/ai-licence")
+    async def ai_licence():
+        return HTMLResponse((FRONTEND_DIR / "ai-licence.html").read_text(encoding="utf-8"))
+
     @app.get("/{full_path:path}")
     async def serve_frontend(full_path: str):
         return HTMLResponse(seo.render_index("/" + full_path))
