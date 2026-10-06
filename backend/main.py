@@ -229,6 +229,19 @@ if FRONTEND_DIR.exists():
     async def ai_licence():
         return HTMLResponse((FRONTEND_DIR / "ai-licence.html").read_text(encoding="utf-8"))
 
+    # Free security / IT tools (static, client-side).
+    @app.get("/tools")
+    async def tools_index():
+        return HTMLResponse((FRONTEND_DIR / "tools.html").read_text(encoding="utf-8"))
+
+    @app.get("/tools/password-generator")
+    async def tool_password():
+        return HTMLResponse((FRONTEND_DIR / "tool-password.html").read_text(encoding="utf-8"))
+
+    @app.get("/tools/downtime-calculator")
+    async def tool_downtime():
+        return HTMLResponse((FRONTEND_DIR / "tool-downtime.html").read_text(encoding="utf-8"))
+
     @app.get("/{full_path:path}")
     async def serve_frontend(full_path: str):
         return HTMLResponse(seo.render_index("/" + full_path))

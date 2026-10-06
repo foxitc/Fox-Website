@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IT Downtime Cost Calculator | Fox ITC</title>
+    <meta name="description" content="Work out what an hour of IT downtime really costs your business — in lost staff time and lost revenue. Free calculator from Fox ITC." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://www.foxitc.co.uk/tools/downtime-calculator" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Fox ITC" />
+    <meta property="og:title" content="IT Downtime Cost Calculator | Fox ITC" />
+    <meta property="og:description" content="See what IT downtime really costs your business — and how to prevent it." />
+    <meta property="og:image" content="https://www.foxitc.co.uk/opengraph.jpg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon-fox.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PTJSGNL8J4"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-PTJSGNL8J4');</script>
+    <script defer src="https://360.foxitc.co.uk/api/analytics/script" data-key="fox_6c02bece2cd4b7d8"></script>
+    <style>
+      :root{--orange:#FB471B;--orange-text:#b8310f;--ink:#1f2328;--navy:#0f1a2e;--muted:#545c64;--border:#e2e6ef;--bg:#f6f7f9;--card:#fff;}
+      *{box-sizing:border-box;} html,body{margin:0;} html{scroll-behavior:smooth;}
+      body{font-family:Inter,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;}
+      a{color:inherit;} h1,h2,h3{letter-spacing:-.02em;}
+      :focus-visible{outline:3px solid var(--orange);outline-offset:2px;border-radius:6px;}
+      .wrap{max-width:1120px;margin:0 auto;padding:0 20px;}
+      .tool{max-width:880px;margin:0 auto;padding:0 20px;}
+      .eyebrow{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--orange-text);margin-bottom:12px;}
+      .fxhead{position:sticky;top:0;z-index:100;background:rgba(246,247,249,.9);backdrop-filter:saturate(180%) blur(10px);-webkit-backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--border);}
+      .fxhead__in{display:flex;align-items:center;justify-content:space-between;gap:16px;height:72px;}
+      .fxhead__logo img{height:40px;width:auto;display:block;}
+      .fxnav{display:flex;align-items:center;gap:26px;}
+      .fxnav a{color:var(--ink);text-decoration:none;font-size:14.5px;font-weight:600;}
+      .fxnav a:hover{color:var(--orange-text);}
+      @media (max-width:860px){.fxnav a:not(.fxbtn){display:none;}}
+      .fxbtn{display:inline-block;background:var(--orange);color:#fff !important;padding:12px 20px;border-radius:11px;font-weight:700;font-size:15px;text-decoration:none;border:0;cursor:pointer;transition:transform .12s,filter .12s;}
+      .fxbtn:hover{transform:translateY(-1px);filter:brightness(1.04);}
+      .fxbtn--sm{padding:9px 16px;font-size:14px;border-radius:9px;}
+      .hero{background:radial-gradient(1000px 420px at 85% -10%,rgba(251,71,27,.10),transparent 60%),linear-gradient(180deg,#fff,var(--bg));border-bottom:1px solid var(--border);}
+      .hero__in{padding:60px 0 44px;max-width:760px;margin:0 auto;}
+      .hero h1{font-size:clamp(28px,4.6vw,42px);line-height:1.08;font-weight:800;margin:0 0 14px;}
+      .hero p{font-size:18px;color:var(--muted);margin:0;}
+      section{padding:40px 0;}
+      .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:start;}
+      @media (max-width:760px){.grid{grid-template-columns:1fr;}}
+      .panel{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:26px;}
+      .fld{margin-bottom:18px;}
+      .fld label{display:block;font-weight:700;font-size:14.5px;margin:0 0 7px;}
+      .fld .sub{font-weight:400;color:var(--muted);font-size:13px;}
+      .inp{display:flex;align-items:center;border:2px solid var(--border);border-radius:11px;background:#fff;overflow:hidden;}
+      .inp:focus-within{border-color:var(--orange);}
+      .inp span{padding:0 0 0 14px;color:var(--muted);font-weight:600;}
+      .inp input{flex:1;border:0;outline:0;font-size:17px;padding:12px 14px;background:transparent;color:var(--ink);width:100%;}
+      .result{background:linear-gradient(135deg,#0f1a2e,#1b2240);color:#fff;border-radius:18px;padding:28px;position:sticky;top:90px;}
+      .result .lbl{color:#9fb0c9;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;}
+      .result .big{font-size:clamp(34px,6vw,52px);font-weight:800;line-height:1.05;margin:6px 0 4px;letter-spacing:-.02em;}
+      .result .per{color:#c3cad8;font-size:14px;margin-bottom:20px;}
+      .result .row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid rgba(255,255,255,.12);font-size:14.5px;}
+      .result .row span{color:#c3cad8;} .result .row b{font-weight:700;}
+      .result .annual{margin-top:18px;background:rgba(251,71,27,.15);border:1px solid rgba(251,71,27,.35);border-radius:12px;padding:14px 16px;}
+      .result .annual .big2{font-size:24px;font-weight:800;}
+      .result a{display:block;margin-top:20px;text-align:center;background:var(--orange);color:#fff;font-weight:700;text-decoration:none;padding:13px;border-radius:11px;}
+      .hint{color:var(--muted);font-size:13px;margin:16px 2px 0;}
+      .foot{background:#0f1a2e;color:#aeb7c7;font-size:14px;}
+      .foot__in{padding:32px 0;display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;}
+      .foot a{color:#e5e9f0;text-decoration:none;} .foot a:hover{text-decoration:underline;}
+      .foot__meta{color:#7c88a0;font-size:12.5px;}
+    </style>
+  </head>
+  <body>
+    <header class="fxhead"><div class="wrap fxhead__in">
+      <a class="fxhead__logo" href="/"><img src="/fox_logo.png" alt="Fox ITC home" /></a>
+      <nav class="fxnav" aria-label="Primary">
+        <a href="/services/managed-it">Managed IT</a>
+        <a href="/services/cyber-security">Cyber Security</a>
+        <a href="/tools">Free tools</a>
+        <a href="/contact" class="fxbtn fxbtn--sm">Get in touch</a>
+      </nav>
+    </div></header>
+
+    <main>
+      <section class="hero"><div class="wrap"><div class="hero__in">
+        <span class="eyebrow">Free business tool</span>
+        <h1>What does IT downtime really cost you?</h1>
+        <p>When systems go down, the bill is bigger than it looks — idle staff and lost sales add up fast. Put in your numbers to see.</p>
+      </div></div></section>
+
+      <section><div class="tool"><div class="grid">
+        <div class="panel">
+          <div class="fld">
+            <label for="staff">Staff affected <span class="sub">— people who can't work</span></label>
+            <div class="inp"><input type="number" id="staff" min="1" value="10" inputmode="numeric" /></div>
+          </div>
+          <div class="fld">
+            <label for="salary">Average salary <span class="sub">— per person, per year</span></label>
+            <div class="inp"><span>£</span><input type="number" id="salary" min="0" step="1000" value="30000" inputmode="numeric" /></div>
+          </div>
+          <div class="fld">
+            <label for="rev">Revenue per hour <span class="sub">— optional, if downtime stops sales</span></label>
+            <div class="inp"><span>£</span><input type="number" id="rev" min="0" step="50" value="0" inputmode="numeric" /></div>
+          </div>
+          <div class="fld">
+            <label for="hours">Hours of downtime <span class="sub">— per incident</span></label>
+            <div class="inp"><input type="number" id="hours" min="0" step="0.5" value="8" inputmode="decimal" /></div>
+          </div>
+          <div class="fld" style="margin-bottom:0;">
+            <label for="incidents">Incidents per year <span class="sub">— for the annual estimate</span></label>
+            <div class="inp"><input type="number" id="incidents" min="0" step="1" value="2" inputmode="numeric" /></div>
+          </div>
+          <p class="hint">Staff cost assumes ~1,920 working hours a year. This is an estimate to start a conversation, not an exact figure.</p>
+        </div>
+
+        <div class="result" aria-live="polite">
+          <div class="lbl">Cost per incident</div>
+          <div class="big" id="total">£0</div>
+          <div class="per" id="per">—</div>
+          <div class="row"><span>Idle staff time</span><b id="staffcost">£0</b></div>
+          <div class="row"><span>Lost revenue</span><b id="revcost">£0</b></div>
+          <div class="annual">
+            <div class="lbl">Estimated per year</div>
+            <div class="big2" id="annual">£0</div>
+          </div>
+          <a href="/contact">Stop downtime costing you — talk to us</a>
+        </div>
+      </div></div></section>
+    </main>
+
+    <footer class="foot"><div class="wrap foot__in">
+      <div><a href="/">Fox ITC</a> · Managed IT &amp; Cyber Security<br/><span class="foot__meta">Castle Donington, Leicestershire · Serving Leicester &amp; the UK</span></div>
+      <div><a href="tel:03300581877">03300 581 877</a> · <a href="mailto:hello@foxitc.co.uk">hello@foxitc.co.uk</a> · <a href="/tools">More free tools</a></div>
+    </div></footer>
+
+    <script>
+    (function(){
+      var ids=["staff","salary","rev","hours","incidents"].map(function(i){return document.getElementById(i);});
+      var gbp=function(n){return "£"+Math.round(n).toLocaleString("en-GB");};
+      function calc(){
+        var staff=+document.getElementById("staff").value||0, salary=+document.getElementById("salary").value||0,
+            rev=+document.getElementById("rev").value||0, hours=+document.getElementById("hours").value||0,
+            inc=+document.getElementById("incidents").value||0;
+        var hourly=salary/1920;
+        var staffCost=staff*hourly*hours, revCost=rev*hours, total=staffCost+revCost;
+        document.getElementById("staffcost").textContent=gbp(staffCost);
+        document.getElementById("revcost").textContent=gbp(revCost);
+        document.getElementById("total").textContent=gbp(total);
+        document.getElementById("per").textContent=hours? (gbp(total/Math.max(hours,0.01))+" per hour of downtime") : "—";
+        document.getElementById("annual").textContent=gbp(total*inc);
+      }
+      ids.forEach(function(el){el.addEventListener("input",calc);});
+      calc();
+    })();
+    </script>
+
+    <div id="fox-chat"></div>
+    <script>
+    (function(){var U="https://360.foxitc.co.uk/ask",o=false,w=document.getElementById("fox-chat");
+      var p=document.createElement("iframe");p.src=U;p.title="Chat to Todd";
+      p.style.cssText="position:fixed;bottom:96px;right:24px;width:380px;max-width:calc(100vw - 32px);height:560px;max-height:calc(100vh - 130px);border:0;border-radius:16px;box-shadow:0 16px 50px rgba(0,0,0,.28);z-index:2147483000;display:none;background:#fff;";
+      var b=document.createElement("button");b.setAttribute("aria-label","Chat to us");b.textContent="Chat";
+      b.style.cssText="position:fixed;bottom:24px;right:24px;padding:0 20px;height:52px;border:0;border-radius:26px;background:#FB471B;color:#fff;font-size:15px;font-weight:700;cursor:pointer;z-index:2147483001;box-shadow:0 6px 20px rgba(0,0,0,.25);";
+      b.onclick=function(){o=!o;p.style.display=o?"block":"none";b.textContent=o?"Close":"Chat";};
+      w.appendChild(p);w.appendChild(b);})();
+    </script>
+  </body>
+</html>
