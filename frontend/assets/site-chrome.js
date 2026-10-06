@@ -9,7 +9,9 @@
   function build(){
     if(document.getElementById("fx-site-header")) return;
     var st=document.createElement("style");
-    st.textContent=".fx-panel{position:fixed;z-index:60;}.fx-panel[hidden]{display:none;}";
+    st.textContent=".fx-panel{position:fixed;z-index:60;}.fx-panel[hidden]{display:none;}"+
+      /* Match the main site: headings are Syne 700 (only 700 is loaded, so 800 faux-bolds). */
+      "h1,h2,h3,h4,h5,h6{font-weight:700!important;letter-spacing:normal!important;}";
     document.head.appendChild(st);
     var host=document.createElement("div"); host.id="fx-site-header"; host.innerHTML=HEADER+MOBILE+PANELS;
     // move panels to body (fixed positioning), keep header first in body
