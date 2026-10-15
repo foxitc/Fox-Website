@@ -242,6 +242,16 @@ if FRONTEND_DIR.exists():
     async def tool_downtime():
         return HTMLResponse((FRONTEND_DIR / "tool-downtime.html").read_text(encoding="utf-8"))
 
+    # Booking — public "Book a free IT review" page, powered by the Fox 360 booking API.
+    @app.get("/book")
+    async def book():
+        return HTMLResponse((FRONTEND_DIR / "book.html").read_text(encoding="utf-8"))
+
+    # Campaign landing (South Africa flyer/QR → /za → book a review).
+    @app.get("/za")
+    async def landing_za():
+        return HTMLResponse((FRONTEND_DIR / "za.html").read_text(encoding="utf-8"))
+
     @app.get("/{full_path:path}")
     async def serve_frontend(full_path: str):
         return HTMLResponse(seo.render_index("/" + full_path))
