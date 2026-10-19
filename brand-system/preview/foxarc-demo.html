@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FoxArcMedia — component demo</title>
+<script src="/brand-system/components/fox-arc-media.js"></script>
+<style>
+  :root{--fox:#FB471B;--ink:#15213A;--slate:#444B53;--bg:#F7F8FA;--card:#fff;--border:#E6E8EC;--muted:#667085;}
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;line-height:1.6}
+  .wrap{max-width:1040px;margin:0 auto;padding:28px 20px 64px}
+  h1{font-size:26px;margin:0 0 4px} .sub{color:var(--muted);margin:0 0 8px}
+  h2{font-size:17px;margin:30px 0 12px;border-top:1px solid var(--border);padding-top:22px}
+  .grid{display:flex;flex-wrap:wrap;gap:18px}
+  .cell{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px;text-align:center}
+  .cell .lbl{font-size:12px;color:var(--muted);margin-top:10px}
+  .dark{background:var(--ink)} .dark .cell{background:#1d2b49;border-color:#2a3a5c;color:#e8eaf0} .dark .lbl{color:#9fb0c9}
+  .photo-card{position:relative;width:260px;height:180px;border-radius:14px;overflow:hidden;background:var(--ink);display:flex;align-items:center;justify-content:center}
+  .watermark-card{position:relative;width:320px;min-height:150px;background:var(--ink);color:#fff;border-radius:14px;padding:22px;overflow:hidden}
+  .watermark-card fox-arc-media{position:absolute;right:-30px;bottom:-30px;width:180px;opacity:.9}
+  .watermark-card h3{margin:0 0 6px;position:relative} .watermark-card p{margin:0;color:#c3cad8;font-size:14px;position:relative;max-width:70%}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>FoxArcMedia — signature component</h1>
+  <p class="sub">One canonical component, exact masks, five modes. Rotation/mirroring is applied to the group. <strong>Proposed treatments — awaiting approval.</strong></p>
+
+  <h2>Modes</h2>
+  <div class="grid">
+    <div class="cell"><fox-arc-media mode="solid" style="width:120px"></fox-arc-media><div class="lbl">solid (brand orange)</div></div>
+    <div class="cell"><fox-arc-media mode="outline" fill="#15213A" style="width:120px"></fox-arc-media><div class="lbl">outline</div></div>
+    <div class="cell"><fox-arc-media mode="pulse" style="width:120px"></fox-arc-media><div class="lbl">pulse (reduced-motion → static)</div></div>
+    <div class="cell"><div class="photo-card"><fox-arc-media mode="photo" src="/brand-system/preview/sample-1.jpg" style="width:150px"></fox-arc-media></div><div class="lbl">photo (one image)</div></div>
+    <div class="cell"><div class="photo-card"><fox-arc-media mode="photo" src-outer="/brand-system/preview/sample-1.jpg" src-middle="/brand-system/preview/sample-2.jpg" src-inner="/brand-system/preview/sample-3.jpg" style="width:150px"></fox-arc-media></div><div class="lbl">photo (a photo inside each arc)</div></div>
+  </div>
+
+  <h2>Orientation — the group rotates/mirrors; shapes never change</h2>
+  <div class="grid">
+    <div class="cell"><fox-arc-media mode="solid" rotate="0" style="width:96px"></fox-arc-media><div class="lbl">source</div></div>
+    <div class="cell"><fox-arc-media mode="solid" rotate="90" style="width:96px"></fox-arc-media><div class="lbl">rotate 90°</div></div>
+    <div class="cell"><fox-arc-media mode="solid" rotate="180" style="width:96px"></fox-arc-media><div class="lbl">rotate 180°</div></div>
+    <div class="cell"><fox-arc-media mode="solid" rotate="270" style="width:96px"></fox-arc-media><div class="lbl">rotate 270°</div></div>
+    <div class="cell"><fox-arc-media mode="solid" flip="h" style="width:96px"></fox-arc-media><div class="lbl">mirror left</div></div>
+    <div class="cell"><fox-arc-media mode="solid" flip="h" rotate="90" style="width:96px"></fox-arc-media><div class="lbl">mirror + rotate</div></div>
+  </div>
+
+  <h2>Watermark — low-contrast, never obscures text</h2>
+  <div class="grid">
+    <div class="watermark-card">
+      <h3>IT that just works.</h3>
+      <p>The motif sits behind the content at low opacity — legibility first.</p>
+      <fox-arc-media mode="watermark" fill="#FB471B" opacity="0.12"></fox-arc-media>
+    </div>
+    <div class="cell" style="background:#F7F8FA">
+      <div style="position:relative;width:300px;min-height:110px;padding:18px;border:1px solid var(--border);border-radius:14px;overflow:hidden;text-align:left">
+        <fox-arc-media mode="watermark" fill="#15213A" opacity="0.05" style="position:absolute;right:-24px;top:-24px;width:140px"></fox-arc-media>
+        <strong style="position:relative">Light section</strong>
+        <div style="color:var(--muted);font-size:14px;position:relative">Ink watermark at 5% on a light card.</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>On a dark section</h2>
+  <div class="dark" style="border-radius:16px;padding:22px">
+    <div class="grid">
+      <div class="cell"><fox-arc-media mode="solid" style="width:100px"></fox-arc-media><div class="lbl">solid on ink</div></div>
+      <div class="cell"><fox-arc-media mode="outline" fill="#FB471B" style="width:100px"></fox-arc-media><div class="lbl">outline on ink</div></div>
+      <div class="cell"><fox-arc-media mode="photo" src="/brand-system/preview/sample-2.jpg" style="width:100px"></fox-arc-media><div class="lbl">photo on ink</div></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

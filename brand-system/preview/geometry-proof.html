@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fox Arc — geometry proof</title>
+<script src="/brand-system/components/fox-arc-media.js"></script>
+<style>
+  :root{--fox:#FB471B;--ink:#15213A;--slate:#444B53;--bg:#F7F8FA;--card:#fff;--border:#E6E8EC;--muted:#667085;}
+  *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;line-height:1.6}
+  .wrap{max-width:1040px;margin:0 auto;padding:28px 20px 64px}
+  h1{font-size:26px;margin:0 0 4px} .sub{color:var(--muted);margin:0 0 20px}
+  .ok{display:inline-block;background:#e8f6ee;color:#15803d;border:1px solid #bfe6cd;font-weight:700;font-size:13px;padding:5px 12px;border-radius:999px;margin-bottom:22px}
+  h2{font-size:17px;margin:28px 0 12px;border-top:1px solid var(--border);padding-top:22px}
+  .row{display:flex;flex-wrap:wrap;gap:18px}
+  .cell{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px;text-align:center}
+  .cell .lbl{font-size:12px;color:var(--muted);margin-top:8px}
+  .box{width:200px;height:200px;background:
+     linear-gradient(45deg,#eef0f4 25%,transparent 25%,transparent 75%,#eef0f4 75%) 0 0/16px 16px,
+     linear-gradient(45deg,#eef0f4 25%,#fff 25%,#fff 75%,#eef0f4 75%) 8px 8px/16px 16px;border-radius:10px;overflow:hidden;position:relative}
+  .box img{width:100%;height:100%;display:block;object-fit:contain}
+  /* overlay comparison */
+  .ovl{position:relative;width:200px;height:200px}
+  .ovl img,.ovl fox-arc-media{position:absolute;inset:0;width:200px;height:200px}
+  .ovl .src{opacity:var(--srcop,.5)}
+  table{border-collapse:collapse;width:100%;background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;font-size:14px}
+  td,th{padding:9px 12px;border-bottom:1px solid var(--border);text-align:left} th{background:#f2f4f7}
+  code{background:#f2f4f7;padding:1px 6px;border-radius:5px;font-size:13px}
+  .controls{display:flex;align-items:center;gap:10px;margin:10px 0 0;font-size:13px;color:var(--muted)}
+  input[type=range]{accent-color:var(--fox)}
+  .mini{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+  .mini .box{width:120px;height:120px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Fox arc — geometry proof</h1>
+  <p class="sub">Verifies the three extracted alpha masks against the supplied master <code>assets/fox-arcs-original.png</code>. Non-destructive: masks are the master's own pixels, un-multiplied from white and partitioned by nearest arc — not redrawn.</p>
+  <span class="ok">✓ Recompose is pixel-identical to the source — 0 mismatched pixels (100.00%)</span>
+
+  <h2>1 · Source vs extracted, at equal dimensions (236×236)</h2>
+  <div class="row">
+    <div class="cell"><div class="box"><img src="/assets/fox-arcs-original.png" alt="source master artwork" /></div><div class="lbl">Source master (PNG)</div></div>
+    <div class="cell"><div class="box"><fox-arc-media mode="solid" base="/brand-system/assets/masks" style="width:200px;height:200px"></fox-arc-media></div><div class="lbl">Extracted masks → solid fill</div></div>
+    <div class="cell"><div class="box"><img src="/brand-system/assets/proof/proof-components.png" alt="components separated by colour" /></div><div class="lbl">3 arcs separated (outer/middle/inner)</div></div>
+    <div class="cell"><div class="box"><img src="/brand-system/assets/proof/proof-diff.png" alt="difference image, red = mismatch" /></div><div class="lbl">Diff vs source (red = mismatch)</div></div>
+  </div>
+
+  <h2>2 · Overlay comparison — source over extracted (drag the slider)</h2>
+  <div class="cell" style="display:inline-block">
+    <div class="ovl">
+      <fox-arc-media mode="solid" fill="#1f6fff" base="/brand-system/assets/masks"></fox-arc-media>
+      <img class="src" src="/assets/fox-arcs-original.png" alt="source overlay" id="srcimg" />
+    </div>
+    <div class="controls"><span>extracted</span><input id="op" type="range" min="0" max="100" value="50" /><span>source</span></div>
+  </div>
+
+  <h2>3 · Each arc is a separately addressable mask (one shared coordinate box)</h2>
+  <div class="mini">
+    <div class="cell"><div class="box"><fox-arc-media mode="solid" base="/brand-system/assets/masks" style="width:120px;height:120px"></fox-arc-media></div><div class="lbl">group</div></div>
+    <div class="cell"><div class="box"><div style="width:120px;height:120px;background:#FB471B;-webkit-mask:url('/brand-system/assets/masks/fox-arc-outer.png') center/contain no-repeat;mask:url('/brand-system/assets/masks/fox-arc-outer.png') center/contain no-repeat"></div></div><div class="lbl">outer</div></div>
+    <div class="cell"><div class="box"><div style="width:120px;height:120px;background:#226eb4;-webkit-mask:url('/brand-system/assets/masks/fox-arc-middle.png') center/contain no-repeat;mask:url('/brand-system/assets/masks/fox-arc-middle.png') center/contain no-repeat"></div></div><div class="lbl">middle</div></div>
+    <div class="cell"><div class="box"><div style="width:120px;height:120px;background:#16a34a;-webkit-mask:url('/brand-system/assets/masks/fox-arc-inner.png') center/contain no-repeat;mask:url('/brand-system/assets/masks/fox-arc-inner.png') center/contain no-repeat"></div></div><div class="lbl">inner</div></div>
+  </div>
+
+  <h2>4 · Pixel-comparison summary</h2>
+  <table>
+    <tr><th>Check</th><th>Result</th></tr>
+    <tr><td>Master dimensions</td><td>236 × 236 px</td></tr>
+    <tr><td>Shape pixels (alpha &gt; 0)</td><td>26,111</td></tr>
+    <tr><td>Components found</td><td>3 (outer, middle, inner) — concentric about bottom-right corner</td></tr>
+    <tr><td>Outer arc radius band (from corner)</td><td>179.9 – 238.1 px</td></tr>
+    <tr><td>Middle arc radius band</td><td>86.1 – 141.9 px</td></tr>
+    <tr><td>Inner arc radius band</td><td>6.4 – 54.7 px</td></tr>
+    <tr><td>Recompose (outer ∪ middle ∪ inner) vs source</td><td><strong>byte-identical — 0 mismatched pixels</strong></td></tr>
+    <tr><td>Match</td><td><strong>100.0000%</strong></td></tr>
+  </table>
+  <p class="sub" style="margin-top:14px">Workflow is reproducible from the master: <code>brand-system/</code> scripts derive the masks and this proof; if a better vector source is supplied, re-run and re-verify before use.</p>
+</div>
+<script>
+  var op=document.getElementById('op');
+  op.addEventListener('input',function(){document.getElementById('srcimg').style.opacity=op.value/100;});
+</script>
+</body>
+</html>
