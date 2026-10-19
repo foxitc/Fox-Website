@@ -13,10 +13,18 @@
 - **Phase 1** — exact arc extraction + geometry proof: 3 masks recompose **byte-identical** to the source (0 mismatched px). Component `fox-arc-media.js`; previews `preview/{geometry-proof,foxarc-demo,hero-treatment}.html`.
 - Confirmed intended use = **photo mask + watermark** (the multi-colour view is proof-only, not a brand treatment).
 
+## Phase 2 — three homepage concepts (PROPOSED, pick one)
+Direction approved by owner 2026-10-19 (photo-mask + watermark). Concepts are mockups, not wired to live pages, nothing deployed. Existing homepage copy/services preserved.
+- `preview/concepts/concept-a.html` — **Clarity**: light, editorial, photo hero + values grid + team row.
+- `preview/concepts/concept-b.html` — **Bold Ink**: dark high-contrast hero, stats, dark split band.
+- `preview/concepts/concept-c.html` — **Systemised**: modular bento grid, numbered services, people bar.
+Awaiting owner pick (one concept, or a blend) before Phase 3 (component library + responsive build on staging).
+
 ## Proposed, NOT approved
 - Specific homepage layouts, typography changes (incl. Geist vs live Syne), photography, neutral palette, landing-page copy and visual treatments
 - The photo/watermark hero treatments shown in `preview/hero-treatment.html`
 - Proposed new industry pages beyond hospitality and freight
+- Primary CTA wording "Book a free IT review" shown in concepts (spec direction; site-wide rollout still gated)
 
 ## Gate (unchanged)
 No new design direction, replacement copy or production deployment is approved merely by appearing in the brief or in these drafts. **Next step requires explicit owner sign-off** before Phase 2 (3 homepage concepts) begins. Nothing in this work deploys.
