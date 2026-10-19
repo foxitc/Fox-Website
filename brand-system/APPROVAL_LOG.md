@@ -38,7 +38,9 @@ Data-driven `IndustryLandingPage`: `preview/industry-template.html` + `data/indu
 - **PowerPoint master** `templates/fox-itc-master.pptx` (12 slide types, editable, validated; visual QA to do in PowerPoint — LibreOffice render unavailable here) + `POWERPOINT_AND_PRESENTATIONS.md`.
 - **Newsletter** `templates/newsletter.html` ("Fox Bytes", email-safe, GDPR/PECR unsubscribe) + `EMAIL_AND_NEWSLETTERS.md`.
 - Owner decisions applied (ink #15213A, Geist, CTA "Book a conversation").
-- Remaining: beer mats (die-line), web-demo shell, video/motion spec, blog/LinkedIn editorial cover, email banner, TYPOGRAPHY/PHOTOGRAPHY docs. Still no deploy.
+- **Beer mats** (round + square, A/B) `templates/beer-mats.html`; **editorial covers + email banner** `templates/editorial-covers.html`; **web-demo shell** `templates/web-demo.html` (+ `WEB_DEMOS.md`); **motion/intro** `templates/motion.html` (+ `VIDEO_AND_MOTION.md`); `TYPOGRAPHY.md`, `PHOTOGRAPHY.md`.
+- Brand kit now covers web, print (flyer + beer mats), social, email (signature + newsletter + banner), editorial covers, PowerPoint, web demo and motion — all on the exact arcs, Geist, "Book a conversation", ink #15213A.
+- Remaining (optional): business cards / letterhead / proposal covers (`fox-itc-v2/templates/OTHER_COLLATERAL.md` is the recipe). **Then Phase 6: production rollout + rollback plan for owner sign-off.** Still no deploy; real photography is the outstanding owner input.
 
 ## Proposed, NOT approved
 - Specific homepage layouts, typography changes (incl. Geist vs live Syne), photography, neutral palette, landing-page copy and visual treatments
