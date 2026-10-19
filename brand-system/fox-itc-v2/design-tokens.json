@@ -1,0 +1,54 @@
+{
+  "version": "2.0-draft",
+  "brand": "Fox ITC",
+  "status": "DRAFT",
+  "established": {
+    "foxOrange": "#FB471B",
+    "slate": "#444B53",
+    "logo": "assets/fox-itc-wordmark-source.png",
+    "arcSource": "assets/fox-arcs-original-236px.png",
+    "arcTransparent": "assets/fox-arcs-transparent-source-derived.png",
+    "arcMasks": [
+      "assets/fox-arc-mask-1.png",
+      "assets/fox-arc-mask-2.png",
+      "assets/fox-arc-mask-3.png"
+    ]
+  },
+  "proposed": {
+    "ink": "#15191E",
+    "cloud": "#F5F6F7",
+    "white": "#FFFFFF",
+    "fontCandidates": [
+      "Inter",
+      "Manrope"
+    ],
+    "maxContentWidthPx": 1200,
+    "cardRadiusPx": 16,
+    "spacingBasePx": 4,
+    "bodyMinPx": 16
+  },
+  "arc": {
+    "geometryLocked": true,
+    "transformWholeGroupOnly": true,
+    "orientationOptions": [
+      "source",
+      "left",
+      "right",
+      "up",
+      "down"
+    ],
+    "treatments": [
+      "solid",
+      "watermark",
+      "photographic",
+      "pulse"
+    ],
+    "reducedMotionRequired": true
+  },
+  "contentPolicy": {
+    "preserveExistingServices": true,
+    "preserveExistingSiteCopy": true,
+    "noFabricatedClaims": true,
+    "humanApprovalForPublication": true
+  }
+}

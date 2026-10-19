@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en-GB"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fox ITC — A5 flyer (front)</title>
+<script src="/brand-system/components/fox-arc-media.js"></script>
+<style>
+  :root{--fox:#FB471B;--ink:#15213A;--muted:#667085;--border:#E6E8EC;}
+  @page{size:148mm 210mm;margin:0}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:#dfe3ea;font-family:Inter,system-ui,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .screen-note{padding:14px 20px;color:#333;font-size:13px}
+  .bleed{position:relative;width:154mm;height:216mm;margin:0 auto 24px;background:#fff;box-shadow:0 10px 40px rgba(0,0,0,.18);overflow:hidden}
+  /* 3mm bleed => content inset; trim at 3mm; safe at 8mm */
+  .guide-trim{position:absolute;inset:3mm;border:0.2mm dashed rgba(251,71,27,.45);pointer-events:none;z-index:9}
+  .page{position:absolute;inset:3mm;padding:8mm;display:flex;flex-direction:column}
+  .top{display:flex;align-items:center;justify-content:space-between}
+  .top img{height:9mm}
+  .eyebrow{font-size:3mm;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--fox)}
+  h1{color:var(--ink);font-size:8.6mm;line-height:1.05;letter-spacing:-.02em;font-weight:800;margin:6mm 0 3mm}
+  h1 .o{color:var(--fox)}
+  .sub{color:var(--muted);font-size:3.6mm;margin:0 0 5mm;max-width:85%}
+  .hero{position:relative;height:66mm;display:flex;align-items:center;justify-content:center;margin-bottom:5mm}
+  .hero .acc{position:absolute;right:-6mm;top:-4mm;width:60mm;opacity:.14}
+  .hero .main{position:relative;width:78mm;filter:drop-shadow(0 6mm 10mm rgba(21,33,58,.22))}
+  .points{display:flex;flex-direction:column;gap:2.4mm;margin-bottom:auto}
+  .pt{display:flex;gap:3mm;align-items:flex-start;font-size:3.5mm;color:var(--ink)}
+  .pt b{color:var(--ink)}
+  .dot{flex:0 0 3mm;width:3mm;height:3mm;border-radius:50%;background:var(--fox);margin-top:1mm}
+  .foot{display:flex;align-items:center;justify-content:space-between;gap:4mm;border-top:0.3mm solid var(--border);padding-top:4mm}
+  .cta{background:var(--fox);color:#fff;font-weight:800;font-size:3.8mm;padding:3.4mm 6mm;border-radius:99mm;text-decoration:none;display:inline-block}
+  .contact{font-size:3mm;color:var(--muted);line-height:1.5}
+  .contact b{color:var(--ink)}
+  .qr{display:flex;align-items:center;gap:2.6mm}
+  .qr img{width:22mm;height:22mm;display:block}
+  .qr .u{font-size:2.6mm;color:var(--muted);max-width:24mm}
+  .qr .u b{color:var(--ink)}
+  @media print{.screen-note{display:none}.bleed{box-shadow:none;margin:0}.guide-trim{display:none}}
+</style></head>
+<body>
+<div class="screen-note">BRAND KIT · A5 flyer front (148×210mm + 3mm bleed; dashed line = trim). DRAFT — placeholder photo; confirm bleed/safe area and QR size with the printer; use an approved vector arc for large print. Not live.</div>
+<div class="bleed">
+  <div class="guide-trim"></div>
+  <div class="page">
+    <div class="top">
+      <img src="/assets/fox-wordmark-original.png" alt="Fox ITC">
+      <span class="eyebrow">Managed IT &amp; Cyber Security</span>
+    </div>
+    <h1>IT that <span class="o">just works.</span> People who actually care.</h1>
+    <p class="sub">Straight-talking managed IT and cyber security for UK businesses — a team that genuinely cares.</p>
+    <div class="hero">
+      <fox-arc-media class="acc" mode="solid" fill="#FB471B" rotate="180"></fox-arc-media>
+      <fox-arc-media class="main" mode="photo" src="/brand-system/preview/hero-wide-1.jpg" focal="50% 42%"></fox-arc-media>
+    </div>
+    <div class="points">
+      <div class="pt"><span class="dot"></span><span><b>One team, one price.</b> Per-user managed IT, no surprise bills.</span></div>
+      <div class="pt"><span class="dot"></span><span><b>Security-first.</b> Protection and training, ISO 27001 as the benchmark.</span></div>
+      <div class="pt"><span class="dot"></span><span><b>A real person.</b> Fast UK support, plain English — not a call centre.</span></div>
+    </div>
+    <div class="foot">
+      <div>
+        <a class="cta" href="https://www.foxitc.co.uk/book">Book a free IT review</a>
+        <div class="contact" style="margin-top:3mm"><b>0330 058 1877</b> &middot; hello@foxitc.co.uk<br>Castle Donington, Leicestershire</div>
+      </div>
+      <div class="qr">
+        <img src="/brand-system/assets/qr-book.png" alt="Scan to book a free IT review">
+        <div class="u">Scan or visit<br><b>foxitc.co.uk/book</b></div>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>

@@ -1,0 +1,69 @@
+{
+  "version": "2.0",
+  "defaultStatus": "DRAFT",
+  "routeRules": [
+    {
+      "match": [
+        "homepage",
+        "website",
+        "landing page",
+        "hospitality",
+        "freight",
+        "construction",
+        "industry"
+      ],
+      "load": "templates/WEB_AND_LANDING_PAGES.md"
+    },
+    {
+      "match": [
+        "flyer",
+        "brochure",
+        "beer mat",
+        "rate card",
+        "print",
+        "catalogue"
+      ],
+      "load": "templates/FLYERS_AND_PRINT.md"
+    },
+    {
+      "match": [
+        "linkedin",
+        "instagram",
+        "facebook",
+        "social",
+        "carousel",
+        "post"
+      ],
+      "load": "templates/SOCIAL_AND_LINKEDIN.md"
+    },
+    {
+      "match": [
+        "email",
+        "signature",
+        "newsletter",
+        "blog",
+        "fox bytes"
+      ],
+      "load": "templates/EMAIL_BLOG_NEWSLETTER.md"
+    },
+    {
+      "match": [
+        "powerpoint",
+        "presentation",
+        "demo",
+        "web demo",
+        "video",
+        "motion"
+      ],
+      "load": "templates/POWERPOINT_AND_DEMOS.md"
+    }
+  ],
+  "alwaysLoad": [
+    "design-tokens.json",
+    "standards/FOX_ARC_SIGNATURE.md",
+    "standards/BRAND_FOUNDATIONS.md",
+    "standards/COPY_AND_FACTS.md",
+    "standards/QUALITY_GATE.md",
+    "standards/AI_AND_LEGAL.md"
+  ]
+}

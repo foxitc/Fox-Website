@@ -1,0 +1,43 @@
+{
+  "kit_version": "2.0-draft",
+  "status": "DRAFT",
+  "decisions": [
+    {
+      "item": "Original Fox ITC logo and three-arc geometry",
+      "status": "ESTABLISHED",
+      "note": "Source assets supplied by owner; must match exactly"
+    },
+    {
+      "item": "Use of whole-symbol rotations and mirroring across website/marketing",
+      "status": "DIRECTION_ACCEPTED",
+      "note": "User explicitly welcomed varied orientations; individual applications still need sign-off"
+    },
+    {
+      "item": "Photo-window arcs, watermarks and pulse",
+      "status": "PROPOSED",
+      "note": "Requested use cases; final execution not approved"
+    },
+    {
+      "item": "Light premium UI, typography, supporting neutrals",
+      "status": "PROPOSED",
+      "note": "Awaiting final design approval"
+    },
+    {
+      "item": "Industry landing pages hospitality and freight",
+      "status": "REQUESTED",
+      "note": "New landing pages; existing services unchanged"
+    },
+    {
+      "item": "PowerPoint, demos, newsletters, flyers, beer mats, social",
+      "status": "REQUESTED",
+      "note": "Specs included; final visual masters still need implementation"
+    }
+  ],
+  "releasePolicy": {
+    "allowDraftGeneration": true,
+    "allowAutonomousPublication": false,
+    "requireClaimVerification": true,
+    "requireRightsCheck": true,
+    "requireFinalVisualApproval": true
+  }
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en-GB"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fox ITC — social templates</title>
+<script src="/brand-system/components/fox-arc-media.js"></script>
+<style>
+  :root{--fox:#FB471B;--fox-accent:#FC6C4C;--ink:#15213A;--muted:#667085;--border:#E6E8EC}
+  *{box-sizing:border-box} body{margin:0;background:#dfe3ea;font-family:Inter,system-ui,sans-serif;padding:24px}
+  .ribbon{background:#111a2e;color:#fff;text-align:center;font-size:12.5px;padding:7px;margin:-24px -24px 20px}
+  .lbl{font-size:12px;color:#444;font-weight:700;margin:18px 0 8px}
+  .board{box-shadow:0 10px 30px rgba(0,0,0,.16);overflow:hidden;position:relative;color:#fff}
+  .wm{position:absolute;pointer-events:none}
+  .wordmark{height:34px}
+  /* LinkedIn landscape 1200x627 */
+  .li{width:1200px;height:627px;background:linear-gradient(135deg,var(--ink),#22304f);padding:64px;display:flex;flex-direction:column;justify-content:space-between}
+  .li .eyebrow{color:var(--fox-accent);font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:18px}
+  .li h2{font-size:58px;line-height:1.05;letter-spacing:-.02em;margin:14px 0 0;max-width:62%;color:#fff;font-weight:800}
+  .li .wm{right:-120px;top:-60px;width:620px;opacity:.14}
+  .li .row{display:flex;align-items:center;justify-content:space-between}
+  .li .cta{background:var(--fox);color:#fff;font-weight:800;font-size:22px;padding:16px 30px;border-radius:999px}
+  /* Square 1080 sector */
+  .sq{width:1080px;height:1080px;background:#fff;color:var(--ink);display:flex;flex-direction:column}
+  .sq .top{padding:56px 56px 0;display:flex;align-items:center;justify-content:space-between}
+  .sq .eyebrow{color:var(--fox);font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:22px}
+  .sq .photo{flex:1;position:relative;display:flex;align-items:center;justify-content:center;margin:24px 0}
+  .sq .photo .main{width:620px}
+  .sq .photo .acc{position:absolute;left:40px;bottom:10px;width:220px;opacity:.9}
+  .sq .cap{padding:0 56px 56px}
+  .sq h2{font-size:52px;line-height:1.05;letter-spacing:-.02em;margin:0 0 14px;font-weight:800}
+  .sq p{color:var(--muted);font-size:26px;margin:0 0 22px;max-width:80%}
+  .sq .cta{background:var(--fox);color:#fff;font-weight:800;font-size:24px;padding:16px 30px;border-radius:999px;display:inline-block}
+  /* Fox Bytes cover 1080 */
+  .fb{width:1080px;height:1080px;background:var(--ink);color:#fff;padding:64px;display:flex;flex-direction:column;justify-content:space-between;position:relative}
+  .fb .wm{right:-160px;bottom:-160px;width:760px;opacity:.16}
+  .fb .mast{display:flex;align-items:center;gap:16px}
+  .fb .mast .m{width:70px}
+  .fb .mast b{font-size:40px;font-weight:800;letter-spacing:-.01em}
+  .fb .ed{color:#9fb0c9;font-size:22px;letter-spacing:.06em;text-transform:uppercase}
+  .fb h2{font-size:72px;line-height:1.02;letter-spacing:-.02em;max-width:78%;margin:0;font-weight:800}
+  .scaled{transform-origin:top left}
+</style></head>
+<body>
+<div class="ribbon">BRAND KIT · Social templates (artboards at native px). One idea per frame; arc geometry never changes. DRAFT — real photography + verified copy before publishing.</div>
+
+<div class="lbl">LinkedIn — landscape 1200×627 · "practical tip" family (arc watermark)</div>
+<div class="board li">
+  <fox-arc-media class="wm" mode="watermark" fill="#FB471B" opacity="0.16" rotate="180"></fox-arc-media>
+  <div class="eyebrow">Fox ITC · Tip</div>
+  <h2>Weak passwords cause more breaches than clever hackers.</h2>
+  <div class="row">
+    <img class="wordmark" style="filter:brightness(0) invert(1)" src="/assets/fox-wordmark-original.png" alt="Fox ITC">
+    <span class="cta">Book a free IT review</span>
+  </div>
+</div>
+
+<div class="lbl">Square 1080×1080 · sector insight (hospitality) — photo inside the arcs</div>
+<div class="board sq">
+  <div class="top"><span class="eyebrow">IT for hospitality</span><img class="wordmark" src="/assets/fox-wordmark-original.png" alt="Fox ITC"></div>
+  <div class="photo">
+    <fox-arc-media class="acc" mode="solid" fill="#FB471B" rotate="180" style="opacity:.14"></fox-arc-media>
+    <fox-arc-media class="main" mode="photo" src="/brand-system/preview/hero-wide-1.jpg" focal="50% 42%"></fox-arc-media>
+  </div>
+  <div class="cap">
+    <h2>Guest Wi-Fi that stays up at your busiest hour.</h2>
+    <p>Separate, secure, surveyed for full coverage — part of our WiFi service.</p>
+    <span class="cta">Book a free IT review →</span>
+  </div>
+</div>
+
+<div class="lbl">Square 1080×1080 · "Fox Bytes" newsletter cover (oversized arc crop)</div>
+<div class="board fb">
+  <fox-arc-media class="wm" mode="watermark" fill="#FB471B" opacity="0.18"></fox-arc-media>
+  <div style="display:flex;align-items:center;justify-content:space-between">
+    <div class="mast"><fox-arc-media class="m" mode="solid" fill="#FB471B"></fox-arc-media><b>Fox Bytes</b></div>
+    <span class="ed">Edition 01 · 2026</span>
+  </div>
+  <h2>Five quick wins to cut your IT risk this quarter.</h2>
+  <img class="wordmark" style="filter:brightness(0) invert(1);align-self:flex-start" src="/assets/fox-wordmark-original.png" alt="Fox ITC">
+</div>
+</body></html>

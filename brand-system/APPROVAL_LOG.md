@@ -30,6 +30,13 @@ Remaining in Phase 3: apply the library to other page types (service/industry/co
 ## Phase 4 — hospitality & freight landing pages (DELIVERED, staging)
 Data-driven `IndustryLandingPage`: `preview/industry-template.html` + `data/industries.json` (`INDUSTRY_LANDING_PAGES.md`). Two pages built — `?industry=hospitality`, `?industry=freight-logistics` — grounded in real services, case-study slots hidden (none verified), FAQ structured data, UTM passthrough to booking with clean canonicals. Professional-services & construction left as unpublished drafts. Staging only; nothing deployed. Awaiting owner review of copy + real photography.
 
+## Phase 5 — brand kit (IN PROGRESS, staging)
+- Owner-supplied **AI Brain Kit v2** vendored at `fox-itc-v2/` and reconciled (`RECONCILIATION.md`); highly compatible with the website brand-system. Adopted the kit's QUALITY_GATE.
+- Master index `BRAND_GUIDELINES_DRAFT.md`.
+- Collateral built to the kit's specs: `templates/email-signature.html`, `templates/flyer-a5.html` (with real brand QR), `templates/social-pack.html`. Raster arc assets (`assets/fox-arcs-orange/white/ink.png`) for email/print.
+- **3 conflicts need an owner decision** (see RECONCILIATION.md): dark token #15213A vs #15191E; typography (keep live Inter+Syne vs Geist/Manrope); primary CTA wording.
+- Remaining: beer mats, PowerPoint master, web-demo shell, video/motion spec, newsletter, TYPOGRAPHY/PHOTOGRAPHY docs. Still no deploy.
+
 ## Proposed, NOT approved
 - Specific homepage layouts, typography changes (incl. Geist vs live Syne), photography, neutral palette, landing-page copy and visual treatments
 - The photo/watermark hero treatments shown in `preview/hero-treatment.html`
