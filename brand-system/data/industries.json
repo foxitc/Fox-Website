@@ -1,0 +1,70 @@
+{
+  "$schema": "IndustryLandingPage config. Add an industry = add an entry here; no layout code changes. Copy is grounded in real Fox ITC services only; no sector-experience claims, no invented proof. caseStudy stays null until a verified one is supplied (slot hidden).",
+  "industries": {
+    "hospitality": {
+      "slug": "hospitality",
+      "label": "Hospitality",
+      "seo": {
+        "title": "IT support for hospitality | Fox ITC",
+        "description": "Guest Wi-Fi, EPOS uptime, venue networking, connectivity and cyber security for pubs, restaurants, hotels and venues — with a real person on the end of the phone.",
+        "ogImage": "https://www.foxitc.co.uk/opengraph.jpg"
+      },
+      "canonical": "https://www.foxitc.co.uk/industries/hospitality",
+      "hero": {
+        "eyebrow": "IT for hospitality",
+        "h1": "Technology that keeps your venue running — and your guests happy.",
+        "p": "From guest Wi-Fi and EPOS uptime to the network behind it all, we keep hospitality businesses connected, secure and supported.",
+        "image": "/brand-system/preview/hero-wide-1.jpg",
+        "focal": "50% 42%"
+      },
+      "intro": "Busy venues can't wait for IT. We provide the managed support, networking and security your day-to-day systems rely on — explained in plain English, backed by a friendly UK team.",
+      "modules": [
+        { "icon": "server", "challenge": "When the EPOS or card machine goes down, service stops.", "solution": "Fast, managed IT support that gets your tills, payments and systems back up quickly.", "service": "Managed IT Support", "href": "/services/managed-it" },
+        { "icon": "wifi", "challenge": "Guests expect fast, reliable Wi-Fi the moment they sit down.", "solution": "Guest Wi-Fi built for busy venues — a separate, secure network, surveyed for full coverage.", "service": "WiFi", "href": "/services/wifi" },
+        { "icon": "plug", "challenge": "Multiple sites and a patchy connection make everything harder.", "solution": "Business connectivity — leased lines and broadband — to keep every site online.", "service": "Connectivity", "href": "/services/connectivity" },
+        { "icon": "shield", "challenge": "Card data and bookings are a target for cyber attacks.", "solution": "Security-first protection and training, with ISO 27001 as the benchmark.", "service": "Cyber Security", "href": "/services/cyber-security" },
+        { "icon": "mail", "challenge": "Email, rotas and documents are scattered across devices.", "solution": "Microsoft 365 set up right — email, files and Teams, secured.", "service": "Microsoft 365", "href": "/services/microsoft-365" }
+      ],
+      "caseStudy": null,
+      "faqs": [
+        { "q": "Do you support EPOS and payment systems?", "a": "We provide the managed IT, networking and connectivity your EPOS and card systems rely on, and we're here when something goes wrong. We don't replace your EPOS provider — we keep the infrastructure around it reliable." },
+        { "q": "Can you set up a separate guest Wi-Fi?", "a": "Yes. A separate, secure guest network — surveyed and designed for your venue — is part of our WiFi service." },
+        { "q": "Are we tied to one broadband provider?", "a": "No. We're independent and source the right connectivity for each site." }
+      ],
+      "cta": { "h": "Let's talk about your venue's IT.", "p": "Book a free, no-obligation 15-minute review and we'll show you where you can save and simplify." }
+    },
+
+    "freight-logistics": {
+      "slug": "freight-logistics",
+      "label": "Freight & Logistics",
+      "seo": {
+        "title": "IT support for freight & logistics | Fox ITC",
+        "description": "Warehouse Wi-Fi, multi-site managed support, resilient connectivity, cyber security, Microsoft 365 and business mobile for logistics operations that can't afford downtime.",
+        "ogImage": "https://www.foxitc.co.uk/opengraph.jpg"
+      },
+      "canonical": "https://www.foxitc.co.uk/industries/freight-logistics",
+      "hero": {
+        "eyebrow": "IT for freight & logistics",
+        "h1": "IT that keeps freight moving — across every site and every shift.",
+        "p": "Warehouse Wi-Fi, multi-site support, connectivity and security for logistics businesses that can't afford downtime.",
+        "image": "/brand-system/preview/hero-wide-2.jpg",
+        "focal": "50% 45%"
+      },
+      "intro": "Depots, warehouses and drivers depend on systems that just work. We keep logistics operations connected and secure across every location — with one point of contact who knows your setup.",
+      "modules": [
+        { "icon": "wifi", "challenge": "Scanners and handhelds drop out in warehouse dead-spots.", "solution": "Enterprise Wi-Fi — surveyed and designed for full coverage, including high-racking areas.", "service": "WiFi", "href": "/services/wifi" },
+        { "icon": "server", "challenge": "Multiple depots, one small IT team.", "solution": "Managed IT support across every site — one point of contact, fast response.", "service": "Managed IT Support", "href": "/services/managed-it" },
+        { "icon": "plug", "challenge": "A single outage stops dispatch.", "solution": "Resilient connectivity — leased lines and broadband — to keep operations online.", "service": "Connectivity", "href": "/services/connectivity" },
+        { "icon": "shield", "challenge": "Logistics is a growing cyber-attack target.", "solution": "Security-first protection, monitoring and training, ISO 27001 as the benchmark.", "service": "Cyber Security", "href": "/services/cyber-security" },
+        { "icon": "phone", "challenge": "Drivers and depots need the same tools everywhere.", "solution": "Microsoft 365 and business mobile, set up and secured for a mobile workforce.", "service": "Mobile & Microsoft 365", "href": "/services/mobile" }
+      ],
+      "caseStudy": null,
+      "faqs": [
+        { "q": "Can you cover multiple depots?", "a": "Yes. Multi-site managed support with one point of contact is core to what we do." },
+        { "q": "Do you survey warehouse Wi-Fi?", "a": "Yes. Our WiFi service includes a site survey and design for full coverage, including high-racking environments." },
+        { "q": "Can you help with business mobile for drivers?", "a": "Yes. We sort business mobile across O2, Vodafone and EE alongside your IT." }
+      ],
+      "cta": { "h": "Let's keep your operation moving.", "p": "Book a free, no-obligation 15-minute review and we'll show you where you can save and simplify." }
+    }
+  }
+}

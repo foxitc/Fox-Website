@@ -27,6 +27,9 @@ Concept A approved by owner 2026-10-19. Delivered on the work branch (staging; n
 - `COMPONENT_LIBRARY.md`, `WEBSITE_UI_RULES.md`.
 Remaining in Phase 3: apply the library to other page types (service/industry/contact) + add regression smoke tests. Then Phase 4 (hospitality + freight landing pages). Still no production deploy (gated to Phase 6).
 
+## Phase 4 — hospitality & freight landing pages (DELIVERED, staging)
+Data-driven `IndustryLandingPage`: `preview/industry-template.html` + `data/industries.json` (`INDUSTRY_LANDING_PAGES.md`). Two pages built — `?industry=hospitality`, `?industry=freight-logistics` — grounded in real services, case-study slots hidden (none verified), FAQ structured data, UTM passthrough to booking with clean canonicals. Professional-services & construction left as unpublished drafts. Staging only; nothing deployed. Awaiting owner review of copy + real photography.
+
 ## Proposed, NOT approved
 - Specific homepage layouts, typography changes (incl. Geist vs live Syne), photography, neutral palette, landing-page copy and visual treatments
 - The photo/watermark hero treatments shown in `preview/hero-treatment.html`

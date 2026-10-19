@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fox ITC — industry landing</title>
+<meta name="description" id="meta-desc" content="" />
+<link rel="canonical" id="meta-canon" href="" />
+<meta property="og:type" content="website" /><meta property="og:site_name" content="Fox ITC" />
+<meta property="og:title" id="og-title" content="" /><meta property="og:description" id="og-desc" content="" />
+<meta property="og:image" id="og-img" content="" /><meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="/brand-system/assets/fox-ui.css" />
+<script src="/brand-system/components/fox-arc-media.js"></script>
+<style>
+  .ribbon{background:#111a2e;color:#fff;text-align:center;font-size:12.5px;padding:7px}
+  .mod{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:760px){.mod{grid-template-columns:1fr}}
+  .mod .row{display:flex;gap:16px;align-items:flex-start;background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:20px;position:relative;overflow:hidden}
+  .mod .row .ic{flex:0 0 44px;width:44px;height:44px;border-radius:12px;background:rgba(251,71,27,.1);color:var(--fox);display:flex;align-items:center;justify-content:center}
+  .mod .row .ic svg{width:22px;height:22px}
+  .mod .row .ch{font-weight:700;color:var(--ink);margin:0 0 4px;font-size:15.5px}
+  .mod .row .so{color:var(--text-2);font-size:14.5px;margin:0 0 8px}
+  .mod .row a.sv{color:var(--fox);font-weight:700;font-size:13.5px;text-decoration:none}
+  .faq details{border:1px solid var(--border);border-radius:12px;padding:4px 18px;margin-bottom:10px;background:#fff}
+  .faq summary{font-weight:700;color:var(--ink);cursor:pointer;padding:14px 0;list-style:none}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";float:right;color:var(--fox);font-weight:800}
+  .faq details[open] summary::after{content:"–"}
+  .faq p{color:var(--text-2);margin:0 0 14px;font-size:14.5px}
+  .svclinks{display:flex;gap:10px;flex-wrap:wrap}
+  .svclinks a{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--border);border-radius:999px;padding:9px 16px;text-decoration:none;color:var(--ink);font-weight:600;font-size:14px}
+  .svclinks a:hover{border-color:var(--fox);color:var(--fox)}
+</style>
+</head>
+<body class="fx">
+<div class="ribbon" id="ribbon">PHASE 4 staging · data-driven IndustryLandingPage. Grounded in real services; unverified proof hidden. Not live.</div>
+<header class="fx-header"><div class="fx-wrap fx-header__in">
+  <img class="fx-header__logo" src="/assets/fox-wordmark-original.png" alt="Fox ITC" />
+  <nav class="fx-nav" aria-label="Primary">
+    <a href="#">Services</a><a href="/brand-system/preview/industry-template.html?industry=hospitality">Hospitality</a><a href="/brand-system/preview/industry-template.html?industry=freight-logistics">Freight</a><a href="#">Pricing</a>
+    <a class="fx-btn fx-btn--pri fx-btn--sm" id="nav-cta" href="/book?type=discovery">Book a free IT review</a>
+  </nav>
+</div></header>
+<main id="app" aria-live="polite"></main>
+<footer class="fx-footer"><div class="fx-wrap">© <span id="yr"></span> Fox ITC · Managed IT &amp; Cyber Security · Castle Donington, Leicestershire · foxitc.co.uk</div></footer>
+
+<script>
+(function(){
+  var ICONS={
+    server:'<rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>',
+    wifi:'<path d="M5 12.5a9 9 0 0 1 14 0M8.5 16a4.5 4.5 0 0 1 7 0M12 19.5h.01"/>',
+    plug:'<path d="M9 2v6M15 2v6M7 8h10v3a5 5 0 0 1-10 0V8ZM12 16v6"/>',
+    shield:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/>',
+    mail:'<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/>',
+    phone:'<rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/>'
+  };
+  function svg(name){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(ICONS[name]||ICONS.server)+'</svg>';}
+  function esc(s){var d=document.createElement('div');d.textContent=(s==null?'':String(s));return d.innerHTML;}
+  function attr(s){return esc(s).replace(/"/g,'&quot;');}
+  document.getElementById('yr').textContent=new Date().getFullYear();
+
+  // Safe UTM passthrough: allowlist keys, URI-encode, append to booking links. Never injected into HTML.
+  function utmQuery(){
+    var allow=['utm_source','utm_medium','utm_campaign','utm_term','utm_content'],out=[];
+    try{var q=new URLSearchParams(location.search);
+      allow.forEach(function(k){var v=q.get(k); if(v) out.push(encodeURIComponent(k)+'='+encodeURIComponent(v.slice(0,120)));});
+    }catch(e){}
+    return out.length?('?type=discovery&'+out.join('&')):'?type=discovery';
+  }
+  var bookHref='/book'+utmQuery();
+
+  function key(){ try{var k=new URLSearchParams(location.search).get('industry')||'';return /^[a-z-]{1,40}$/.test(k)?k:'';}catch(e){return '';} }
+
+  fetch('/brand-system/data/industries.json').then(function(r){return r.json();}).then(function(cfg){
+    var data=cfg.industries||{}, k=key(), d=data[k];
+    document.getElementById('nav-cta').href=bookHref;
+    if(!d){
+      // simple index of available industries (allowlisted keys only)
+      var items=Object.keys(data).map(function(kk){return '<li><a class="fx-card__go" href="?industry='+encodeURIComponent(kk)+'">'+esc(data[kk].label)+' →</a></li>';}).join('');
+      document.getElementById('app').innerHTML='<section class="fx-section"><div class="fx-wrap"><span class="fx-eyebrow">Industries</span><h2 style="margin-top:8px">Choose your sector</h2><ul style="margin-top:16px;line-height:2.2;list-style:none;padding:0">'+items+'</ul></div></section>';
+      return;
+    }
+    // meta
+    document.title=d.seo.title;
+    document.getElementById('meta-desc').content=d.seo.description;
+    document.getElementById('meta-canon').href=d.canonical;         // canonical = clean URL, never UTM-varied
+    document.getElementById('og-title').content=d.seo.title;
+    document.getElementById('og-desc').content=d.seo.description;
+    document.getElementById('og-img').content=d.seo.ogImage;
+
+    var mods=d.modules.map(function(m){
+      return '<div class="row"><div class="ic">'+svg(m.icon)+'</div><div><p class="ch">'+esc(m.challenge)+'</p><p class="so">'+esc(m.solution)+'</p><a class="sv" href="'+attr(m.href)+'">'+esc(m.service)+' →</a></div></div>';
+    }).join('');
+    var svclinks=d.modules.map(function(m){return '<a href="'+attr(m.href)+'">'+esc(m.service)+'</a>';}).join('');
+    var faqs=(d.faqs||[]).map(function(f){return '<details><summary>'+esc(f.q)+'</summary><p>'+esc(f.a)+'</p></details>';}).join('');
+    var caseStudy = d.caseStudy ? ('<section class="fx-section fx-section--line"><div class="fx-wrap"><span class="fx-eyebrow">Case study</span><h2 style="margin-top:8px">'+esc(d.caseStudy.title)+'</h2><p class="fx-lead">'+esc(d.caseStudy.body)+'</p></div></section>') : '<!-- case study slot hidden: none verified -->';
+
+    document.getElementById('app').innerHTML=
+      '<section class="fx-hero"><div class="fx-wrap"><div class="fx-hero__grid">'+
+        '<div><span class="fx-eyebrow">'+esc(d.hero.eyebrow)+'</span>'+
+        '<h1 style="margin-top:12px">'+esc(d.hero.h1)+'</h1>'+
+        '<p>'+esc(d.hero.p)+'</p>'+
+        '<div class="fx-hero__cta"><a class="fx-btn fx-btn--pri" href="'+attr(bookHref)+'">Book a free IT review →</a><a class="fx-btn fx-btn--ghost" href="#services">See how we help</a></div>'+
+        '<div class="fx-hero__meta">No obligation · 15-minute call · a real person, not a call centre</div></div>'+
+        '<div class="fx-stage"><fox-arc-media class="fx-stage__accent" mode="solid" fill="#FB471B" rotate="180"></fox-arc-media>'+
+        '<fox-arc-media class="fx-stage__main" mode="photo" src="'+attr(d.hero.image)+'" focal="'+attr(d.hero.focal||'50% 50%')+'"></fox-arc-media></div>'+
+      '</div></div></section>'+
+
+      '<section class="fx-section fx-section--line" id="services"><div class="fx-wrap">'+
+        '<span class="fx-eyebrow">How we help</span><h2 style="margin-top:8px">Built around how '+esc(d.label.toLowerCase())+' actually works</h2>'+
+        '<p class="fx-lead">'+esc(d.intro)+'</p>'+
+        '<div class="mod">'+mods+'</div>'+
+        '<div style="margin-top:26px"><p class="fx-eyebrow" style="margin-bottom:10px">Services</p><div class="svclinks">'+svclinks+'</div></div>'+
+      '</div></section>'+
+
+      caseStudy +
+
+      '<section class="fx-section fx-section--alt"><div class="fx-wrap"><span class="fx-eyebrow">People buy from people</span>'+
+        '<h2 style="margin-top:8px">A friendly UK team that knows your setup</h2>'+
+        '<div class="fx-team" style="margin-top:28px">'+
+        '<div class="fx-person"><img class="fx-person__ph" src="/frontend/ian.png" alt=""><b>Ian Mackness</b><span>Founder</span></div>'+
+        '<div class="fx-person"><img class="fx-person__ph" src="/frontend/mark.png" alt=""><b>Mark Hutchinson</b><span>Engineer</span></div>'+
+        '<div class="fx-person"><img class="fx-person__ph" src="/frontend/lerato.png" alt=""><b>Lerato</b><span>Support</span></div>'+
+        '</div></div></section>'+
+
+      (faqs ? ('<section class="fx-section fx-section--line"><div class="fx-wrap" style="max-width:760px"><span class="fx-eyebrow">FAQs</span><h2 style="margin:8px 0 22px">Common questions</h2><div class="faq">'+faqs+'</div></div></section>') : '')+
+
+      '<section class="fx-section"><div class="fx-wrap"><div class="fx-cta-band">'+
+        '<fox-arc-media class="fx-cta-band__wm" mode="watermark" fill="#FB471B" opacity="0.16"></fox-arc-media>'+
+        '<h2>'+esc(d.cta.h)+'</h2><p>'+esc(d.cta.p)+'</p>'+
+        '<a class="fx-btn fx-btn--pri" href="'+attr(bookHref)+'">Book a free IT review →</a>'+
+      '</div></div></section>';
+
+    // FAQ structured data (only the grounded FAQs in config)
+    if(d.faqs&&d.faqs.length){
+      var ld={"@context":"https://schema.org","@type":"FAQPage","mainEntity":d.faqs.map(function(f){return {"@type":"Question","name":f.q,"acceptedAnswer":{"@type":"Answer","text":f.a}};})};
+      var s=document.createElement('script'); s.type='application/ld+json'; s.textContent=JSON.stringify(ld); document.head.appendChild(s);
+    }
+  }).catch(function(){
+    document.getElementById('app').innerHTML='<section class="fx-section"><div class="fx-wrap"><p>Couldn’t load this page. <a href="/book" style="color:var(--fox)">Book a free IT review</a> or email ian@foxitc.co.uk.</p></div></section>';
+  });
+})();
+</script>
+
+<div id="fox-chat"></div>
+<script>
+(function(){var U="https://360.foxitc.co.uk/ask",o=false,w=document.getElementById("fox-chat");
+  var p=document.createElement("iframe");p.src=U;p.title="Chat to Todd";
+  p.style.cssText="position:fixed;bottom:96px;right:24px;width:380px;max-width:calc(100vw - 32px);height:560px;max-height:calc(100vh - 130px);border:0;border-radius:16px;box-shadow:0 16px 50px rgba(0,0,0,.28);z-index:2147483000;display:none;background:#fff;";
+  var b=document.createElement("button");b.setAttribute("aria-label","Chat to us");b.innerHTML="💬";
+  b.style.cssText="position:fixed;bottom:24px;right:24px;width:60px;height:60px;border:0;border-radius:50%;background:#FB471B;color:#fff;font-size:26px;cursor:pointer;z-index:2147483001;box-shadow:0 6px 20px rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;";
+  b.onclick=function(){o=!o;p.style.display=o?"block":"none";b.innerHTML=o?"✕":"💬";};
+  w.appendChild(p);w.appendChild(b);})();
+</script>
+</body>
+</html>
