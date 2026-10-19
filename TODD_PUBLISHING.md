@@ -160,16 +160,25 @@ one template, driven by a 360 document.
 - **Phase 4 (optional) — Editable slots** on core pages (e.g. hero copy on the
   homepage) as tightly-scoped editable regions — never free code.
 
-## 10. Decisions needed before Phase 1
+## 10. Decisions — LOCKED (2026-10-19)
 
-1. **Route namespace** for Todd pages — `/p/{slug}` (clean, safe) vs
-   `/campaigns/{slug}` vs arbitrary top-level slugs (riskier).
-2. **Approval gate** — human-approves-before-live (recommended for autonomous
-   Todd) vs Todd auto-publishes.
-3. **Scope** — content pages only (recommended) vs also editable slots on core
-   pages (Phase 4).
-4. **Nav** — can Todd pages appear in the main menu, or campaign/QR-linked only?
-5. **Media** — a 360 media library (recommended) vs an allowed-domain image list.
+1. **Route namespace:** Todd pages live at **`/p/{slug}`**. Clean, unmistakably a
+   Todd page, and physically separated from core routes so the reserved-route
+   guard is simple and absolute.
+2. **Approval gate: ON.** Todd publishes to a **draft + preview**; a human
+   approves (one click in 360) before it goes live. Non-negotiable for an
+   autonomous assistant touching the public site.
+3. **Scope: content pages only.** Todd creates/edits standalone `/p/*` pages.
+   Editable slots on *core* pages (homepage hero copy, etc.) are **deferred to a
+   later Phase 4** and will need their own tightly-scoped design — not in v1.
+4. **Nav: linked, not in the menu.** Todd pages do **not** appear in the global
+   nav automatically; they're reached by direct link / campaign / QR. A gated
+   "add to menu" opt-in (human-approved) is a **Phase 3** feature, not v1.
+5. **Media: 360 media library only.** Images are `media://` references resolved
+   by `/api/media/{id}`. **No arbitrary image URLs** — no hotlinking, no
+   unvetted assets.
+
+These five are settled; Phase 0/1 build to them.
 
 ---
 
