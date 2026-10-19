@@ -13,7 +13,7 @@
 - **Positioning line:** *IT that just works. People who actually care.*
 - **Values (voice anchors):** Do It · Care 4 It · Own It · Simplify It.
 - **Services (canonical wording):** Managed & ad-hoc IT support (per-user pricing) · Microsoft 365 migration · 3CX cloud phone systems · Supplier consultation · Reseller & procurement. Security-first, **ISO 27001** as the benchmark.
-- **Contact / CTAs:** phone `0330 058 1877` · email `ian@foxitc.co.uk` · **primary CTA is always "Book a free IT review"** → the booking flow (`/book`) or a campaign landing page (e.g. `/za`).
+- **Contact / CTAs:** phone `0330 058 1877` · email `ian@foxitc.co.uk` · **primary CTA is always "Book a conversation"** → the booking flow (`/book`) or a campaign landing page (e.g. `/za`).
 
 ## Colour (the actual tokens — don't invent new ones)
 
@@ -56,7 +56,7 @@
 
 Reference implementation in this repo: **`frontend/src/pages/LandingZA.js`** (`/za`) and **`FlyerStudio.js`** — build website pages to match these.
 
-1. **Top bar:** logo left, a primary **Book a free IT review** button right.
+1. **Top bar:** logo left, a primary **Book a conversation** button right.
 2. **Hero:** dark ink background (`#15213A` → `#22304f` gradient), white text, an orange eyebrow chip, an 800-weight headline (~46px, tight), one-line subhead, a big orange pill CTA.
 3. **Services:** auto-fit card grid (`minmax(300px,1fr)`), each card = emoji/icon + 800 title + short benefit-led body.
 4. **Why Fox:** 3 short value columns (per-user pricing · one point of contact · UK expertise).
@@ -69,11 +69,11 @@ Reference implementation in this repo: **`frontend/src/pages/LandingZA.js`** (`/
 
 - Warm, direct, benefit-led, UK English. No jargon, no ticket-number coldness, no upselling nonsense.
 - Lead with the customer's outcome ("IT that just works"), then how. StoryBrand framing: customer is the hero, Fox is the guide.
-- Every marketing page ends with **Book a free IT review**.
+- Every marketing page ends with **Book a conversation**.
 
 ## Domains & links — TWO SEPARATE SITES
 
 - **`foxitc.co.uk`** — the public, customer-facing **website** (separate build/repo). All marketing, campaign landing pages and the public booking experience live here. **Every customer-facing link, QR code and CTA uses this domain.**
 - **`360.foxitc.co.uk`** — the internal **Fox 360** business app (this repo). Staff-facing; not a customer destination. It exposes the public APIs the website consumes (see `INTEGRATION.md`).
 - Booking: the public booking page + campaign landings live on the website — **`foxitc.co.uk/book`**, **`foxitc.co.uk/za`** — powered by the 360 booking API. (360 also hosts a working `/book` + `/za` as an internal/fallback reference, but customer assets point at `foxitc.co.uk`.)
-- Primary CTA is always **Book a free IT review**.
+- Primary CTA is always **Book a conversation**.

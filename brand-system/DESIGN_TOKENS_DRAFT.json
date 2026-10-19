@@ -1,12 +1,17 @@
 {
   "$status": "DRAFT — established tokens are live brand; proposed tokens are NOT approved",
+  "ownerDecisions_2026-10-19": {
+    "ink": "#15213A (chosen over #15191E)",
+    "typeface": "Geist (chosen over keeping Inter+Syne and over Manrope)",
+    "primaryCTA": "Book a conversation (chosen over 'Book a free IT review' / 'Talk to our team' / 'Get in touch'); links to /book"
+  },
   "established": {
     "color": {
       "fox-orange": "#FB471B",
       "slate": "#444B53",
       "ink-navy": "#15213A"
     },
-    "notes": "Fox Orange and slate #444B53 are user-established. Ink navy #15213A is from the supplied DESIGN_SPEC for marketing hero backgrounds."
+    "notes": "Fox Orange and slate #444B53 are user-established. Ink navy #15213A confirmed by owner 2026-10-19 (over the kit's #15191E charcoal)."
   },
   "proposed": {
     "$status": "PROPOSED — awaiting approval",
@@ -33,7 +38,7 @@
       "mono": "'SF Mono','JetBrains Mono',monospace",
       "headingWeight": "700-800",
       "headingTracking": "-0.02em",
-      "$note": "DESIGN_SPEC proposes Geist/Inter; the LIVE site currently ships Inter + Syne (headings). Reconcile before adopting — flagged for approval."
+      "$note": "CHOSEN: Geist (owner 2026-10-19), Inter fallback. Loaded via Google Fonts in fox-ui.css. Adopting Geist on the live site replaces today's Inter+Syne and is a Phase 6 deploy step."
     }
   }
 }

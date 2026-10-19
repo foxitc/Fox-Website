@@ -15,14 +15,13 @@ The owner-supplied **AI Brand Brain Kit v2** is vendored at `brand-system/fox-it
 
 The website's `FoxArcMedia`, `fox-ui.css`, homepage, industry template and governance docs already satisfy the kit's recipes. The kit's `QUALITY_GATE.md` (score ≥18/20, no hard fail) is adopted as the pre-delivery check.
 
-## Needs an owner decision (3 genuine conflicts)
-| Token | `DESIGN_SPEC.md` (360-supplied) | AI Brain Kit v2 | Live site today | Recommendation |
-|---|---|---|---|---|
-| **Dark / ink** | `#15213A` (navy) | `#15191E` (charcoal) | n/a | Pick one. I've built with **#15213A**; switch to #15191E if you prefer charcoal sections. |
-| **Typography** | Geist / Inter | Inter / Manrope (+"inspect & preserve current") | **Inter body + Syne headings** | **Keep live Inter + Syne** (kit says preserve current if appropriate); don't adopt Geist/Manrope without sign-off. |
-| **Primary CTA** | "Book a free IT review" (always) | "Talk to our team" / "Book a conversation" / adjust to existing flow | "Get in touch" | I've used **"Book a free IT review"** (it has a working `/book` destination). Confirm or pick. |
+## Owner decisions — RESOLVED 2026-10-19
+| Token | Decision | Applied |
+|---|---|---|
+| **Dark / ink** | **`#15213A`** navy (over the kit's #15191E) | already canonical; no change |
+| **Typography** | **Geist** (over keeping Inter+Syne, over Manrope) | `fox-ui.css` loads Geist (Inter fallback); live adoption is a Phase 6 deploy step (replaces today's Inter+Syne) |
+| **Primary CTA** | **"Book a conversation"** → `/book` | updated in `DESIGN_SPEC.md`, homepage, industry template, flyer, email, social |
 
-Minor: page background `#F7F8FA` (spec) vs `#F5F6F7` (kit) — immaterial; staying on the spec value.
+Minor: page background stays `#F7F8FA` (vs the kit's #F5F6F7 — immaterial).
 
-## Once you decide
-I'll set the chosen values in `DESIGN_TOKENS_DRAFT.json` + `fox-ui.css`, update `APPROVAL_LOG.md`, and keep both docs in step (website leads design per the contract; the kit adopts).
+Sandbox note: Google Fonts is blocked here, so staging screenshots fall back to Inter; Geist renders on the live site / at export.

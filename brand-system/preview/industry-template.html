@@ -37,7 +37,7 @@
   <img class="fx-header__logo" src="/assets/fox-wordmark-original.png" alt="Fox ITC" />
   <nav class="fx-nav" aria-label="Primary">
     <a href="#">Services</a><a href="/brand-system/preview/industry-template.html?industry=hospitality">Hospitality</a><a href="/brand-system/preview/industry-template.html?industry=freight-logistics">Freight</a><a href="#">Pricing</a>
-    <a class="fx-btn fx-btn--pri fx-btn--sm" id="nav-cta" href="/book?type=discovery">Book a free IT review</a>
+    <a class="fx-btn fx-btn--pri fx-btn--sm" id="nav-cta" href="/book?type=discovery">Book a conversation</a>
   </nav>
 </div></header>
 <main id="app" aria-live="polite"></main>
@@ -99,7 +99,7 @@
         '<div><span class="fx-eyebrow">'+esc(d.hero.eyebrow)+'</span>'+
         '<h1 style="margin-top:12px">'+esc(d.hero.h1)+'</h1>'+
         '<p>'+esc(d.hero.p)+'</p>'+
-        '<div class="fx-hero__cta"><a class="fx-btn fx-btn--pri" href="'+attr(bookHref)+'">Book a free IT review →</a><a class="fx-btn fx-btn--ghost" href="#services">See how we help</a></div>'+
+        '<div class="fx-hero__cta"><a class="fx-btn fx-btn--pri" href="'+attr(bookHref)+'">Book a conversation →</a><a class="fx-btn fx-btn--ghost" href="#services">See how we help</a></div>'+
         '<div class="fx-hero__meta">No obligation · 15-minute call · a real person, not a call centre</div></div>'+
         '<div class="fx-stage"><fox-arc-media class="fx-stage__accent" mode="solid" fill="#FB471B" rotate="180"></fox-arc-media>'+
         '<fox-arc-media class="fx-stage__main" mode="photo" src="'+attr(d.hero.image)+'" focal="'+attr(d.hero.focal||'50% 50%')+'"></fox-arc-media></div>'+
@@ -127,7 +127,7 @@
       '<section class="fx-section"><div class="fx-wrap"><div class="fx-cta-band">'+
         '<fox-arc-media class="fx-cta-band__wm" mode="watermark" fill="#FB471B" opacity="0.16"></fox-arc-media>'+
         '<h2>'+esc(d.cta.h)+'</h2><p>'+esc(d.cta.p)+'</p>'+
-        '<a class="fx-btn fx-btn--pri" href="'+attr(bookHref)+'">Book a free IT review →</a>'+
+        '<a class="fx-btn fx-btn--pri" href="'+attr(bookHref)+'">Book a conversation →</a>'+
       '</div></div></section>';
 
     // FAQ structured data (only the grounded FAQs in config)
@@ -136,7 +136,7 @@
       var s=document.createElement('script'); s.type='application/ld+json'; s.textContent=JSON.stringify(ld); document.head.appendChild(s);
     }
   }).catch(function(){
-    document.getElementById('app').innerHTML='<section class="fx-section"><div class="fx-wrap"><p>Couldn’t load this page. <a href="/book" style="color:var(--fox)">Book a free IT review</a> or email ian@foxitc.co.uk.</p></div></section>';
+    document.getElementById('app').innerHTML='<section class="fx-section"><div class="fx-wrap"><p>Couldn’t load this page. <a href="/book" style="color:var(--fox)">Book a conversation</a> or email ian@foxitc.co.uk.</p></div></section>';
   });
 })();
 </script>

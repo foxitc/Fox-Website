@@ -2,7 +2,9 @@
    fox-ui.css — Fox ITC component library (Concept A "Clarity")
    PROPOSED / staging. Pairs with components/fox-arc-media.js.
    Tokens mirror DESIGN_TOKENS_DRAFT.json. Established: #FB471B, #444B53, #15213A.
+   Typeface: Geist (owner decision 2026-10-19), Inter fallback.
    ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap');
 :root{
   --fox:#FB471B; --fox-accent:#FC6C4C; --gold:#FFA800;
   --ink:#15213A; --slate:#444B53;
@@ -15,7 +17,7 @@
   --shadow-lift:0 16px 36px rgba(21,33,58,.09);
 }
 *{box-sizing:border-box}
-.fx{color:var(--text);background:var(--card);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,sans-serif;line-height:1.6;margin:0}
+.fx{color:var(--text);background:var(--card);font-family:'Geist',Inter,system-ui,-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;line-height:1.6;margin:0}
 .fx h1,.fx h2,.fx h3{letter-spacing:-.02em;color:var(--ink);font-weight:800;margin:0}
 .fx a{color:inherit}
 .fx-wrap{max-width:1160px;margin:0 auto;padding:0 24px}
