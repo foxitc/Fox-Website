@@ -1,0 +1,100 @@
+/* ============================================================
+   fox-ui.css — Fox ITC component library (Concept A "Clarity")
+   PROPOSED / staging. Pairs with components/fox-arc-media.js.
+   Tokens mirror DESIGN_TOKENS_DRAFT.json. Established: #FB471B, #444B53, #15213A.
+   ============================================================ */
+:root{
+  --fox:#FB471B; --fox-accent:#FC6C4C; --gold:#FFA800;
+  --ink:#15213A; --slate:#444B53;
+  --bg:#F7F8FA; --card:#FFFFFF; --fill:#F2F4F7;
+  --text:#1A1D21; --text-2:#667085; --muted:#98A2B3;
+  --border:#E6E8EC; --border-strong:#D0D5DD;
+  --success:#16A34A; --warning:#D97706; --danger:#DC2626; --info:#2563EB;
+  --r-sm:6px; --r-md:10px; --r-lg:16px; --r-xl:20px; --r-pill:999px;
+  --shadow-card:0 2px 10px rgba(21,33,58,.04);
+  --shadow-lift:0 16px 36px rgba(21,33,58,.09);
+}
+*{box-sizing:border-box}
+.fx{color:var(--text);background:var(--card);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,sans-serif;line-height:1.6;margin:0}
+.fx h1,.fx h2,.fx h3{letter-spacing:-.02em;color:var(--ink);font-weight:800;margin:0}
+.fx a{color:inherit}
+.fx-wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+.fx-eyebrow{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--fox)}
+.fx-lead{color:var(--text-2);font-size:17px;max-width:62ch}
+
+/* Buttons (pill for marketing) */
+.fx-btn{display:inline-flex;align-items:center;gap:8px;border-radius:var(--r-pill);font-weight:700;text-decoration:none;cursor:pointer;border:0;font-family:inherit;font-size:15px;line-height:1;transition:background .14s,transform .12s,border-color .14s}
+.fx-btn--pri{background:var(--fox);color:#fff;padding:14px 26px}
+.fx-btn--pri:hover{background:var(--fox-accent);transform:translateY(-1px)}
+.fx-btn--ghost{background:#fff;border:1px solid var(--border);color:var(--ink);padding:13px 22px}
+.fx-btn--ghost:hover{border-color:var(--fox);color:var(--fox)}
+.fx-btn--sm{padding:10px 18px;font-size:14px}
+
+/* Header */
+.fx-header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.fx-header__in{display:flex;align-items:center;justify-content:space-between;height:74px}
+.fx-header__logo{height:34px;display:block}
+.fx-nav{display:flex;gap:26px;align-items:center}
+.fx-nav a{font-weight:600;font-size:14.5px;text-decoration:none;color:var(--slate)}
+.fx-nav a:hover{color:var(--fox)}
+@media(max-width:860px){.fx-nav a:not(.fx-btn){display:none}}
+
+/* Sections */
+.fx-section{padding:64px 0}
+.fx-section--alt{background:var(--bg)}
+.fx-section--line{border-top:1px solid var(--border)}
+.fx-section h2{font-size:clamp(26px,3.4vw,36px)}
+.fx-section .fx-lead{margin:10px 0 36px}
+
+/* Hero */
+.fx-hero{padding:70px 0 40px}
+.fx-hero__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+@media(max-width:900px){.fx-hero__grid{grid-template-columns:1fr;gap:28px}}
+.fx-hero h1{font-size:clamp(34px,5vw,58px);line-height:1.03}
+.fx-hero h1 .fx-o{color:var(--fox)}
+.fx-hero p{font-size:19px;color:var(--text-2);max-width:48ch;margin:18px 0 26px}
+.fx-hero__cta{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.fx-hero__meta{font-size:13.5px;color:var(--text-2);margin-top:16px}
+.fx-stage{position:relative;min-height:440px;display:flex;align-items:center;justify-content:center}
+.fx-stage__accent{position:absolute;right:-4%;top:0;width:76%;opacity:.14}
+.fx-stage__main{position:relative;width:100%;max-width:480px;filter:drop-shadow(0 24px 48px rgba(21,33,58,.20))}
+
+/* Cards grid + service card */
+.fx-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.fx-card{position:relative;background:var(--bg);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px;overflow:hidden;text-decoration:none;display:block;transition:transform .14s,box-shadow .14s}
+.fx-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lift)}
+.fx-card__wm{position:absolute;right:-24px;top:-24px;width:104px;opacity:.06}
+.fx-card__ic{width:44px;height:44px;border-radius:12px;background:rgba(251,71,27,.1);color:var(--fox);display:flex;align-items:center;justify-content:center;margin-bottom:14px;position:relative}
+.fx-card__ic svg{width:24px;height:24px}
+.fx-card h3{font-size:18px;margin:0 0 6px;position:relative}
+.fx-card p{margin:0;color:var(--text-2);font-size:14.5px;position:relative}
+.fx-card__go{color:var(--fox);font-weight:700;font-size:14px;margin-top:12px;display:inline-block;position:relative}
+
+/* Value tiles */
+.fx-value{background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);padding:22px}
+.fx-value b{color:var(--fox);font-size:15px}
+.fx-value p{margin:6px 0 0;color:var(--text-2);font-size:14.5px}
+
+/* People / team */
+.fx-team{display:flex;gap:18px;flex-wrap:wrap}
+.fx-person{width:150px;text-align:center}
+.fx-person__ph{width:120px;height:120px;border-radius:50%;object-fit:cover;margin:0 auto 10px;background:var(--ink);display:block;border:3px solid #fff;box-shadow:0 6px 18px rgba(21,33,58,.12)}
+.fx-person b{display:block;font-size:15px;color:var(--ink)}
+.fx-person span{font-size:13px;color:var(--text-2)}
+
+/* Pill chips / accreditation row */
+.fx-chips{display:flex;gap:30px;flex-wrap:wrap;align-items:center;justify-content:center;opacity:.72}
+.fx-chips span{font-weight:700;color:var(--text-2);font-size:14px}
+
+/* Final CTA band */
+.fx-cta-band{position:relative;background:linear-gradient(135deg,var(--ink),#22304f);color:#fff;border-radius:24px;padding:56px;text-align:center;overflow:hidden}
+.fx-cta-band__wm{position:absolute;left:-40px;bottom:-40px;width:220px;opacity:.14}
+.fx-cta-band h2{color:#fff;font-size:clamp(26px,3.6vw,38px)}
+.fx-cta-band p{color:#c3cad8;margin:12px auto 24px;max-width:52ch}
+
+/* Footer */
+.fx-footer{border-top:1px solid var(--border);color:var(--text-2);font-size:13.5px;padding:28px 0}
+
+/* Accessibility / motion */
+.fx :focus-visible{outline:3px solid var(--fox);outline-offset:2px;border-radius:6px}
+@media (prefers-reduced-motion: reduce){.fx *{scroll-behavior:auto!important}}

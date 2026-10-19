@@ -20,6 +20,13 @@ Direction approved by owner 2026-10-19 (photo-mask + watermark). Concepts are mo
 - `preview/concepts/concept-c.html` — **Systemised**: modular bento grid, numbered services, people bar.
 Awaiting owner pick (one concept, or a blend) before Phase 3 (component library + responsive build on staging).
 
+## Phase 3 — component library + staging homepage (IN PROGRESS)
+Concept A approved by owner 2026-10-19. Delivered on the work branch (staging; nothing deployed):
+- `assets/fox-ui.css` — reusable component library (tokens + header/hero/cards/values/team/CTA/footer).
+- `preview/homepage.html` — canonical Concept A homepage built entirely on the library.
+- `COMPONENT_LIBRARY.md`, `WEBSITE_UI_RULES.md`.
+Remaining in Phase 3: apply the library to other page types (service/industry/contact) + add regression smoke tests. Then Phase 4 (hospitality + freight landing pages). Still no production deploy (gated to Phase 6).
+
 ## Proposed, NOT approved
 - Specific homepage layouts, typography changes (incl. Geist vs live Syne), photography, neutral palette, landing-page copy and visual treatments
 - The photo/watermark hero treatments shown in `preview/hero-treatment.html`
