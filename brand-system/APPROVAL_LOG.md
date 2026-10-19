@@ -35,7 +35,10 @@ Data-driven `IndustryLandingPage`: `preview/industry-template.html` + `data/indu
 - Master index `BRAND_GUIDELINES_DRAFT.md`.
 - Collateral built to the kit's specs: `templates/email-signature.html`, `templates/flyer-a5.html` (with real brand QR), `templates/social-pack.html`. Raster arc assets (`assets/fox-arcs-orange/white/ink.png`) for email/print.
 - **3 conflicts need an owner decision** (see RECONCILIATION.md): dark token #15213A vs #15191E; typography (keep live Inter+Syne vs Geist/Manrope); primary CTA wording.
-- Remaining: beer mats, PowerPoint master, web-demo shell, video/motion spec, newsletter, TYPOGRAPHY/PHOTOGRAPHY docs. Still no deploy.
+- **PowerPoint master** `templates/fox-itc-master.pptx` (12 slide types, editable, validated; visual QA to do in PowerPoint — LibreOffice render unavailable here) + `POWERPOINT_AND_PRESENTATIONS.md`.
+- **Newsletter** `templates/newsletter.html` ("Fox Bytes", email-safe, GDPR/PECR unsubscribe) + `EMAIL_AND_NEWSLETTERS.md`.
+- Owner decisions applied (ink #15213A, Geist, CTA "Book a conversation").
+- Remaining: beer mats (die-line), web-demo shell, video/motion spec, blog/LinkedIn editorial cover, email banner, TYPOGRAPHY/PHOTOGRAPHY docs. Still no deploy.
 
 ## Proposed, NOT approved
 - Specific homepage layouts, typography changes (incl. Geist vs live Syne), photography, neutral palette, landing-page copy and visual treatments
