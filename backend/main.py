@@ -229,6 +229,11 @@ if FRONTEND_DIR.exists():
     async def ai_licence():
         return HTMLResponse((FRONTEND_DIR / "ai-licence.html").read_text(encoding="utf-8"))
 
+    # AI Search Visibility — flagship GEO / marketing landing page.
+    @app.get("/ai-search-visibility")
+    async def ai_search_visibility():
+        return HTMLResponse((FRONTEND_DIR / "ai-search-visibility.html").read_text(encoding="utf-8"))
+
     # Free security / IT tools (static, client-side).
     @app.get("/tools")
     async def tools_index():
