@@ -1,7 +1,7 @@
 """
 Fox ITC Website Backend
 """
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
@@ -242,10 +242,20 @@ if FRONTEND_DIR.exists():
     async def tool_downtime():
         return HTMLResponse((FRONTEND_DIR / "tool-downtime.html").read_text(encoding="utf-8"))
 
-    # Booking — public "Book a free IT review" page, powered by the Fox 360 booking API.
+    # Booking — redirect to the Fox 360 booking page.
+    # Every booking CTA on the site points at /book (the standalone pages, the
+    # shared header in site-chrome.js, and the React app), so redirecting here
+    # sends them all to the 360 booking page in one place. The query string
+    # (e.g. ?type=discovery for the 15-minute discovery call) is preserved so
+    # the meeting type carries through. book.html is kept in the repo but is no
+    # longer served here — reversible by restoring the previous handler.
     @app.get("/book")
-    async def book():
-        return HTMLResponse((FRONTEND_DIR / "book.html").read_text(encoding="utf-8"))
+    async def book(request: Request):
+        q = request.url.query
+        target = "https://360.foxitc.co.uk/book"
+        if q:
+            target += "?" + q
+        return RedirectResponse(target, status_code=302)
 
     # Campaign landing (South Africa flyer/QR → /za → book a review).
     @app.get("/za")
