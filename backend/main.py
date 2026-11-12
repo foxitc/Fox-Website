@@ -307,6 +307,10 @@ if FRONTEND_DIR.exists():
     @app.get("/cyber-essentials-first-step-fund")
     async def cyber_essentials_first_step_fund():
         return HTMLResponse((FRONTEND_DIR / "cyber-essentials-first-step-fund.html").read_text(encoding="utf-8"))
+    # AI Search Visibility — flagship GEO / marketing landing page.
+    @app.get("/ai-search-visibility")
+    async def ai_search_visibility():
+        return HTMLResponse((FRONTEND_DIR / "ai-search-visibility.html").read_text(encoding="utf-8"))
 
     # Free security / IT tools (static, client-side).
     @app.get("/tools")
