@@ -61,6 +61,21 @@ class DownloadForm(BaseModel):
     guide: str
     source: str = "website_download"
 
+class ReadinessForm(BaseModel):
+    name: str
+    email: str
+    company: str = ""
+    phone: str = ""
+    employees: str = ""
+    has_cert: str = ""
+    updates: str = ""
+    access: str = ""
+    malware: str = ""
+    timeline: str = ""
+    score: str = ""
+    band: str = ""
+    source: str = "cyber_essentials_readiness"
+
 @app.post("/api/contact")
 async def contact(form: ContactForm):
     try:
@@ -117,6 +132,46 @@ Date: {datetime.now().strftime('%d/%m/%Y %H:%M')}"""
     except Exception as e:
         print(f"Download error: {e}")
         return {"success": True, "message": "Download ready."}
+
+@app.post("/api/readiness")
+async def readiness(form: ReadinessForm):
+    # Cyber Essentials readiness check -> CRM lead (same pipeline as the
+    # contact form). Captures the quiz answers and the computed readiness band
+    # so the team can follow up with the right conversation.
+    try:
+        description = f"""Cyber Essentials Readiness Check
+Name: {form.name}
+Email: {form.email}
+Phone: {form.phone or 'Not provided'}
+Company: {form.company or 'Not provided'}
+Employees: {form.employees or 'Not provided'}
+Holds Cyber Essentials: {form.has_cert or 'Not provided'}
+Automatic security updates: {form.updates or 'Not provided'}
+User access control: {form.access or 'Not provided'}
+Firewalls & malware protection: {form.malware or 'Not provided'}
+Timeline: {form.timeline or 'Not provided'}
+Readiness result: {form.band or 'Not provided'} ({form.score or '-'}/3 controls in place)
+Date: {datetime.now().strftime('%d/%m/%Y %H:%M')}"""
+
+        lead_name = f"CE Readiness — {form.band or 'Enquiry'} — {form.name}"
+        if form.company:
+            lead_name += f" ({form.company})"
+
+        create_lead({
+            "name": lead_name,
+            "contact_name": form.name,
+            "email_from": form.email,
+            "phone": form.phone,
+            "partner_name": form.company or form.name,
+            "description": description,
+            "priority": "1",
+        })
+
+        return {"success": True, "message": "Thanks — your result is below, and we'll be in touch."}
+
+    except Exception as e:
+        print(f"Readiness form error: {e}")
+        raise HTTPException(status_code=500, detail="Failed to submit")
 
 @app.get("/api/health")
 async def health():
@@ -248,6 +303,10 @@ if FRONTEND_DIR.exists():
     async def ai_licence():
         return HTMLResponse((FRONTEND_DIR / "ai-licence.html").read_text(encoding="utf-8"))
 
+    # Cyber Essentials First Step Fund — campaign landing page (LinkedIn/Meta).
+    @app.get("/cyber-essentials-first-step-fund")
+    async def cyber_essentials_first_step_fund():
+        return HTMLResponse((FRONTEND_DIR / "cyber-essentials-first-step-fund.html").read_text(encoding="utf-8"))
     # AI Search Visibility — flagship GEO / marketing landing page.
     @app.get("/ai-search-visibility")
     async def ai_search_visibility():

@@ -174,6 +174,48 @@ def _hidden_pages_block() -> str:
     )
     return style + "\n    " + script
 
+# --- Site-wide announcement banner ----------------------------------------
+# A slim, dismissible bar injected at the top of every server-rendered page
+# (home + all SPA routes), so the Cyber Essentials campaign is discoverable
+# from the homepage without touching the React bundle. To take it down when
+# the campaign ends, set "enabled" to False (or remove this block).
+CE_BANNER = {
+    "enabled": True,
+    "strong": "75% off Cyber Essentials",
+    "rest": "— government-funded for eligible UK SMEs. See if you qualify",
+    "href": "/cyber-essentials-first-step-fund?utm_source=site_banner&utm_medium=banner&utm_campaign=ce-first-step-fund",
+}
+
+
+def _announcement_banner() -> str:
+    if not CE_BANNER.get("enabled"):
+        return ""
+    href = html.escape(CE_BANNER["href"], quote=True)
+    strong = html.escape(CE_BANNER["strong"])
+    rest = html.escape(CE_BANNER["rest"])
+    bar = (
+        'display:flex;align-items:center;justify-content:center;gap:10px;'
+        'background:#0F2241;color:#fff;'
+        'font:600 14px/1.35 system-ui,-apple-system,Segoe UI,sans-serif;'
+        'padding:9px 44px 9px 16px;text-align:center;position:relative;z-index:60;'
+    )
+    link = "color:#fff;text-decoration:none;"
+    close = (
+        'position:absolute;right:8px;top:50%;transform:translateY(-50%);'
+        'background:transparent;border:0;color:#9fb0c6;font-size:20px;line-height:1;'
+        'cursor:pointer;padding:4px 9px;'
+    )
+    return (
+        '<div id="fox-ce-banner" style="%s">'
+        '<a href="%s" style="%s">⏳ <strong style="color:#ff8b69">%s</strong> %s →</a>'
+        '<button type="button" aria-label="Dismiss" style="%s" '
+        'onclick="try{localStorage.setItem(\'foxCeBanner\',\'v1\')}catch(e){};'
+        'this.parentNode.style.display=\'none\'">×</button>'
+        '</div>'
+        '<script>(function(){try{if(localStorage.getItem("foxCeBanner")==="v1"){'
+        'var b=document.getElementById("fox-ce-banner");if(b)b.style.display="none";}}catch(e){}})();</script>'
+    ) % (bar, href, link, strong, rest, close)
+
 # --- FAQ data (verbatim from the live site) -------------------------------
 try:
     _FAQ = json.loads((Path(__file__).parent / "seo_faq.json").read_text(encoding="utf-8"))
@@ -321,6 +363,10 @@ def render_index(path: str) -> str:
 
     e_title = html.escape(title, quote=True)
     e_desc = html.escape(desc, quote=True)
+
+    banner = _announcement_banner()
+    if banner and path != "/cyber-essentials-first-step-fund":
+        doc = doc.replace("<body>", "<body>\n    " + banner, 1)
 
     doc = _TITLE_RE.sub(f"<title>{e_title}</title>", doc, count=1)
     if _DESC_RE.search(doc):
