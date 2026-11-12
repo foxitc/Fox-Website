@@ -132,6 +132,25 @@ if FRONTEND_DIR.exists():
 
     app.mount("/assets", StaticFiles(directory=str(FRONTEND_DIR / "assets")), name="assets")
 
+    # robots.txt / sitemap.xml — must be served as their real files with the
+    # correct content type. Without these routes they fall through to the
+    # catch-all below and return the HTML shell, so crawlers never see the
+    # robots rules or the sitemap. These routes are defined before the
+    # catch-all so they take precedence.
+    @app.get("/robots.txt")
+    async def robots_txt():
+        p = FRONTEND_DIR / "robots.txt"
+        if p.exists():
+            return FileResponse(p, media_type="text/plain")
+        raise HTTPException(status_code=404)
+
+    @app.get("/sitemap.xml")
+    async def sitemap_xml():
+        p = FRONTEND_DIR / "sitemap.xml"
+        if p.exists():
+            return FileResponse(p, media_type="application/xml")
+        raise HTTPException(status_code=404)
+
     def _image_media_type(p: Path) -> str:
         # Some .png files hold optimised JPEG bytes; serve the true type by sniffing magic bytes.
         try:

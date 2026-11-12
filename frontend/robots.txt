@@ -1,4 +1,36 @@
+# Fox ITC — robots.txt
+# Public pages are open to all crawlers; only the JSON API is kept out of the index.
+
 User-agent: *
+Allow: /
+Disallow: /api/
+
+# AI / answer-engine crawlers are explicitly welcomed.
+# Fox ITC wants its content to be discoverable and citeable by AI search
+# (ChatGPT, Claude, Perplexity, Google AI Overviews / Gemini, etc.). These
+# blocks make that intent explicit so the site is never swept up by a future
+# site-wide block of AI user-agents. The /api/ path is excluded as above.
+
+User-agent: GPTBot
+Allow: /
+Disallow: /api/
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /api/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /api/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /api/
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
 Allow: /
 Disallow: /api/
 
