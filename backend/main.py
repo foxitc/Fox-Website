@@ -7,6 +7,9 @@ from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import os
+import re
+import time
+from collections import deque
 from pathlib import Path
 from datetime import datetime
 
@@ -45,6 +48,65 @@ def send_to_360(source: str, name: str = None, company: str = None, email: str =
     except Exception as e:
         print(f"Fox 360 capture error: {e}")
 
+# ── Spam protection for the public lead forms ─────────────────────────────
+# A honeypot field (on forms we control), lightweight content heuristics and a
+# lenient per-IP rate limit. A flagged submission is logged and dropped before
+# it reaches Fox 360. We deliberately still return a normal "success" response:
+# it gives bots nothing to tune against, and a rare false positive still looks
+# fine to a real visitor rather than showing a confusing error.
+_SPAM_LINK_RE = re.compile(r"(https?://|www\.|\[/?url\]|</?a[\s>])", re.I)
+_RECENT_SUBMITS = {}          # ip -> deque[timestamps]
+_RATE_MAX = 6                 # max submissions per IP ...
+_RATE_WINDOW_SECONDS = 600    # ... within 10 minutes
+
+def _client_ip(request: Request) -> str:
+    try:
+        xff = request.headers.get("x-forwarded-for", "")
+        if xff:
+            return xff.split(",")[0].strip()
+        return request.client.host if request.client else ""
+    except Exception:
+        return ""
+
+def _rate_limited(ip: str) -> bool:
+    if not ip:
+        return False
+    now = time.time()
+    dq = _RECENT_SUBMITS.setdefault(ip, deque())
+    while dq and now - dq[0] > _RATE_WINDOW_SECONDS:
+        dq.popleft()
+    if len(dq) >= _RATE_MAX:
+        return True
+    dq.append(now)
+    return False
+
+def _is_gibberish(s: str) -> bool:
+    # Random-looking single tokens (e.g. "UcxArUmDxFkNeNetdfb"): very few vowels
+    # or constant upper/lower-case toggling. Only fires on long, space-free runs
+    # so ordinary names/companies are safe.
+    s = (s or "").strip()
+    if len(s) < 10 or " " in s:
+        return False
+    letters = [c for c in s if c.isalpha()]
+    if len(letters) < 10:
+        return False
+    vowel_ratio = sum(1 for c in letters if c.lower() in "aeiou") / len(letters)
+    flips = sum(1 for a, b in zip(s, s[1:]) if a.isalpha() and b.isalpha() and a.islower() != b.islower())
+    flip_ratio = flips / max(1, len(s) - 1)
+    return vowel_ratio < 0.18 or flip_ratio > 0.45
+
+def _spam_reasons(name="", message="", phone="", company="", honeypot="") -> list:
+    reasons = []
+    if (honeypot or "").strip():
+        reasons.append("honeypot")
+    if phone and re.search(r"[A-Za-z]", phone):   # real phone numbers have no letters
+        reasons.append("alpha-phone")
+    if any(_SPAM_LINK_RE.search(x or "") for x in (message, name, company)):
+        reasons.append("link")
+    if _is_gibberish(name) or _is_gibberish(company):
+        reasons.append("gibberish")
+    return reasons
+
 class ContactForm(BaseModel):
     name: str
     email: str
@@ -74,10 +136,16 @@ class ReadinessForm(BaseModel):
     timeline: str = ""
     score: str = ""
     band: str = ""
+    website: str = ""  # honeypot — real users never fill this hidden field
     source: str = "cyber_essentials_readiness"
 
 @app.post("/api/contact")
-async def contact(form: ContactForm):
+async def contact(form: ContactForm, request: Request):
+    ip = _client_ip(request)
+    reasons = _spam_reasons(name=form.name, message=form.message, phone=form.phone, company=form.company)
+    if reasons or _rate_limited(ip):
+        print(f"Contact form dropped as spam ({reasons or 'rate-limit'}) from {ip}: {form.email}")
+        return {"success": True, "message": "Thank you — we'll be in touch within one working day."}
     try:
         description = f"""Website Enquiry
 Name: {form.name}
@@ -102,7 +170,12 @@ Date: {datetime.now().strftime('%d/%m/%Y %H:%M')}"""
         raise HTTPException(status_code=500, detail="Failed to submit form")
 
 @app.post("/api/download")
-async def download_gate(form: DownloadForm):
+async def download_gate(form: DownloadForm, request: Request):
+    ip = _client_ip(request)
+    reasons = _spam_reasons(name=form.name, company=form.company)
+    if reasons or _rate_limited(ip):
+        print(f"Download form dropped as spam ({reasons or 'rate-limit'}) from {ip}: {form.email}")
+        return {"success": True, "message": "Download ready."}
     try:
         description = f"""Guide Download
 Name: {form.name}
@@ -121,10 +194,14 @@ Date: {datetime.now().strftime('%d/%m/%Y %H:%M')}"""
         return {"success": True, "message": "Download ready."}
 
 @app.post("/api/readiness")
-async def readiness(form: ReadinessForm):
-    # Cyber Essentials readiness check -> CRM lead (same pipeline as the
-    # contact form). Captures the quiz answers and the computed readiness band
-    # so the team can follow up with the right conversation.
+async def readiness(form: ReadinessForm, request: Request):
+    # Cyber Essentials readiness check -> Fox 360 lead. Captures the quiz answers
+    # and the computed readiness band so the team can follow up.
+    ip = _client_ip(request)
+    reasons = _spam_reasons(name=form.name, phone=form.phone, company=form.company, honeypot=form.website)
+    if reasons or _rate_limited(ip):
+        print(f"Readiness form dropped as spam ({reasons or 'rate-limit'}) from {ip}: {form.email}")
+        return {"success": True, "message": "Thanks — your result is below, and we'll be in touch."}
     try:
         description = f"""Cyber Essentials Readiness Check
 Name: {form.name}
