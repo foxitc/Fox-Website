@@ -34,12 +34,25 @@ FRONTEND_DIR = Path(__file__).parent.parent / "frontend"
 FOX360_CAPTURE_URL = os.getenv("FOX360_CAPTURE_URL", "https://360.foxitc.co.uk/api/pipeline/public/capture")
 
 def send_to_360(source: str, name: str = None, company: str = None, email: str = None,
-                phone: str = None, message: str = None):
+                phone: str = None, message: str = None,
+                utm_source: str = None, utm_medium: str = None, utm_campaign: str = None):
     import json as _json
     import urllib.request as _url
+    # Fold the originating platform into the lead source so 360 attributes it with no
+    # change its side (e.g. website-readiness -> website-readiness-linkedin), and keep
+    # the full UTM detail on the note + as explicit fields for later.
+    eff_source = source
+    us = (utm_source or "").strip().lower()
+    if us:
+        eff_source = f"{source}-{us}"
+    if (us or utm_medium or utm_campaign) and message:
+        message = (message +
+                   f"\n\nAttribution: platform={us or 'direct'}, "
+                   f"medium={(utm_medium or '-')}, campaign={(utm_campaign or '-')}")
     payload = {k: v for k, v in {
-        "source": source, "contact_name": name, "company_name": company,
+        "source": eff_source, "contact_name": name, "company_name": company,
         "contact_email": email, "contact_phone": phone, "message": message,
+        "utm_source": us or None, "utm_medium": utm_medium, "utm_campaign": utm_campaign,
     }.items() if v}
     try:
         req = _url.Request(FOX360_CAPTURE_URL, data=_json.dumps(payload).encode("utf-8"),
@@ -115,6 +128,9 @@ class ContactForm(BaseModel):
     service: str = ""
     message: str
     source: str = "website_contact"
+    utm_source: str = ""
+    utm_medium: str = ""
+    utm_campaign: str = ""
 
 class DownloadForm(BaseModel):
     name: str
@@ -122,6 +138,9 @@ class DownloadForm(BaseModel):
     company: str = ""
     guide: str
     source: str = "website_download"
+    utm_source: str = ""
+    utm_medium: str = ""
+    utm_campaign: str = ""
 
 class ReadinessForm(BaseModel):
     name: str
@@ -138,6 +157,9 @@ class ReadinessForm(BaseModel):
     band: str = ""
     website: str = ""  # honeypot — real users never fill this hidden field
     source: str = "cyber_essentials_readiness"
+    utm_source: str = ""
+    utm_medium: str = ""
+    utm_campaign: str = ""
 
 @app.post("/api/contact")
 async def contact(form: ContactForm, request: Request):
@@ -161,7 +183,8 @@ Date: {datetime.now().strftime('%d/%m/%Y %H:%M')}"""
             lead_name += f" ({form.company})"
 
         send_to_360("website-contact", name=form.name, company=form.company,
-                    email=form.email, phone=form.phone, message=description)
+                    email=form.email, phone=form.phone, message=description,
+                    utm_source=form.utm_source, utm_medium=form.utm_medium, utm_campaign=form.utm_campaign)
 
         return {"success": True, "message": "Thank you — we'll be in touch within one working day."}
 
@@ -185,7 +208,8 @@ Guide: {form.guide}
 Date: {datetime.now().strftime('%d/%m/%Y %H:%M')}"""
 
         send_to_360("guide-download", name=form.name, company=form.company,
-                    email=form.email, message=description)
+                    email=form.email, message=description,
+                    utm_source=form.utm_source, utm_medium=form.utm_medium, utm_campaign=form.utm_campaign)
 
         return {"success": True, "message": "Download ready."}
 
@@ -222,7 +246,8 @@ Date: {datetime.now().strftime('%d/%m/%Y %H:%M')}"""
             lead_name += f" ({form.company})"
 
         send_to_360("website-readiness", name=form.name, company=form.company,
-                    email=form.email, phone=form.phone, message=description)
+                    email=form.email, phone=form.phone, message=description,
+                    utm_source=form.utm_source, utm_medium=form.utm_medium, utm_campaign=form.utm_campaign)
 
         return {"success": True, "message": "Thanks — your result is below, and we'll be in touch."}
 
