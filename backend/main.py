@@ -45,6 +45,27 @@ def create_lead(lead_data: dict):
     )
     return lead_id
 
+# ── Fox 360 lead capture ──────────────────────────────────────────────────────
+# Mirror every website lead into Fox 360's pipeline (which also fires its journeys).
+# Runs alongside Odoo for continuity; 360 is becoming the source of truth. Never
+# raises — a 360 blip must not break the form.
+FOX360_CAPTURE_URL = os.getenv("FOX360_CAPTURE_URL", "https://360.foxitc.co.uk/api/pipeline/public/capture")
+
+def send_to_360(source: str, name: str = None, company: str = None, email: str = None,
+                phone: str = None, message: str = None):
+    import json as _json
+    import urllib.request as _url
+    payload = {k: v for k, v in {
+        "source": source, "contact_name": name, "company_name": company,
+        "contact_email": email, "contact_phone": phone, "message": message,
+    }.items() if v}
+    try:
+        req = _url.Request(FOX360_CAPTURE_URL, data=_json.dumps(payload).encode("utf-8"),
+                           headers={"Content-Type": "application/json"}, method="POST")
+        _url.urlopen(req, timeout=8).read()
+    except Exception as e:
+        print(f"Fox 360 capture error: {e}")
+
 class ContactForm(BaseModel):
     name: str
     email: str
@@ -92,6 +113,9 @@ Date: {datetime.now().strftime('%d/%m/%Y %H:%M')}"""
         if form.company:
             lead_name += f" ({form.company})"
 
+        send_to_360("website-contact", name=form.name, company=form.company,
+                    email=form.email, phone=form.phone, message=description)
+
         create_lead({
             "name": lead_name,
             "contact_name": form.name,
@@ -117,6 +141,9 @@ Email: {form.email}
 Company: {form.company or 'Not provided'}
 Guide: {form.guide}
 Date: {datetime.now().strftime('%d/%m/%Y %H:%M')}"""
+
+        send_to_360("guide-download", name=form.name, company=form.company,
+                    email=form.email, message=description)
 
         create_lead({
             "name": f"Guide Download — {form.guide} — {form.name}",
@@ -156,6 +183,9 @@ Date: {datetime.now().strftime('%d/%m/%Y %H:%M')}"""
         lead_name = f"CE Readiness — {form.band or 'Enquiry'} — {form.name}"
         if form.company:
             lead_name += f" ({form.company})"
+
+        send_to_360("website-readiness", name=form.name, company=form.company,
+                    email=form.email, phone=form.phone, message=description)
 
         create_lead({
             "name": lead_name,
