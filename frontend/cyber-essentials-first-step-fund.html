@@ -309,6 +309,17 @@ footer a{color:#fff}
 (function(){
   function track(name, params){ try{ if(window.gtag) gtag('event', name, params||{}); }catch(e){} }
 
+  // First-touch attribution: stash the UTM the visitor arrived with, so the quiz
+  // still knows the platform even if they navigate around before submitting.
+  (function(){
+    try {
+      var q = new URLSearchParams(location.search);
+      var s = q.get('utm_source');
+      if (s) localStorage.setItem('fox_utm', JSON.stringify({
+        s: s, m: q.get('utm_medium')||'', c: q.get('utm_campaign')||'' }));
+    } catch(e){}
+  })();
+
   // Fire a GA event for every CTA click (book calls, scroll-to-readiness, etc.)
   document.addEventListener('click', function(e){
     var el = e.target.closest('[data-cta]');
@@ -385,6 +396,18 @@ footer a{color:#fff}
     var btn = document.getElementById('rsubmit');
     btn.disabled = true; btn.textContent = 'Sending…';
 
+    // Attribution: which platform this visitor came from. Prefer the UTM on the
+    // current URL; fall back to the first-touch value stashed on arrival.
+    var _utm = (function(){
+      try {
+        var q = new URLSearchParams(location.search);
+        var cur = { s: q.get('utm_source')||'', m: q.get('utm_medium')||'', c: q.get('utm_campaign')||'' };
+        if (cur.s) { try { localStorage.setItem('fox_utm', JSON.stringify(cur)); } catch(e){} return cur; }
+        try { var st = JSON.parse(localStorage.getItem('fox_utm')||'{}'); if (st && st.s) return st; } catch(e){}
+        return cur;
+      } catch(e){ return { s:'', m:'', c:'' }; }
+    })();
+
     var payload = {
       name: name,
       email: email,
@@ -395,7 +418,8 @@ footer a{color:#fff}
       timeline: val('timeline'),
       score: form.dataset.score || '', band: form.dataset.band || '',
       website: (document.getElementById('rwebsite') || {}).value || '',
-      source: 'cyber_essentials_readiness'
+      source: 'cyber_essentials_readiness',
+      utm_source: _utm.s, utm_medium: _utm.m, utm_campaign: _utm.c
     };
 
     fetch('/api/readiness', {
