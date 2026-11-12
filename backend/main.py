@@ -6,7 +6,6 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-import xmlrpc.client
 import os
 from pathlib import Path
 from datetime import datetime
@@ -23,32 +22,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-ODOO_URL = "https://foxitc.odoo.com"
-ODOO_DB = "foxitc"
-ODOO_USERNAME = "todd@foxitc.co.uk"
-ODOO_API_KEY = os.getenv("ODOO_API_KEY", "547806ecd468c02344bfd73b554e8c900841a639")
 FRONTEND_DIR = Path(__file__).parent.parent / "frontend"
 
-def get_odoo_uid():
-    common = xmlrpc.client.ServerProxy(f"{ODOO_URL}/xmlrpc/2/common")
-    uid = common.authenticate(ODOO_DB, ODOO_USERNAME, ODOO_API_KEY, {})
-    if not uid:
-        raise Exception("Odoo authentication failed")
-    return uid
-
-def create_lead(lead_data: dict):
-    uid = get_odoo_uid()
-    models = xmlrpc.client.ServerProxy(f"{ODOO_URL}/xmlrpc/2/object")
-    lead_id = models.execute_kw(
-        ODOO_DB, uid, ODOO_API_KEY,
-        "crm.lead", "create", [lead_data]
-    )
-    return lead_id
-
 # ── Fox 360 lead capture ──────────────────────────────────────────────────────
-# Mirror every website lead into Fox 360's pipeline (which also fires its journeys).
-# Runs alongside Odoo for continuity; 360 is becoming the source of truth. Never
-# raises — a 360 blip must not break the form.
+# Every website lead goes to Fox 360's pipeline (which also fires its journeys).
+# 360 is the source of truth; Odoo has been retired. Never raises — a 360 blip
+# must not break the form.
 FOX360_CAPTURE_URL = os.getenv("FOX360_CAPTURE_URL", "https://360.foxitc.co.uk/api/pipeline/public/capture")
 
 def send_to_360(source: str, name: str = None, company: str = None, email: str = None,
@@ -116,19 +95,6 @@ Date: {datetime.now().strftime('%d/%m/%Y %H:%M')}"""
         send_to_360("website-contact", name=form.name, company=form.company,
                     email=form.email, phone=form.phone, message=description)
 
-        try:
-            create_lead({
-                "name": lead_name,
-                "contact_name": form.name,
-                "email_from": form.email,
-                "phone": form.phone,
-                "partner_name": form.company or form.name,
-                "description": description,
-                "priority": "1",
-            })
-        except Exception as _oe:
-            print(f"Odoo create_lead failed (non-fatal, 360 has the lead): {_oe}")
-
         return {"success": True, "message": "Thank you — we'll be in touch within one working day."}
 
     except Exception as e:
@@ -147,18 +113,6 @@ Date: {datetime.now().strftime('%d/%m/%Y %H:%M')}"""
 
         send_to_360("guide-download", name=form.name, company=form.company,
                     email=form.email, message=description)
-
-        try:
-            create_lead({
-                "name": f"Guide Download — {form.guide} — {form.name}",
-                "contact_name": form.name,
-                "email_from": form.email,
-                "partner_name": form.company or form.name,
-                "description": description,
-                "priority": "0",
-            })
-        except Exception as _oe:
-            print(f"Odoo create_lead failed (non-fatal, 360 has the lead): {_oe}")
 
         return {"success": True, "message": "Download ready."}
 
@@ -192,19 +146,6 @@ Date: {datetime.now().strftime('%d/%m/%Y %H:%M')}"""
 
         send_to_360("website-readiness", name=form.name, company=form.company,
                     email=form.email, phone=form.phone, message=description)
-
-        try:
-            create_lead({
-                "name": lead_name,
-                "contact_name": form.name,
-                "email_from": form.email,
-                "phone": form.phone,
-                "partner_name": form.company or form.name,
-                "description": description,
-                "priority": "1",
-            })
-        except Exception as _oe:
-            print(f"Odoo create_lead failed (non-fatal, 360 has the lead): {_oe}")
 
         return {"success": True, "message": "Thanks — your result is below, and we'll be in touch."}
 
