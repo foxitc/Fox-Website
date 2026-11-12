@@ -116,15 +116,18 @@ Date: {datetime.now().strftime('%d/%m/%Y %H:%M')}"""
         send_to_360("website-contact", name=form.name, company=form.company,
                     email=form.email, phone=form.phone, message=description)
 
-        create_lead({
-            "name": lead_name,
-            "contact_name": form.name,
-            "email_from": form.email,
-            "phone": form.phone,
-            "partner_name": form.company or form.name,
-            "description": description,
-            "priority": "1",
-        })
+        try:
+            create_lead({
+                "name": lead_name,
+                "contact_name": form.name,
+                "email_from": form.email,
+                "phone": form.phone,
+                "partner_name": form.company or form.name,
+                "description": description,
+                "priority": "1",
+            })
+        except Exception as _oe:
+            print(f"Odoo create_lead failed (non-fatal, 360 has the lead): {_oe}")
 
         return {"success": True, "message": "Thank you — we'll be in touch within one working day."}
 
@@ -145,14 +148,17 @@ Date: {datetime.now().strftime('%d/%m/%Y %H:%M')}"""
         send_to_360("guide-download", name=form.name, company=form.company,
                     email=form.email, message=description)
 
-        create_lead({
-            "name": f"Guide Download — {form.guide} — {form.name}",
-            "contact_name": form.name,
-            "email_from": form.email,
-            "partner_name": form.company or form.name,
-            "description": description,
-            "priority": "0",
-        })
+        try:
+            create_lead({
+                "name": f"Guide Download — {form.guide} — {form.name}",
+                "contact_name": form.name,
+                "email_from": form.email,
+                "partner_name": form.company or form.name,
+                "description": description,
+                "priority": "0",
+            })
+        except Exception as _oe:
+            print(f"Odoo create_lead failed (non-fatal, 360 has the lead): {_oe}")
 
         return {"success": True, "message": "Download ready."}
 
@@ -187,15 +193,18 @@ Date: {datetime.now().strftime('%d/%m/%Y %H:%M')}"""
         send_to_360("website-readiness", name=form.name, company=form.company,
                     email=form.email, phone=form.phone, message=description)
 
-        create_lead({
-            "name": lead_name,
-            "contact_name": form.name,
-            "email_from": form.email,
-            "phone": form.phone,
-            "partner_name": form.company or form.name,
-            "description": description,
-            "priority": "1",
-        })
+        try:
+            create_lead({
+                "name": lead_name,
+                "contact_name": form.name,
+                "email_from": form.email,
+                "phone": form.phone,
+                "partner_name": form.company or form.name,
+                "description": description,
+                "priority": "1",
+            })
+        except Exception as _oe:
+            print(f"Odoo create_lead failed (non-fatal, 360 has the lead): {_oe}")
 
         return {"success": True, "message": "Thanks — your result is below, and we'll be in touch."}
 
