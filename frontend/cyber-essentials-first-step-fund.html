@@ -176,6 +176,7 @@ footer a{color:#fff}
     </div>
     <div class="tool__body">
       <form id="rform" novalidate>
+        <input type="text" id="rwebsite" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute!important;left:-9999px!important;top:auto;width:1px;height:1px;opacity:0;pointer-events:none;">
         <div id="rquestions">
           <fieldset class="q"><legend>1. Do you currently hold a Cyber Essentials certificate?</legend>
             <div class="opts" data-name="has_cert">
@@ -393,6 +394,7 @@ footer a{color:#fff}
       updates: val('updates'), access: val('access'), malware: val('malware'),
       timeline: val('timeline'),
       score: form.dataset.score || '', band: form.dataset.band || '',
+      website: (document.getElementById('rwebsite') || {}).value || '',
       source: 'cyber_essentials_readiness'
     };
 
