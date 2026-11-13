@@ -394,6 +394,26 @@ if FRONTEND_DIR.exists():
     async def ai_search_visibility():
         return HTMLResponse((FRONTEND_DIR / "ai-search-visibility.html").read_text(encoding="utf-8"))
 
+    # Link in bio — a fixed URL for the Instagram (and other) bio whose destination
+    # Fox 360 controls per campaign. Instagram won't let the bio link be set by API,
+    # so the bio points here permanently and 360 rotates where it goes (UTM-tagged).
+    @app.get("/go")
+    @app.get("/l")
+    async def link_in_bio():
+        target = "https://www.foxitc.co.uk/cyber-essentials-first-step-fund?utm_source=instagram&utm_medium=bio"
+        try:
+            import urllib.request as _u, json as _j, asyncio as _a
+            def _fetch():
+                req = _u.Request("https://360.foxitc.co.uk/api/social/bio-link",
+                                 headers={"User-Agent": "fox-site"})
+                return _j.loads(_u.urlopen(req, timeout=3).read())
+            data = await _a.to_thread(_fetch)
+            if isinstance(data, dict) and data.get("url"):
+                target = data["url"]
+        except Exception:
+            pass
+        return RedirectResponse(target, status_code=302)
+
     # Free security / IT tools (static, client-side).
     @app.get("/tools")
     async def tools_index():
