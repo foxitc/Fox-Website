@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en-GB"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Fox ITC — editorial covers &amp; banner</title>
+<script src="/brand-system/components/fox-arc-media.js"></script>
+<style>
+  :root{--fox:#FB471B;--fox-accent:#FC6C4C;--ink:#15213A;--muted:#667085;--border:#E6E8EC}
+  *{box-sizing:border-box} body{margin:0;background:#dfe3ea;font-family:'Geist',Inter,system-ui,sans-serif;padding:22px}
+  .ribbon{background:#111a2e;color:#fff;text-align:center;font-size:12.5px;padding:7px;margin:-22px -22px 18px}
+  .lbl{font-size:12px;color:#444;font-weight:700;margin:16px 0 8px}
+  .board{box-shadow:0 10px 30px rgba(0,0,0,.16);overflow:hidden;position:relative;color:#fff}
+  .wm{position:absolute;pointer-events:none}
+  .word{height:30px}
+  /* Blog / LinkedIn / OG cover 1200x630 */
+  .cover{width:1200px;height:630px;background:linear-gradient(135deg,var(--ink),#22304f);padding:64px;display:flex;flex-direction:column;justify-content:space-between}
+  .cover .wm{right:-120px;bottom:-120px;width:640px;opacity:.16}
+  .cover .mast{display:flex;align-items:center;gap:14px}
+  .cover .mast .m{width:48px}.cover .mast b{font-size:28px;font-weight:800}
+  .cover .cat{color:var(--fox-accent);font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:17px}
+  .cover h2{font-size:60px;line-height:1.04;letter-spacing:-.02em;margin:10px 0 0;max-width:70%;font-weight:800}
+  .cover .meta{color:#9fb0c9;font-size:18px}
+  /* Email banner 1200x400 */
+  .banner{width:1200px;height:400px;background:#fff;color:var(--ink);display:flex;align-items:center;position:relative;overflow:hidden}
+  .banner .art{width:420px;height:400px;position:relative;flex:0 0 420px;background:var(--ink);display:flex;align-items:center;justify-content:center}
+  .banner .art .main{width:300px}
+  .banner .art .acc{position:absolute;left:20px;bottom:10px;width:120px;opacity:.9}
+  .banner .txt{padding:48px 56px}
+  .banner .cat{color:var(--fox);font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:16px}
+  .banner h2{font-size:44px;line-height:1.05;letter-spacing:-.02em;margin:10px 0 18px;max-width:14ch;font-weight:800}
+  .banner .cta{background:var(--fox);color:#fff;font-weight:800;font-size:20px;padding:14px 28px;border-radius:999px;display:inline-block;text-decoration:none}
+</style></head>
+<body>
+<div class="ribbon">BRAND KIT · Blog/LinkedIn cover (1200×630) + email banner (1200×400). No essential text baked into photos. DRAFT — verified topic + real imagery before publishing.</div>
+
+<div class="lbl">Blog / LinkedIn / Open Graph cover — 1200×630</div>
+<div class="board cover">
+  <fox-arc-media class="wm" mode="watermark" fill="#FB471B" opacity="0.18"></fox-arc-media>
+  <div class="mast"><fox-arc-media class="m" mode="solid" fill="#FB471B"></fox-arc-media><b>Fox Bytes</b></div>
+  <div>
+    <div class="cat">Cyber security</div>
+    <h2>Five quick wins to cut your IT risk this quarter.</h2>
+  </div>
+  <div style="display:flex;align-items:center;justify-content:space-between">
+    <span class="meta">5 min read · foxitc.co.uk/blog</span>
+    <img class="word" style="filter:brightness(0) invert(1)" src="/assets/fox-wordmark-original.png" alt="Fox ITC">
+  </div>
+</div>
+
+<div class="lbl">Email banner — 1200×400 (arc photo window left, live HTML text right)</div>
+<div class="board banner">
+  <div class="art">
+    <fox-arc-media class="acc" mode="solid" fill="#FB471B" rotate="180" style="opacity:.16"></fox-arc-media>
+    <fox-arc-media class="main" mode="photo" src="/brand-system/preview/hero-wide-1.jpg" focal="50% 42%"></fox-arc-media>
+  </div>
+  <div class="txt">
+    <div class="cat">Fox ITC</div>
+    <h2>IT that just works.</h2>
+    <a class="cta" href="https://www.foxitc.co.uk/book">Book a conversation →</a>
+  </div>
+</div>
+</body></html>

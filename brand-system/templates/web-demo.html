@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en-GB"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Fox ITC — web demo shell</title>
+<link rel="stylesheet" href="/brand-system/assets/fox-ui.css">
+<script src="/brand-system/components/fox-arc-media.js"></script>
+<style>
+  .ribbon{background:#111a2e;color:#fff;text-align:center;font-size:12.5px;padding:7px}
+  .demo{position:relative;background:linear-gradient(135deg,var(--ink),#22304f);min-height:100vh;overflow:hidden}
+  .demo .wm{position:absolute;right:-120px;top:120px;width:620px;opacity:.10;pointer-events:none}
+  .dhead{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .dhead .brand{display:flex;align-items:center;gap:10px;color:#fff;font-weight:800}
+  .dhead .brand .m{width:30px}
+  .dhead .brand .p{color:#9fb0c9;font-weight:600;font-size:14px;border-left:1px solid #2a3a5c;padding-left:10px;margin-left:4px}
+  .dnav{display:flex;gap:22px;align-items:center}
+  .dnav a{color:#cdd5e4;text-decoration:none;font-size:14px;font-weight:600}
+  .dgrid{display:grid;grid-template-columns:260px 1fr;gap:28px;padding:18px 0 56px}
+  @media(max-width:860px){.dgrid{grid-template-columns:1fr}}
+  .side{color:#cdd5e4}
+  .side h3{color:#fff;font-size:15px;margin:0 0 12px}
+  .steps{list-style:none;margin:0 0 24px;padding:0}
+  .steps li{display:flex;gap:12px;align-items:flex-start;padding:10px 0}
+  .steps .n{flex:0 0 26px;width:26px;height:26px;border-radius:50%;background:#2a3a5c;color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center}
+  .steps li.on .n{background:var(--fox)}
+  .steps .t{font-size:14px}.steps .t b{color:#fff;display:block}
+  .uc{background:#1d2b49;border:1px solid #2a3a5c;border-radius:12px;padding:14px;margin-bottom:10px}
+  .uc b{color:#fff;font-size:14px}.uc p{margin:4px 0 0;color:#9fb0c9;font-size:13px}
+  /* Browser frame */
+  .frame{background:#0e1526;border:1px solid #2a3a5c;border-radius:14px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.4)}
+  .bar{display:flex;align-items:center;gap:8px;padding:12px 14px;background:#172038;border-bottom:1px solid #2a3a5c}
+  .dot{width:11px;height:11px;border-radius:50%}
+  .urlbar{flex:1;margin-left:10px;background:#0e1526;border-radius:8px;color:#9fb0c9;font-size:12.5px;padding:7px 12px}
+  .screen{aspect-ratio:16/9;background:#f7f8fa;color:var(--ink);position:relative;display:flex;align-items:center;justify-content:center}
+  .screen .tag{position:absolute;top:12px;left:12px;background:#fff4f0;color:#b8310f;border:1px solid #ffd9cd;font-size:11px;font-weight:800;padding:4px 10px;border-radius:999px;letter-spacing:.04em}
+  .screen .ph{text-align:center;color:var(--muted)}
+  .screen .ph b{display:block;color:var(--ink);font-size:18px;margin-bottom:4px}
+  .exit{display:flex;gap:12px;margin-top:18px}
+  .exit a{display:inline-flex;align-items:center;gap:8px;border-radius:999px;font-weight:700;text-decoration:none;font-size:15px;padding:12px 22px}
+  .exit .pri{background:var(--fox);color:#fff}.exit .gh{border:1px solid #2a3a5c;color:#cdd5e4}
+</style></head>
+<body class="fx" style="background:var(--ink)">
+<div class="ribbon">BRAND KIT · Web-demo shell. Use real app screenshots or clearly-labelled prototypes; never imply capabilities that don't exist. Arc watermark sits outside the interactive UI. Not live.</div>
+<div class="demo">
+  <fox-arc-media class="wm" mode="watermark" fill="#FB471B" opacity="0.14"></fox-arc-media>
+  <div class="fx-wrap">
+    <div class="dhead">
+      <div class="brand"><fox-arc-media class="m" mode="solid" fill="#FB471B"></fox-arc-media>Fox ITC<span class="p">Fox 360 · guided demo</span></div>
+      <nav class="dnav"><a href="#">Overview</a><a href="#">Features</a><a href="#">Pricing</a><a class="fx-btn fx-btn--pri fx-btn--sm" href="https://www.foxitc.co.uk/book">Book a conversation</a></nav>
+    </div>
+    <div class="dgrid">
+      <aside class="side">
+        <h3>Guided walkthrough</h3>
+        <ol class="steps">
+          <li class="on"><span class="n">1</span><span class="t"><b>Dashboard</b>See your IT at a glance.</span></li>
+          <li><span class="n">2</span><span class="t"><b>Tickets</b>Raise and track support.</span></li>
+          <li><span class="n">3</span><span class="t"><b>Security</b>Posture &amp; alerts.</span></li>
+        </ol>
+        <h3>Use cases</h3>
+        <div class="uc"><b>Hospitality</b><p>Guest Wi-Fi &amp; EPOS uptime.</p></div>
+        <div class="uc"><b>Freight &amp; logistics</b><p>Multi-site support &amp; warehouse Wi-Fi.</p></div>
+      </aside>
+      <main>
+        <div class="frame">
+          <div class="bar"><span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span><div class="urlbar">360.foxitc.co.uk/dashboard</div></div>
+          <div class="screen">
+            <span class="tag">PROTOTYPE · SAMPLE SCREEN</span>
+            <div class="ph"><b>Product screenshot goes here</b>Drop a real Fox 360 screen capture into this 16:9 frame.</div>
+          </div>
+        </div>
+        <div class="exit">
+          <a class="pri" href="https://www.foxitc.co.uk/book">Book a conversation →</a>
+          <a class="gh" href="#">Next: Tickets →</a>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+</body></html>

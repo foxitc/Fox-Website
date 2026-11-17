@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Concept A — Clarity | Fox ITC homepage concept</title>
+<script src="/brand-system/components/fox-arc-media.js"></script>
+<style>
+  :root{--fox:#FB471B;--fox-accent:#FC6C4C;--ink:#15213A;--slate:#444B53;--bg:#F7F8FA;--card:#fff;--border:#E6E8EC;--muted:#667085;--text:#1A1D21;}
+  *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--card);color:var(--text);font-family:Inter,system-ui,sans-serif;line-height:1.6}
+  h1,h2,h3{letter-spacing:-.02em;color:var(--ink);font-weight:800;margin:0}
+  a{color:inherit}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+  .pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;font-weight:700;text-decoration:none;cursor:pointer;border:0}
+  .pill--pri{background:var(--fox);color:#fff;padding:14px 26px}.pill--pri:hover{background:var(--fox-accent)}
+  .pill--ghost{background:#fff;border:1px solid var(--border);color:var(--ink);padding:13px 22px}
+  .eyebrow{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--fox)}
+  /* header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+  .hd{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .hd img{height:34px}
+  .nav{display:flex;gap:26px;align-items:center}.nav a{font-weight:600;font-size:14.5px;text-decoration:none;color:var(--slate)}.nav a:hover{color:var(--fox)}
+  @media(max-width:860px){.nav a:not(.pill){display:none}}
+  /* hero */
+  .hero{padding:70px 0 40px}
+  .hero .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+  @media(max-width:900px){.hero .grid{grid-template-columns:1fr;gap:28px}}
+  .hero h1{font-size:clamp(34px,5vw,58px);line-height:1.03}
+  .hero h1 .o{color:var(--fox)}
+  .hero p{font-size:19px;color:var(--muted);max-width:48ch;margin:18px 0 26px}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .hero .meta{font-size:13.5px;color:var(--muted);margin-top:16px}
+  .stage{position:relative;min-height:440px;display:flex;align-items:center;justify-content:center}
+  .stage .accent{position:absolute;right:-4%;top:0;width:76%;opacity:.14}
+  .stage .main{position:relative;width:100%;max-width:480px;filter:drop-shadow(0 24px 48px rgba(21,33,58,.20))}
+  .logos{display:flex;gap:30px;flex-wrap:wrap;align-items:center;justify-content:center;padding:24px 0 8px;opacity:.7}
+  .logos span{font-weight:700;color:var(--muted);font-size:14px;letter-spacing:.02em}
+  /* services */
+  .sec{padding:64px 0;border-top:1px solid var(--border)}
+  .sec h2{font-size:clamp(26px,3.4vw,36px)}
+  .lead{color:var(--muted);font-size:17px;margin:10px 0 36px;max-width:60ch}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+  .svc{position:relative;background:var(--bg);border:1px solid var(--border);border-radius:18px;padding:24px;overflow:hidden;text-decoration:none;display:block;transition:transform .14s,box-shadow .14s}
+  .svc:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(21,33,58,.09)}
+  .svc .wm{position:absolute;right:-24px;top:-24px;width:104px;opacity:.06}
+  .svc .ic{width:44px;height:44px;border-radius:12px;background:rgba(251,71,27,.1);color:var(--fox);display:flex;align-items:center;justify-content:center;margin-bottom:14px;position:relative}
+  .svc .ic svg{width:24px;height:24px}
+  .svc h3{font-size:18px;margin:0 0 6px;position:relative}.svc p{margin:0;color:var(--muted);font-size:14.5px;position:relative}
+  .svc .go{color:var(--fox);font-weight:700;font-size:14px;margin-top:12px;display:inline-block;position:relative}
+  /* why */
+  .why{background:var(--bg)}
+  .why .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;margin-top:30px}
+  .why .v{background:#fff;border:1px solid var(--border);border-radius:16px;padding:22px}
+  .why .v b{color:var(--fox);font-size:15px;letter-spacing:.02em}.why .v p{margin:6px 0 0;color:var(--muted);font-size:14.5px}
+  /* people */
+  .team{display:flex;gap:18px;flex-wrap:wrap;margin-top:30px}
+  .person{width:150px;text-align:center}
+  .person .ph{width:120px;height:120px;border-radius:50%;object-fit:cover;margin:0 auto 10px;background:var(--ink);display:block;border:3px solid #fff;box-shadow:0 6px 18px rgba(21,33,58,.12)}
+  .person b{display:block;font-size:15px;color:var(--ink)}.person span{font-size:13px;color:var(--muted)}
+  /* final */
+  .final{position:relative;background:linear-gradient(135deg,var(--ink),#22304f);color:#fff;border-radius:24px;padding:56px;text-align:center;overflow:hidden;margin:56px 0}
+  .final .wm{position:absolute;left:-40px;bottom:-40px;width:220px;opacity:.14}
+  .final h2{color:#fff;font-size:clamp(26px,3.6vw,38px)}.final p{color:#c3cad8;margin:12px auto 24px;max-width:52ch}
+  footer{border-top:1px solid var(--border);color:var(--muted);font-size:13.5px;padding:28px 0}
+  .ribbon{background:#111a2e;color:#fff;text-align:center;font-size:12.5px;padding:7px}
+</style>
+</head>
+<body>
+<div class="ribbon">CONCEPT A · "Clarity" — proposed homepage concept, existing copy preserved. Not live.</div>
+<header><div class="wrap hd">
+  <img src="/assets/fox-wordmark-original.png" alt="Fox ITC" />
+  <nav class="nav"><a href="#">Services</a><a href="#">Industries</a><a href="#">Pricing</a><a href="#">About</a><a class="pill pill--pri" href="#" style="padding:10px 18px;font-size:14px">Book a free IT review</a></nav>
+</div></header>
+
+<section class="hero"><div class="wrap"><div class="grid">
+  <div>
+    <span class="eyebrow">UK Managed IT Services</span>
+    <h1 style="margin-top:12px">IT that <span class="o">just works.</span> People who actually care.</h1>
+    <p>We're not your typical IT company — a straight-talking team who genuinely care about your business. From managed support to cyber security, we've got you covered.</p>
+    <div class="cta"><a class="pill pill--pri" href="#">Book a free IT review →</a><a class="pill pill--ghost" href="#">Meet the team</a></div>
+    <div class="meta">No obligation · 15-minute call · a real person, not a call centre</div>
+  </div>
+  <div class="stage">
+    <fox-arc-media class="accent" mode="solid" fill="#FB471B" rotate="180"></fox-arc-media>
+    <fox-arc-media class="main" mode="photo" src="/brand-system/preview/hero-wide-1.jpg" focal="50% 42%"></fox-arc-media>
+  </div>
+</div>
+<div class="logos"><span>Microsoft Partner</span><span>Cyber Essentials</span><span>3CX</span><span>ISO 27001-aligned</span></div>
+</div></section>
+
+<section class="sec"><div class="wrap">
+  <span class="eyebrow">What we do</span>
+  <h2 style="margin-top:8px">Everything your business needs, from one trusted partner</h2>
+  <p class="lead">Each service links to the full page — nothing here replaces your existing service content.</p>
+  <div class="cards">
+    <a class="svc" href="#"><fox-arc-media class="wm" mode="watermark" fill="#FB471B" opacity="0.07"></fox-arc-media><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><h3>Managed IT Support</h3><p>We become your IT department. Fast response, plain English.</p><span class="go">Explore →</span></a>
+    <a class="svc" href="#"><fox-arc-media class="wm" mode="watermark" fill="#15213A" opacity="0.06"></fox-arc-media><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg></div><h3>Cyber Security</h3><p>Protected, certified, and trained — before something goes wrong.</p><span class="go">Explore →</span></a>
+    <a class="svc" href="#"><fox-arc-media class="wm" mode="watermark" fill="#FB471B" opacity="0.07" rotate="180"></fox-arc-media><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2a7 7 0 0 1 7 7c0 3-2 4-2 7H7c0-3-2-4-2-7a7 7 0 0 1 7-7Z"/><path d="M9 21h6"/></svg></div><h3>AI Services</h3><p>AI readiness, Copilot, automation &amp; small app builds.</p><span class="go">Explore →</span></a>
+    <a class="svc" href="#"><fox-arc-media class="wm" mode="watermark" fill="#15213A" opacity="0.06"></fox-arc-media><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg></div><h3>Microsoft 365</h3><p>Licensing, compliance, SharePoint, Teams — handled.</p><span class="go">Explore →</span></a>
+    <a class="svc" href="#"><fox-arc-media class="wm" mode="watermark" fill="#FB471B" opacity="0.07"></fox-arc-media><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 12.5a9 9 0 0 1 14 0M8.5 16a4.5 4.5 0 0 1 7 0M12 19.5h.01"/></svg></div><h3>Connectivity</h3><p>Fast, reliable connectivity — leased lines and broadband.</p><span class="go">Explore →</span></a>
+    <a class="svc" href="#"><fox-arc-media class="wm" mode="watermark" fill="#15213A" opacity="0.06" rotate="180"></fox-arc-media><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></div><h3>Mobile &amp; WiFi</h3><p>Business mobile and enterprise WiFi — surveyed, designed, installed.</p><span class="go">Explore →</span></a>
+  </div>
+</div></section>
+
+<section class="sec why"><div class="wrap">
+  <span class="eyebrow">Why Fox</span>
+  <h2 style="margin-top:8px">Do It · Care 4 It · Own It · Simplify It</h2>
+  <div class="grid">
+    <div class="v"><b>Per-user pricing</b><p>One clear price per person — easy to budget, easy to scale.</p></div>
+    <div class="v"><b>One point of contact</b><p>A friendly team that knows your setup — no call-centre runaround.</p></div>
+    <div class="v"><b>Security-first</b><p>ISO 27001 as the benchmark, built into everything we do.</p></div>
+    <div class="v"><b>UK expertise</b><p>Enterprise-grade know-how, delivered with a personal touch.</p></div>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap">
+  <span class="eyebrow">People buy from people</span>
+  <h2 style="margin-top:8px">The team behind your IT</h2>
+  <div class="team">
+    <div class="person"><img class="ph" src="/frontend/ian.png" alt=""><b>Ian Mackness</b><span>Founder</span></div>
+    <div class="person"><img class="ph" src="/frontend/mark.png" alt=""><b>Mark Hutchinson</b><span>Engineer</span></div>
+    <div class="person"><img class="ph" src="/frontend/lerato.png" alt=""><b>Lerato</b><span>Support</span></div>
+    <div class="person"><img class="ph" src="/frontend/Todd.png" alt=""><b>Todd</b><span>Fox 360 AI</span></div>
+  </div>
+  <!-- Verified case study / testimonial slot — hidden until supplied -->
+</div></section>
+
+<section><div class="wrap"><div class="final">
+  <fox-arc-media class="wm" mode="watermark" fill="#FB471B" opacity="0.16"></fox-arc-media>
+  <h2>Let's talk about your IT.</h2>
+  <p>Book a free, no-obligation review and we'll show you where you can save and simplify.</p>
+  <a class="pill pill--pri" href="#">Book a free IT review →</a>
+</div></div></section>
+
+<footer><div class="wrap">© 2026 Fox ITC · Managed IT &amp; Cyber Security · Castle Donington, Leicestershire · foxitc.co.uk</div></footer>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en-GB"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Fox ITC — beer mats</title>
+<script src="/brand-system/components/fox-arc-media.js"></script>
+<style>
+  :root{--fox:#FB471B;--ink:#15213A;--muted:#667085;--border:#E6E8EC}
+  *{box-sizing:border-box} body{margin:0;background:#dfe3ea;font-family:'Geist',Inter,system-ui,sans-serif;padding:22px}
+  .ribbon{background:#111a2e;color:#fff;text-align:center;font-size:12.5px;padding:7px;margin:-22px -22px 18px}
+  .note{color:#444;font-size:13px;margin:0 0 16px;max-width:760px}
+  .row{display:flex;gap:26px;flex-wrap:wrap;margin-bottom:26px}
+  .lbl{font-size:12px;color:#444;font-weight:700;margin:0 0 8px}
+  .mat{position:relative;box-shadow:0 10px 30px rgba(0,0,0,.16);overflow:hidden;color:#fff}
+  .round{width:96mm;height:96mm;border-radius:50%}
+  .square{width:96mm;height:96mm;border-radius:6mm}
+  .die{position:absolute;inset:3mm;border:0.2mm dashed rgba(255,255,255,.5);pointer-events:none;z-index:5}
+  .round .die{border-radius:50%}.square .die{border-radius:4mm}
+  .ink{background:#15213A}.orange{background:#FB471B}
+  .c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:12mm}
+  .wm{position:absolute;pointer-events:none}
+  h2{font-size:9mm;line-height:1.05;letter-spacing:-.02em;margin:0;font-weight:800;color:#fff}
+  .brand{display:flex;align-items:center;gap:2.4mm;margin-bottom:4mm}
+  .brand .m{width:8mm}.brand b{font-size:6mm;color:#fff}
+  .sub{font-size:3.4mm;margin-top:3mm;color:rgba(255,255,255,.82)}
+  .qr{width:26mm;height:26mm;border-radius:2mm;background:#fff;padding:1.5mm;margin-bottom:3mm}
+  .qr img{width:100%;height:100%;display:block}
+  .url{font-size:3.4mm;font-weight:700;color:#fff}
+  .contact{font-size:2.8mm;color:rgba(255,255,255,.8);margin-top:1.5mm}
+</style></head>
+<body>
+<div class="ribbon">BRAND KIT · Beer mats (round + square, sides A/B). Dashed = die-line/safe. DRAFT — confirm the printer's die-line before artwork; no 'free'/discount claims. Not live.</div>
+<p class="note">Oversized arc motif, official wordmark, one message per side. Side B carries a QR + readable URL to <b>foxitc.co.uk/book</b>.</p>
+
+<div class="row">
+  <div><div class="lbl">Round · Side A</div>
+    <div class="mat round ink"><div class="die"></div>
+      <fox-arc-media class="wm" mode="watermark" fill="#FB471B" opacity="0.2" style="right:-18mm;bottom:-18mm;width:62mm"></fox-arc-media>
+      <div class="c"><div class="brand"><fox-arc-media class="m" mode="solid" fill="#FB471B"></fox-arc-media><b>Fox ITC</b></div>
+        <h2>IT that<br>just works.</h2><div class="sub">People who actually care.</div></div>
+    </div>
+  </div>
+  <div><div class="lbl">Round · Side B</div>
+    <div class="mat round orange"><div class="die"></div>
+      <fox-arc-media class="wm" mode="watermark" fill="#FFFFFF" opacity="0.16" style="left:-16mm;top:-16mm;width:56mm;transform:rotate(180deg)"></fox-arc-media>
+      <div class="c"><div class="qr"><img src="/brand-system/assets/qr-book.png" alt="Scan to book a conversation"></div>
+        <div class="url">Scan to book a conversation</div><div class="contact">foxitc.co.uk/book · 0330 058 1877</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div><div class="lbl">Square · Side A</div>
+    <div class="mat square ink"><div class="die"></div>
+      <fox-arc-media class="wm" mode="watermark" fill="#FB471B" opacity="0.2" style="right:-16mm;bottom:-16mm;width:58mm"></fox-arc-media>
+      <div class="c"><div class="brand"><fox-arc-media class="m" mode="solid" fill="#FB471B"></fox-arc-media><b>Fox ITC</b></div>
+        <h2>Is your IT<br>a headache?</h2><div class="sub">We're the UK team that makes it just work.</div></div>
+    </div>
+  </div>
+  <div><div class="lbl">Square · Side B</div>
+    <div class="mat square orange"><div class="die"></div>
+      <fox-arc-media class="wm" mode="watermark" fill="#FFFFFF" opacity="0.16" style="left:-14mm;top:-14mm;width:52mm;transform:rotate(180deg)"></fox-arc-media>
+      <div class="c"><div class="qr"><img src="/brand-system/assets/qr-book.png" alt="Scan to book a conversation"></div>
+        <div class="url">Book a free 15-min review</div><div class="contact">foxitc.co.uk/book · hello@foxitc.co.uk</div></div>
+    </div>
+  </div>
+</div>
+</body></html>

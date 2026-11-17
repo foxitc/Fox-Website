@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en-GB"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Fox ITC — motion & intro</title>
+<script src="/brand-system/components/fox-arc-media.js"></script>
+<style>
+  :root{--fox:#FB471B;--ink:#15213A;--muted:#667085}
+  *{box-sizing:border-box} body{margin:0;background:#dfe3ea;font-family:'Geist',Inter,system-ui,sans-serif;padding:22px}
+  .ribbon{background:#111a2e;color:#fff;text-align:center;font-size:12.5px;padding:7px;margin:-22px -22px 18px}
+  .lbl{font-size:12px;color:#444;font-weight:700;margin:16px 0 8px}
+  .row{display:flex;gap:22px;flex-wrap:wrap}
+  .frame{position:relative;background:#15213A;color:#fff;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.16)}
+  .r169{width:560px;height:315px}
+  .r916{width:220px;height:391px}
+  .center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
+  .title{opacity:0;transform:translateY(8px);animation:rise 900ms ease-out 700ms forwards;font-size:30px;font-weight:800;letter-spacing:-.02em}
+  .title .o{color:var(--fox)}
+  @keyframes rise{to{opacity:1;transform:none}}
+  /* lower third */
+  .lt{position:absolute;left:24px;bottom:24px;display:flex;align-items:center;gap:12px;background:rgba(21,33,58,.82);backdrop-filter:blur(6px);border-left:4px solid var(--fox);border-radius:10px;padding:10px 16px}
+  .lt .m{width:30px}.lt b{font-size:16px}.lt span{color:#9fb0c9;font-size:12.5px;display:block}
+  /* outro */
+  .outro .cta{margin-top:6px;background:var(--fox);color:#fff;font-weight:800;padding:10px 22px;border-radius:999px;font-size:15px}
+  .cap{position:absolute;top:12px;right:14px;font-size:11px;color:#9fb0c9}
+  @media (prefers-reduced-motion: reduce){.title{animation:none;opacity:1;transform:none}}
+  .notebox{background:#fff;border:1px solid #E6E8EC;border-radius:12px;padding:16px 18px;max-width:760px;margin-top:18px;color:#444;font-size:13.5px;line-height:1.6}
+</style></head>
+<body>
+<div class="ribbon">BRAND KIT · Motion — animated intro, lower-third, outro (16:9 + 9:16). Pulse is opacity-only; reduced-motion falls back to static. Not live.</div>
+
+<div class="lbl">Animated logo intro — 16:9 (arc pulse inner→outer, then title)</div>
+<div class="row">
+  <div class="frame r169">
+    <span class="cap">intro · ~5s</span>
+    <div class="center">
+      <fox-arc-media mode="pulse" style="width:120px"></fox-arc-media>
+      <div class="title">Fox <span class="o">ITC</span></div>
+    </div>
+  </div>
+  <div class="frame r916">
+    <span class="cap">9:16</span>
+    <div class="center">
+      <fox-arc-media mode="pulse" style="width:92px"></fox-arc-media>
+      <div class="title" style="font-size:24px">Fox <span class="o">ITC</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="lbl">Screen-capture frame with discreet corner motif + lower-third label</div>
+<div class="row">
+  <div class="frame r169" style="background:#0e1526">
+    <fox-arc-media mode="watermark" fill="#FB471B" opacity="0.14" style="position:absolute;right:-30px;top:-30px;width:150px"></fox-arc-media>
+    <div style="position:absolute;inset:40px 40px 70px;background:#f7f8fa;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#667085;font-size:13px">Screen capture area</div>
+    <div class="lt"><fox-arc-media class="m" mode="solid" fill="#FB471B"></fox-arc-media><div><b>Ian Mackness</b><span>Founder · Fox ITC</span></div></div>
+  </div>
+  <div class="frame r169 outro">
+    <span class="cap">outro · CTA</span>
+    <div class="center">
+      <fox-arc-media mode="solid" fill="#FB471B" style="width:70px"></fox-arc-media>
+      <div class="title" style="animation-delay:200ms">Let's start a conversation.</div>
+      <div class="cta">foxitc.co.uk/book</div>
+    </div>
+  </div>
+</div>
+
+<div class="notebox"><b>Production spec:</b> intro ≤ 5–8s, pulse inner→middle→outer by opacity only (never morph geometry), product title, short transition. Screen capture with a discreet corner arc watermark. Lower-third for names/roles. Outro = official logo + CTA. Export 16:9 and 9:16, silent-safe captions, licensed audio, and a reduced-motion / static alternative. See <code>VIDEO_AND_MOTION.md</code> and <code>fox-itc-v2/templates/POWERPOINT_AND_DEMOS.md</code>.</div>
+</body></html>

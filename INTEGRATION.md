@@ -72,6 +72,44 @@ Nobody re-types prices on the website.
 
 ---
 
+## Todd publishing — pages API (agreed 2026-10-19)
+
+Lets **Todd** create/edit public pages without a developer or a deploy. Full
+design + guardrails in [`TODD_PUBLISHING.md`](./TODD_PUBLISHING.md) (website
+repo). **360 is content authority** (authors + stores pages, owns the approval
+gate + media); **website is design authority** (renders them from a brand-locked
+block library, owns the reserved-route guard + SEO). Decisions locked: pages live
+at **`/p/{slug}`**; **human approval gate ON** (draft→preview→publish); **content
+pages only** (no core-page edits in v1); **not auto-added to nav**; **media via
+the 360 library only** (no arbitrary image URLs).
+
+**360 exposes (website consumes), CORS-open, published pages public / drafts token-gated:**
+
+| Purpose | Endpoint | Notes |
+|---|---|---|
+| List published pages | `GET /api/pages/feed` | slug, title, updatedAt, nav flags → website sitemap (+ future nav opt-in) |
+| Get a published page | `GET /api/pages/by-slug/{slug}` | the Page JSON (see model below); 404 if not published |
+| Preview a draft | `GET /api/pages/preview/{slug}?token=` | token-gated; renders the draft before it's live |
+| Resolve a media asset | `GET /api/media/{id}` | turns `media://` refs into real image URLs |
+
+Authoring (create/update/publish/unpublish/revert) is **internal to 360** —
+Todd's authenticated context — so there is **no new public write surface**; the
+website only reads.
+
+**Page model (360 owns the schema; website renders it):** `slug`, `status`
+(draft|published|unpublished), `title`, `description`, `ogImage` (`media://`),
+`blocks[]` (ordered, from the fixed block allow-list — `hero`, `rich-text`,
+`feature-grid`, `stats`, `cta-band`, `faq`, `logos`, `image`, `quote`,
+`pricing-table` [reads `/api/tiers/public`], `booking-cta` [→ `/book`]), `seo`,
+`nav`, `meta` (author, version, timestamps). **Blocks only — never raw HTML/JS.**
+
+**Build split / sequencing:** Phase 1 "walking skeleton" — **[360]** stands up
+`pages/feed` + `by-slug` + `preview` + draft/publish + media; **[website]** builds
+the `/p/{slug}` server-rendered renderer + the first 4 blocks (hero, rich-text,
+feature-grid, cta-band) + sitemap + JSON-LD. Then grow the block library.
+
+---
+
 ## Getting the code closer (options, not yet decided)
 
 1. **Shared contract only (today).** Repos stay separate; both build to this
@@ -90,3 +128,4 @@ Nobody re-types prices on the website.
 - QR — ✅ `/api/marketing/qr`.
 - Support tiers source of truth + `/api/tiers/public` — being added in 360.
 - Website adoption of the above — tracked in the website chat.
+- Todd publishing (pages API) — ✅ contract agreed (2026-10-19); Phase 1 build not started. `[360]` builds the pages/media API + approval gate; `[website]` builds the `/p/{slug}` renderer + block library.

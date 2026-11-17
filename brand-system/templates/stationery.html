@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en-GB"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Fox ITC — stationery</title>
+<script src="/brand-system/components/fox-arc-media.js"></script>
+<style>
+  :root{--fox:#FB471B;--fox-accent:#FC6C4C;--ink:#15213A;--slate:#444B53;--muted:#667085;--border:#E6E8EC;--bg:#F7F8FA}
+  *{box-sizing:border-box} body{margin:0;background:#dfe3ea;font-family:'Geist',Inter,system-ui,sans-serif;padding:22px}
+  .ribbon{background:#111a2e;color:#fff;text-align:center;font-size:12.5px;padding:7px;margin:-22px -22px 18px}
+  .lbl{font-size:12px;color:#444;font-weight:700;margin:18px 0 8px}
+  .row{display:flex;gap:24px;flex-wrap:wrap}
+  .board{position:relative;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,.16);overflow:hidden}
+  .die{position:absolute;inset:3mm;border:.2mm dashed rgba(251,71,27,.4);pointer-events:none;z-index:6}
+  .wm{position:absolute;pointer-events:none}
+  .word{display:block}
+  /* Business card 85x55mm + 3mm bleed */
+  .card{width:91mm;height:61mm}
+  .card .pad{position:absolute;inset:3mm;padding:5mm}
+  .card .word{height:8mm}
+  .card .name{font-size:5mm;font-weight:800;color:var(--ink);margin-top:9mm}
+  .card .role{font-size:3mm;color:var(--fox);font-weight:700;margin-top:1mm;text-transform:uppercase;letter-spacing:.06em}
+  .card .lines{font-size:3mm;color:var(--slate);line-height:1.6;margin-top:5mm}
+  .card .acc{right:-10mm;bottom:-10mm;width:34mm;opacity:.1}
+  .card.back{background:#15213A}
+  .card.back .c{position:absolute;inset:3mm;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+  .card.back .big{font-size:7mm;font-weight:800;color:#fff;line-height:1.05}
+  .card.back .big .o{color:var(--fox)}
+  .card.back .u{font-size:3mm;color:#9fb0c9;margin-top:3mm}
+  .card.back .wm{right:-14mm;top:-14mm;width:40mm;opacity:.2;transform:rotate(180deg)}
+  /* Letterhead A4 */
+  .a4{width:210mm;height:297mm}
+  .a4 .hd{position:absolute;top:0;left:0;right:0;height:34mm;display:flex;align-items:center;justify-content:space-between;padding:0 18mm;border-bottom:.4mm solid var(--border)}
+  .a4 .hd .word{height:11mm}
+  .a4 .hd .acc{width:22mm;opacity:.9}
+  .a4 .wmbg{right:-30mm;top:60mm;width:120mm;opacity:.05}
+  .a4 .body{position:absolute;top:50mm;left:18mm;right:18mm;color:var(--slate);font-size:3.6mm;line-height:1.7}
+  .a4 .body .s{color:var(--muted);font-style:italic}
+  .a4 .ft{position:absolute;bottom:0;left:0;right:0;height:22mm;background:#15213A;color:#9fb0c9;font-size:2.8mm;display:flex;align-items:center;justify-content:space-between;padding:0 18mm;line-height:1.6}
+  .a4 .ft b{color:#fff}
+  /* Proposal cover A4 */
+  .cover{width:210mm;height:297mm;background:linear-gradient(150deg,#15213A,#22304f);color:#fff}
+  .cover .wm{right:-40mm;bottom:-30mm;width:150mm;opacity:.16}
+  .cover .in{position:absolute;inset:0;padding:22mm 20mm;display:flex;flex-direction:column}
+  .cover .brand{display:flex;align-items:center;gap:3mm}
+  .cover .brand .m{width:9mm}.cover .brand b{font-size:6mm}
+  .cover .eyebrow{color:var(--fox-accent);font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:3.4mm;margin-top:auto}
+  .cover h1{font-size:15mm;line-height:1.02;letter-spacing:-.02em;margin:4mm 0 0;max-width:80%;font-weight:800}
+  .cover .for{font-size:4.6mm;color:#c3cad8;margin-top:8mm}
+  .cover .ft{font-size:3mm;color:#9fb0c9;margin-top:10mm}
+</style></head>
+<body>
+<div class="ribbon">BRAND KIT · Stationery — business card (85×55mm), A4 letterhead, proposal cover. Dashed = trim. DRAFT — confirm print specs; sample body text. Not live.</div>
+
+<div class="lbl">Business card — 85×55mm (+3mm bleed) · front &amp; back</div>
+<div class="row">
+  <div class="board card">
+    <div class="die"></div>
+    <fox-arc-media class="wm acc" mode="solid" fill="#FB471B"></fox-arc-media>
+    <div class="pad">
+      <img class="word" src="/assets/fox-wordmark-original.png" alt="Fox ITC">
+      <div class="name">Ian Mackness</div>
+      <div class="role">Founder</div>
+      <div class="lines">0330 058 1877<br>ian@foxitc.co.uk<br>foxitc.co.uk</div>
+    </div>
+  </div>
+  <div class="board card back">
+    <div class="die"></div>
+    <fox-arc-media class="wm" mode="watermark" fill="#FB471B" opacity="0.2"></fox-arc-media>
+    <div class="c"><fox-arc-media mode="solid" fill="#FB471B" style="width:16mm;margin-bottom:4mm"></fox-arc-media>
+      <div class="big">IT that <span class="o">just works.</span></div>
+      <div class="u">foxitc.co.uk · 0330 058 1877</div></div>
+  </div>
+</div>
+
+<div class="lbl">Letterhead — A4 (arc accent header, watermark body, ink footer)</div>
+<div class="row">
+  <div class="board a4">
+    <div class="hd"><img class="word" src="/assets/fox-wordmark-original.png" alt="Fox ITC"><fox-arc-media class="acc" mode="solid" fill="#FB471B"></fox-arc-media></div>
+    <fox-arc-media class="wm wmbg" mode="watermark" fill="#15213A" opacity="0.05"></fox-arc-media>
+    <div class="body">
+      <div class="s">[ Date ]</div><br>
+      <div class="s">[ Recipient name ]<br>[ Company ]<br>[ Address ]</div><br><br>
+      Dear [ Name ],<br><br>
+      <span class="s">Thank you for considering Fox ITC. This letterhead is a brand template — the header, footer and arc watermark stay fixed; your letter text flows here in Geist at a readable size with generous margins. Replace this paragraph with your content.</span><br><br>
+      We look forward to working with you.<br><br>
+      Kind regards,<br><br>
+      <b>Ian Mackness</b><br>Founder · Fox ITC
+    </div>
+    <div class="ft">
+      <div><b>Fox ITC</b> · Managed IT &amp; Cyber Security<br>Castle Donington, Leicestershire</div>
+      <div style="text-align:right">0330 058 1877 · hello@foxitc.co.uk<br>foxitc.co.uk · Company no. [ ⟶ ]</div>
+    </div>
+  </div>
+
+  <div class="board cover">
+    <fox-arc-media class="wm" mode="watermark" fill="#FB471B" opacity="0.18"></fox-arc-media>
+    <div class="in">
+      <div class="brand"><fox-arc-media class="m" mode="solid" fill="#FB471B"></fox-arc-media><b>Fox ITC</b></div>
+      <div class="eyebrow">Proposal</div>
+      <h1>Managed IT &amp; Cyber Security</h1>
+      <div class="for">Prepared for [ Client name ]  ·  [ Date ]</div>
+      <div class="ft">foxitc.co.uk · 0330 058 1877 · hello@foxitc.co.uk</div>
+    </div>
+  </div>
+</div>
+</body></html>
